@@ -27,23 +27,8 @@ app.use(session({
 app.use(express.static(pathPublic));
 
 //routes du site
-//met à jour la variable app avec une nouvelle route pour la page de connexion/inscription
-/*app.get('/', (req, res) => res.send(`
-<h1>Register</h1>
-<form id='register' method='post' action='/register'>
-  <input name=username />
-  <input name=password type=password />
-  <input type=submit />
-</form>
-<br />
-<h1>Login</h1>
-<form id='login' method='post' action='/login'>
-  <input name=username />
-  <input name=password type=password />
-  <input type=submit />
-</form>
-<script src="/javascripts/authentification/client.js"></script>
-`))*/
+//redirection sur la page de login pour le moment lors du lancement sur la racine
+app.get('/', (req, res) => res.redirect("/login"))
 
 //route pour aller sur la page de connexion
 app.get('/login', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/authentification/login.html')));
