@@ -4,6 +4,7 @@ var path = require('path');
 const router = express.Router();
 var bodyParser = require('body-parser')
 var session = require('express-session');
+const { getPublicKeyFromPem, verifyAuthSignature, makeKeyPair } = require('./crypto-utils')
 
 var app = express();
 
@@ -22,17 +23,81 @@ app.use(session({
 	saveUninitialized: true,
 }));
 
+//chemin d'accès au dossier public
 app.use(express.static(pathPublic));
 
-router.get("/", function(req, res){
+//routes du site
+//met à jour la variable app avec une nouvelle route pour la page de connexion/inscription
+/*app.get('/', (req, res) => res.send(`
+<h1>Register</h1>
+<form id='register' method='post' action='/register'>
+  <input name=username />
+  <input name=password type=password />
+  <input type=submit />
+</form>
+<br />
+<h1>Login</h1>
+<form id='login' method='post' action='/login'>
+  <input name=username />
+  <input name=password type=password />
+  <input type=submit />
+</form>
+<script src="/javascripts/authentification/client.js"></script>
+`))*/
+
+//route pour aller sur la page de connexion
+app.get('/login', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/authentification/login.html')));
+
+//route pour aller sur la page d'inscription
+app.get('/register', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/authentification/register.html')));
+
+//constante contenant tous les utilisateurs 
+//(en temporaire serveur temps qu'on a pas fait l'enregistrement en base de données des infos)
+const users = {}
+
+//methode qui inscrit l'utilisateur
+app.post('/register', (req, res) => {
+  console.log('DEBUG: Received 1', req.body)
+  try {
+    users[req.body.username] = getPublicKeyFromPem(req.body.publicKey)
+
+    console.log('DEBUG: Received 2', req.body)
+  } catch (err) {
+    console.log('ERROR: ', err)
+    return res.sendStatus(400)
+  }
+
+  console.log("users", users);
+  res.sendStatus(201)
+})
+
+//methode qui connecte l'utilisateur
+app.post('/login', async (req, res) => {
+  console.log('DEBUG: Received', req.body)
+  const publicKey = users[req.body.username]
+
+  if (!publicKey){ 
+    return res.sendStatus(404)
+  }
+  try {
+    await verifyAuthSignature(publicKey, req.body.message, req.body.signature)
+  } catch (err) {
+    console.log('ERROR: ', err)
+    return res.sendStatus(401)
+  }
+  res.sendStatus(200)
+})
+
+
+/*router.get("/", function(req, res){
 	res.sendFile(path.join(pathPublic+'/webpages/index.html'));
 });
 
 router.get("/test", function(req, res){
 	res.sendFile(path.join(pathPublic+'/webpages/test.html'));
-});
+});*/
 
-app.use('/', router);
+//app.use('/', router);
 
 
 //laissé ces lignes après toutes les routes : 
