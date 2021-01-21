@@ -1,19 +1,21 @@
 <html>
     <head>
-        <link rel="stylesheet" href="/public/stylesheets/style.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="/stylesheets/style.css" media="screen" type="text/css" />
     </head>    
     <body>
-        <h1>Register</h1>
-        <form id='register' method='post' action='/register'>
-            <label><b>Username</b></label>
-            <input name=username type="text" placeholder="Entrer l'username" required/>
-            
-            <label><b>Mot de passe</b></label>
-            <input name=password type=password placeholder="Entrer le mot de passe" required/>
-            
-            <input type=submit value='Inscription'/>
-            <b><a href="/public/webpages/authentification/login.html">Déjà inscrit ?</a></b>
-        </form>
-        <script src="/javascripts/authentification/register.js"></script>
+        <div id="container">
+            <form id='register' method='post' action='/register'>
+                <h1>Register</h1>
+                <label><b>Username</b></label>
+                <input name=username type="text" placeholder="Entrer l'username" required/>
+                
+                <label><b>Mot de passe</b></label>
+                <input name=password type=password placeholder="Entrer le mot de passe" required/>
+                
+                <input type=submit value='Inscription'/>
+                <b><a href="/webpages/authentification/login.html">Déjà inscrit ?</a></b>
+            </form>
+            <script src="/javascripts/authentification/register.js"></script>
+        </div>
     </body>
 </html>
