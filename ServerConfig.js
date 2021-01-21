@@ -1,11 +1,11 @@
 //demo ou prod
-var server = "demo";
+var server = "mathias";
 
 function getAllInfosConnectionSql(){
 
     var sqlInfos = {};
 
-    if(server == "demo"){
+    if(server == "mathias"){
         sqlInfos.host = 'localhost';
         sqlInfos.user = 'root';
         sqlInfos.password = 'test';
