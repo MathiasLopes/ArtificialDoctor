@@ -1,18 +1,18 @@
 <html>
     <head>
-        <link rel="stylesheet" href="/stylesheets/style.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="/stylesheets/authentification/style.css" media="screen" type="text/css" />
     </head>
     <body>
         <div id="container">
             <form id='login' method='post' action='/login'>
-                <h1>Login</h1>
-                <label><b>Username</b></label>
-                <input name=username type="text" placeholder="Entrer l'username" required/>
+                <h1>Connexion</h1>
+                <label><b>Identifiant</b></label>
+                <input name=username type="text" placeholder="Entrer l'identifiant" required/>
       
                 <label><b>Mot de passe</b></label>
                 <input name=password type=password placeholder="Entrer le mot de passe" required/>
                 
-                <input type=submit value='Connexion'/>
+                <input type=submit value='Se connecter'/>
                 <b><a href="/webpages/authentification/register.html">Pas encore inscrit ?</a></b>
               </form>
               <script src="/javascripts/authentification/login.js"></script>
