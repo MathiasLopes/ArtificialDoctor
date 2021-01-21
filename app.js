@@ -4,7 +4,7 @@ var path = require('path');
 const router = express.Router();
 var bodyParser = require('body-parser')
 var session = require('express-session');
-const { getPublicKeyFromPem, verifyAuthSignature, makeKeyPair } = require('./crypto-utils')
+var requestAuthentification = require('./requests/requestAuthentification');
 
 var app = express();
 
@@ -42,37 +42,13 @@ const users = {}
 
 //methode qui inscrit l'utilisateur
 app.post('/register', (req, res) => {
-  console.log('DEBUG: Received 1', req.body)
-  try {
-    users[req.body.username] = getPublicKeyFromPem(req.body.publicKey)
-
-    console.log('DEBUG: Received 2', req.body)
-  } catch (err) {
-    console.log('ERROR: ', err)
-    return res.sendStatus(400)
-  }
-
-  console.log("users", users);
-  res.sendStatus(201)
+  requestAuthentification.inscription(req, function(reponse){res.send(reponse);});
 })
 
-//methode qui connecte l'utilisateur
+//methode qui permet de connecter l'utilisateur
 app.post('/login', async (req, res) => {
-  console.log('DEBUG: Received', req.body)
-  const publicKey = users[req.body.username]
-
-  if (!publicKey){ 
-    return res.sendStatus(404)
-  }
-  try {
-    await verifyAuthSignature(publicKey, req.body.message, req.body.signature)
-  } catch (err) {
-    console.log('ERROR: ', err)
-    return res.sendStatus(401)
-  }
-  res.sendStatus(200)
+  requestAuthentification.connexion(req, function(reponse){res.send(reponse);});
 })
-
 
 /*router.get("/", function(req, res){
 	res.sendFile(path.join(pathPublic+'/webpages/index.html'));
