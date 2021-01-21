@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var url = require('url');
 var requestBase = require('./requestBase');
 const { getPublicKeyFromPem, verifyAuthSignature, makeKeyPair } = require('../crypto-utils')
-const { connection } = require('./requestBase');
+const { getConnection } = require('./requestBase');
 
 //methode permettant l'inscription à l'utilisateur
 function inscription(req, callback){
@@ -20,11 +20,9 @@ function inscription(req, callback){
             identifiantExist(identifiant, function(idExist){
 
                 if(!idExist){
-                    
-                    var certificat = JSON.stringify(req.body.publicKey);
 
                     //recuperation du certificat à stocker en base de données
-                    //var certificat = JSON.stringify(getPublicKeyFromPem(req.body.publicKey));
+                    var certificat = req.body.publicKey;
 
                     //on ajoute la ligne dans la table utilisateur
                     insertionUserInTableUtilisateur(identifiant, certificat);
@@ -44,8 +42,13 @@ function inscription(req, callback){
 
 //methode permettant de recuperer la ligne utilisateur dans la table utilisateur
 function getIdentifiant(identifiant, callback){
-    connection.query("select * from utilisateurs where identifiant = ?", identifiant, function (error, results, fields){
-        callback(results);
+    getConnection(function(connection){
+        connection.query("select * from utilisateurs where identifiant = ?", identifiant, function (error, results, fields){
+
+            console.log(results);
+
+            callback(results);
+        });
     });
 }
 
@@ -62,7 +65,9 @@ function identifiantExist(identifiant, callback){
 //permet d'insérer un nouvelle utilisateur avec uniquement les informations identifiant et certificat
 function insertionUserInTableUtilisateur(identifiant, certificat){
     var post  = {identifiant: identifiant, certificat: certificat};
-    connection.query("insert into utilisateurs SET ?", post);
+    getConnection(function(connection){
+        connection.query("insert into utilisateurs SET ?", post);
+    });
 }
 
 //permet de s'assurer que l'utilisateur utilise les bonnes informations pour se connecter afin de valider la connexion
@@ -79,8 +84,10 @@ function connexion(req, callback){
                 //on recupere la premiere ligne directement qui est sensé être l'utilisateur ciblé
                 utilisateur = utilisateur[0];
                 
+                console.log(utilisateur)
+
                 //on recupere le certificat au bon format
-                var certificat = getPublicKeyFromPem(JSON.parse(utilisateur.certificat));
+                var certificat = getPublicKeyFromPem(utilisateur.certificat);
 
                 console.log(certificat);
 

@@ -1,28 +1,41 @@
-//demo ou prod
-var server = "mathias";
+var fs = require('fs');
 
-function getAllInfosConnectionSql(){
+function getAllInfosConnectionSql(callback){
 
-    var sqlInfos = {};
+    var server = "prod";
 
-    if(server == "mathias"){
-        sqlInfos.host = 'localhost';
-        sqlInfos.user = 'root';
-        sqlInfos.password = 'test';
-        sqlInfos.database = 'artificialdoctor';
-        sqlInfos.port = 3306; 
+    fs.readFile('./ServerConfigWord.txt', 'utf8', function (err, data) {
 
-    }else if(server == "prod"){
+        if (err) {
+            console.log("une erreur");
+            server = prod;
+        }else{
+            console.log("pas derreur");
+            server = data;
+        }
 
-        //a configuré
-        sqlInfos.host = 'localhost';
-        sqlInfos.user = 'root';
-        sqlInfos.password = 'test';
-        sqlInfos.database = 'artificialdoctor';
-        sqlInfos.port = 3306; 
-    }
+        var sqlInfos = {};
 
-    return sqlInfos;
+        if(server == "mathias"){
+
+            sqlInfos.host = 'localhost';
+            sqlInfos.user = 'root';
+            sqlInfos.password = 'test';
+            sqlInfos.database = 'artificialdoctor';
+            sqlInfos.port = 3306; 
+
+        }else if(server == "prod"){
+
+            //a configuré
+            sqlInfos.host = 'localhost';
+            sqlInfos.user = 'root';
+            sqlInfos.password = 'test';
+            sqlInfos.database = 'artificialdoctor';
+            sqlInfos.port = 3306; 
+        }
+
+        callback(sqlInfos);
+    });
 }
 
 exports.getAllInfosConnectionSql = getAllInfosConnectionSql;
