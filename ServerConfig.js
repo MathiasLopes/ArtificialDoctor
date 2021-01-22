@@ -28,8 +28,8 @@ function getAllInfosConnectionSql(callback){
 
             //a configuré
             sqlInfos.host = 'localhost';
-            sqlInfos.user = 'root';
-            sqlInfos.password = 'root';
+            sqlInfos.user = 'artificial';
+            sqlInfos.password = 'bonjour';
             sqlInfos.database = 'artificialdoctor';
             sqlInfos.port = 3306; 
         }
