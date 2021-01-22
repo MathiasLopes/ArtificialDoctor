@@ -8,7 +8,7 @@ function getAllInfosConnectionSql(callback){
 
         if (err) {
             console.log("une erreur");
-            server = prod;
+            server = "prod";
         }else{
             console.log("pas derreur");
             server = data;
