@@ -29,9 +29,9 @@ function getAllInfosConnectionSql(callback){
             //a configuré
             sqlInfos.host = 'localhost';
             sqlInfos.user = 'root';
-            sqlInfos.password = 'test';
+            sqlInfos.password = 'root';
             sqlInfos.database = 'artificialdoctor';
-            sqlInfos.port = 3306; 
+            sqlInfos.port = 17002; 
         }
 
         callback(sqlInfos);
