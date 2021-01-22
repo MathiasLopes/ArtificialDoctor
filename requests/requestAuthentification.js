@@ -45,7 +45,9 @@ function getIdentifiant(identifiant, callback){
     getConnection(function(connection){
         connection.query("select * from utilisateurs where identifiant = ?", identifiant, function (error, results, fields){
 
-            console.log(results);
+            if(error){
+                console.log("erreur : ", erreur);
+            }
 
             callback(results);
         });
