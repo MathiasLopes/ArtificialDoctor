@@ -4,6 +4,8 @@ function getAllInfosConnectionSql(callback){
 
     var server = "prod";
 
+    //permet d'aller chercher le mot clé pour le if/else if plus bas et trouver la config dans le fichier
+    //défini ci-dessous
     fs.readFile('./ServerConfigWord.txt', 'utf8', function (err, data) {
 
         if (err) {
