@@ -3,6 +3,7 @@ var url = require('url');
 var requestBase = require('./requestBase');
 const { getPublicKeyFromPem, verifyAuthSignature, makeKeyPair } = require('../crypto-utils')
 const { getConnection } = require('./requestBase');
+var gestionSession = require('./gestionSession');
 
 //methode permettant l'inscription à l'utilisateur
 function inscription(req, callback){
@@ -85,21 +86,23 @@ function connexion(req, callback){
 
                 //on recupere la premiere ligne directement qui est sensé être l'utilisateur ciblé
                 utilisateur = utilisateur[0];
-                
-                console.log(utilisateur)
 
                 //on recupere le certificat au bon format
                 var certificat = getPublicKeyFromPem(utilisateur.certificat);
 
-                console.log(certificat);
-
                 //on verifie que la signature passé par l'utilisateur correspond avec la methode necessaire
                 try{
+
                     await verifyAuthSignature(certificat, req.body.message, req.body.signature);
 
-                    //si on arrive ici c'est que l'utilisateur à le bon mot de passe
-                    callback({success: true, message: "L'utilisateur est connecté"});
+                    if(gestionSession.createSession(req).success){
+                        //si on arrive ici c'est que l'utilisateur à le bon mot de passe
+                        callback({success: true, message: "L'utilisateur est connecté"});
+                    }else{
+                        callback({success: false, message: "Une erreur est survenue lors de la création de la session"});
+                    }
 
+                
                 }catch(e){
                     callback({success: false, message: "Mot de passe est erroné"});
                 }
