@@ -9,10 +9,8 @@ function getAllInfosConnectionSql(callback){
     fs.readFile('./ServerConfigWord.txt', 'utf8', function (err, data) {
 
         if (err) {
-            console.log("une erreur");
             server = "prod";
         }else{
-            console.log("pas derreur");
             server = data;
         }
 

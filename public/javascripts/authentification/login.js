@@ -192,6 +192,7 @@ const { makePublicKey, makeAuthSignature } = require('./crypto-utils')
 const login = document.getElementById('login')
 
 login.addEventListener('submit', async (event) => {
+
   event.stopPropagation()
   event.preventDefault()
   const username = document.querySelector('#login > [name=username]').value
@@ -201,6 +202,7 @@ login.addEventListener('submit', async (event) => {
 
   const action = login.getAttribute('action')
   const method = login.getAttribute('method')
+
   fetch(action, {
     method,
     headers: {
@@ -213,8 +215,14 @@ login.addEventListener('submit', async (event) => {
       signature,
     })
   }).then(response => {
-    alert(response.status)
+
+    console.log(response);
+    //console.log(response.status);
+
+    document.location.href='/index';
+
   })
+
 })
 },{"./crypto-utils":4}],4:[function(require,module,exports){
 const forge = require('node-forge')

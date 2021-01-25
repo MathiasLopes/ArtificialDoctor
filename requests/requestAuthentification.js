@@ -118,5 +118,42 @@ function connexion(req, callback){
 
 }
 
+//renvoie true si l'utilisateur est connecté
+function verification(req, callback){
+
+    try{
+
+        if(gestionSession.userIsConnected(req)){
+            callback({success: true, message: "L'utilisateur est connecté"});
+        }else{
+            callback({success: false, message: "L'utilisateur n'est pas connecté"});
+        }
+
+    }catch(e){
+
+        callback({success: false, message: "Erreur serveur verification connexion : " + e.message});
+    }
+
+}
+
+//permet de deconnecter l'utilisateur
+function deconnexion(req, callback){
+
+    try{
+
+        if(gestionSession.removeSession(req)){
+            callback({success: true, message: "L'utilisateur est déconnecté"});
+        }else{
+            callback({success: false, message: "Une erreur est survenue lors de la déconnexion de l'utilisateur"});
+        }
+
+    }catch(e){
+        callback({success: false, message: "Erreur serveur verification connexion : " + e.message});
+    }
+
+}
+
 exports.inscription = inscription;
 exports.connexion = connexion;
+exports.verification = verification;
+exports.deconnexion = deconnexion;

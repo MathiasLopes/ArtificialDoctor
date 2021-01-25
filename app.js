@@ -17,10 +17,6 @@ app.use(bodyParser.json({limit: '50mb'}));
 // parse application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
-console.log("je passe 1");
-
-//console.log(crypto.randomBytes(16).toString("hex"));
-
 //session
 app.use(session({
   genid: function(req) {
@@ -30,8 +26,6 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true,
 }));
-
-console.log("je passe 2");
 
 //route pour toutes les pages de webpages, pour quel ne soit pas accessible
 app.get('/webpages/*', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/notfound.html')));
@@ -49,6 +43,32 @@ app.get('/login', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/aut
 //route pour aller sur la page d'inscription
 app.get('/register', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/authentification/register.html')));
 
+//route pour deconnecté
+app.get('/logout', (req, res) => {
+
+  requestAuthentification.deconnexion(req, function(reponse){
+    if(reponse.success){
+      res.sendFile(path.join(pathPublic+'/webpages/authentification/login.html'))    
+    }else{
+      res.sendFile("Une erreur est survenue lors de la déconnexion");
+    }
+  });
+
+});
+
+//page d'accueil lorsque l'utilisateur s'est connecté
+app.get('/index', (req, res) => {
+
+  requestAuthentification.verification(req, function(reponse){
+
+    if(reponse.success){
+      res.sendFile(path.join(pathPublic+'/webpages/index.html'));
+    }else{
+      res.sendFile(path.join(pathPublic+'/webpages/notconnected.html'));
+    }
+
+  });
+});
 
 //constante contenant tous les utilisateurs 
 //(en temporaire serveur temps qu'on a pas fait l'enregistrement en base de données des infos)
@@ -64,7 +84,6 @@ app.post('/register', (req, res) => {
 //methode qui permet de connecter l'utilisateur
 app.post('/login', async (req, res) => {
   requestAuthentification.connexion(req, function(reponse){
-    console.log(reponse);
     res.send(reponse);
   });
 })

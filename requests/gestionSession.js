@@ -28,7 +28,7 @@ function removeSession(req){
         
 		req.session.userconnected = false;
 
-      	result = {success: true, message: "Token effacé"};
+      	result = {success: true, message: "L'utilisateur a bien été déconnecté"};
 
     }catch(e){
       	result = {success: false, message: e.message};
