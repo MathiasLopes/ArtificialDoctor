@@ -47,8 +47,11 @@ app.get('/register', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/
 app.get('/logout', (req, res) => {
 
   requestAuthentification.deconnexion(req, function(reponse){
+
+    console.log("deconnexion : ", reponse);
+
     if(reponse.success){
-      res.sendFile(path.join(pathPublic+'/webpages/authentification/login.html'))    
+      res.redirect("/login")
     }else{
       res.sendFile("Une erreur est survenue lors de la déconnexion");
     }

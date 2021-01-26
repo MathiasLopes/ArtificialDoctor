@@ -193,6 +193,8 @@ const register = document.getElementById('register')
 
 register.addEventListener('submit', async (event) => {
 
+  showLoading();
+
   event.stopPropagation()
   event.preventDefault()
   const username = document.querySelector('#register > [name=username]').value
@@ -217,7 +219,21 @@ register.addEventListener('submit', async (event) => {
       publicKey
     })
   }).then(response => {
-    alert(response.status)
+
+    hideLoading();
+
+    response.text().then(function(text){
+
+      var data = JSON.parse(text);
+
+      alert(data.message);
+
+      if(data.success){
+          window.location.href = "/login";
+      }
+
+    });
+
   })
 })
 

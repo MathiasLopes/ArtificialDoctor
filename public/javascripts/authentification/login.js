@@ -189,9 +189,18 @@ process.umask = function() { return 0; };
 },{}],3:[function(require,module,exports){
 const { makePublicKey, makeAuthSignature } = require('./crypto-utils')
 
+
+$("#inputPassword").on('keypress', function (event) {
+  if(event.code == "Enter"){
+    $("#btSeConnecter").click();
+  }
+})
+
 const login = document.getElementById('login')
 
 login.addEventListener('submit', async (event) => {
+
+  showLoading();
 
   event.stopPropagation()
   event.preventDefault()
@@ -216,10 +225,23 @@ login.addEventListener('submit', async (event) => {
     })
   }).then(response => {
 
-    console.log(response);
-    //console.log(response.status);
+    hideLoading();
 
-    document.location.href='/index';
+    response.text().then(function (text) {
+
+        var data = JSON.parse(text);
+
+        if(data.success){
+          document.location.href='/index';
+        }else{
+          alert(data.message);
+        }
+
+    });
+
+
+
+//    
 
   })
 
