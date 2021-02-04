@@ -4,11 +4,11 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #4285F4;
 }
 
 body{
-  background: #67BE4B;
+  background-color:#4285F4;;
 }
 #container{
   width:400px;
@@ -41,23 +41,23 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 input[type=submit] {
-  background-color: #53af57;
+  background-color:#4285F4;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
   width: 100%;
-  border: 1px solid #53af57;
+  background-color:#4285F4;
   transition: 0.2s;
 }
 input[type=submit]:hover {
   background-color: white;
-  color: #53af57;
+  color: #4285F4;
 }
 
 input[type=button] {
-  background-color: #53af57;
+  background-color:#4285F4;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -67,6 +67,6 @@ input[type=button] {
 }
 input[type=button]:hover {
   background-color: white;
-  color: #53af57;
-  border: 1px solid #53af57;
+  color: #4285F4;
+  border: 1px solid #4285F4;
 }
