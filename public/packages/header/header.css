@@ -15,4 +15,9 @@
     cursor: pointer;
     float: right;
     margin-right: 25px;
+    padding: 5px 10px;
+}
+
+#header .btLogout:hover{
+    background-color: #EEE;
 }

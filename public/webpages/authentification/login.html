@@ -5,10 +5,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 
         <link rel="stylesheet" href="/global/style.css" type="text/css" />
-        <link rel="stylesheet" href="/stylesheets/loading/style.css" media="screen" type="text/css" />
+        
         <link rel="stylesheet" href="/stylesheets/authentification/style.css" media="screen" type="text/css" />
         <script src="/javascripts/packages/jquery.min.js"></script>
-        <script src="/javascripts/loading/script.js"></script>
+
+        <!-- nécessaire pour l'affichage du loading -->
+        <link rel="stylesheet" href="/packages/loading/loading.css" type="text/css" />
+        <script src="/packages/loading/loading.js"></script>
+        <!-- -------------------------------------- -->
+
         <title>Connexion</title>
     </head>
     <body>
@@ -27,19 +32,7 @@
               <script src="/javascripts/authentification/login.js"></script>
         </div>
 
-        <div id="content-loading" class="hide">
-            <div id="loading">
-                <div class="divider" aria-hidden="true"></div>
-                <p class="loading-text" aria-label="Loading">
-                <span class="letter" aria-hidden="true">L</span>
-                <span class="letter" aria-hidden="true">o</span>
-                <span class="letter" aria-hidden="true">a</span>
-                <span class="letter" aria-hidden="true">d</span>
-                <span class="letter" aria-hidden="true">i</span>
-                <span class="letter" aria-hidden="true">n</span>
-                <span class="letter" aria-hidden="true">g</span>
-                </p>
-            </div>
-        </div>
+        <!-- nécessaire à l'affichage du loading -->
+        <div id="content-loading"></div>
     </body>
 </html>
