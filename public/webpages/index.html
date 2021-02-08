@@ -19,7 +19,10 @@
         <!-- ------------------------------------------------------------------------------------------- -->
 
         <!-- script de la page index.html UNIQUEMENT -->
-        <script src="/javascripts/index.js"></script>
+        <link rel="stylesheet" href="/stylesheets/index/style.css" type="text/css" />
+        <script src="/javascripts/index/index.js"></script>
+
+        <script src="/packages/api-nyt/nyt.js"></script>
 
     </head>
     <body>
@@ -27,6 +30,23 @@
         <!-- code html nécessaires au package header -->
         <div id="header"></div>
         <!-- --------------------------------------- -->
+
+        <!-- corp de la page -->
+        <div id="content-body">
+
+            <div id="nav-bar">
+                <div class="tab selected">Virus</div>
+                <div class="tab">Mes vaccins</div>
+            </div>
+
+            <div id="content-list-virus">
+                <div onclick="getArticles('covid');">COVID 19</div>
+                <div onclick="getArticles('influenza');">Grippe</div>
+            </div>
+
+            <div id="list-articles"></div>
+
+        </div>
 
         <!-- code html nécessaires au package loading -->
         <div id="content-loading"></div>
