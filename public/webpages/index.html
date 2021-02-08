@@ -1,10 +1,27 @@
 <html>
     <head>
+        <!-- nécessaire au bon fonctionnement des scripts -->
+        <script src="/javascripts/packages/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+        <!-- fichier global -->
+        <link rel="stylesheet" href="/global/style.css" type="text/css" />
+
+        <!-- inclusion du package header pour faciliter la construction d'un header dans plusieurs pages -->
+        <link rel="stylesheet" href="/packages/header/header.css" type="text/css" />
+        <script src="/packages/header/header.js"></script>
+        <!-- ------------------------------------------------------------------------------------------- -->
+
+        <!-- script de la page index.html UNIQUEMENT -->
         <script src="/javascripts/index.js"></script>
+
     </head>
     <body>
-        <h1>Artificial Doctor</h1>
-        <div>Si vous êtes ici, c'est que vous êtes connecté !</div>
-        <a href="/logout">Se déconnecter</div>
+
+        <!-- code html nécessaires au package header -->
+        <div id="header"></div>
+        <!-- --------------------------------------- -->
+
     </body>
 </html>
