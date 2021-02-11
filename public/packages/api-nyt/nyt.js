@@ -5,6 +5,8 @@ function call_newyorktime(param, callback){
         "&fq=news_desk:(\"Health\", \"Science\")" +
         "&api-key=YpmBo9KQaH9aJGWGYKLASNdJiK1fx57Z"
     }).done(function(data){
-        callback(data);
-    });
+        callback({success: true, message: data});
+    }).fail(function(err){
+        callback({success: false, message: err});
+    })
 }

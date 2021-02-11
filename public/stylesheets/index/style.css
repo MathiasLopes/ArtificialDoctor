@@ -44,9 +44,13 @@
 #content-list-virus{
     width: 270px;
     margin-top: 20px;
-    border:1px solid #CCC;
+    border: 1px solid #CCC;
     vertical-align: top;
+    position: sticky;
     display: inline-block;
+    top: 5px;
+    max-height: calc(100% - 175px);
+    overflow-y: auto;
 }
 
 .option_virus{
@@ -65,7 +69,27 @@
     border-bottom: 0px;
 }
 
-#list-articles{
+#content-selected-virus{
     display: inline-block;
     width: calc(100% - 280px);
+    margin-top: 20px;
 }
+
+#virus-nom{
+    padding: 12px;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+#virus-dateapparition{
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+#virus-description{
+    font-size: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    text-align: justify;
+}
+

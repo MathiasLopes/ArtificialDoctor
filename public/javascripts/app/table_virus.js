@@ -11,3 +11,12 @@ function getListeVirus(callback){
         callback({success: false, message: data});
     })
 }
+
+//permet de récuperer un virus en passant sont id
+function getVirusById(id, listevirus){
+    for(var i = 0; i < listevirus.length; i++){
+        if(listevirus[i].id == id){
+            return listevirus[i];
+        }
+    }
+}
