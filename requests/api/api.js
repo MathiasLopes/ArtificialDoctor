@@ -19,6 +19,11 @@ filtreRequest = function(req, callback){
                     callback(result);
                 });
             break;
+            case "/api/addtocompteurvirus":
+                addToCompteurVirus(req.body.idvirus, function(result){
+                    callback(result);
+                })
+                break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});
         }
@@ -45,6 +50,25 @@ function getListVirus(callback){
     }catch(e){
         callback({success: false, message:"Une erreur est survenue lors de la récupération de la liste des virus"});
     }
+}
+
+function addToCompteurVirus(idvirus, callback){
+
+    try{
+        getConnection(function (connection){
+
+            connection.query("UPDATE virus SET compteurVisite = compteurVisite + 1 where id = ?", idvirus, function (error, results, fields){
+                if(error){
+                    callback({success: false, message: error});
+                }else{
+                    callback({success: true, message: results});
+                }
+            });
+        });
+    }catch(e){
+        callback({success: false, message:"Une erreur est survenue lors de la récupération de la liste des virus"});
+    }
+
 }
 
 exports.request = filtreRequest;

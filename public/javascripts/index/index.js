@@ -52,10 +52,16 @@ function showInfosSelectedVirus(id){
     //on recupere le virus
     var virus = getVirusById(id, allVirus);
 
-    $("#virus-nom").html(virus.nom);
-    $("#virus-dateapparition").html("Date d'apparition : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));
-    $("#virus-type").html("Type : " + virus.type);
-    $("#virus-description").html(virus.description);
+    if(virus != null){
+
+        addToCompteurVirus(id);
+
+        $("#virus-nom").html(virus.nom);
+        $("#virus-dateapparition").html("Date d'apparition : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));
+        $("#virus-type").html("Type : " + virus.type);
+        $("#virus-description").html(virus.description);
+
+    }
  
 }
 
