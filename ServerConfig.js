@@ -43,6 +43,16 @@ function getAllInfosConnectionSql(callback){
             sqlInfos.port = 3306; 
 
         }
+        else if(server == "jeremy")
+        {
+
+            sqlInfos.host = 'localhost';
+            sqlInfos.user = 'artificial';
+            sqlInfos.password = 'bonjour';
+            sqlInfos.database = 'artificialdoctor';
+            sqlInfos.port = 8889; 
+
+        }
 
         callback(sqlInfos);
     });
