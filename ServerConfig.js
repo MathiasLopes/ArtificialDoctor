@@ -33,6 +33,16 @@ function getAllInfosConnectionSql(callback){
             sqlInfos.database = 'artificialdoctor';
             sqlInfos.port = 3306; 
         }
+        else if(server == "jahel")
+        {
+
+            sqlInfos.host = 'localhost';
+            sqlInfos.user = 'root';
+            sqlInfos.password ="" ;
+            sqlInfos.database = 'artificialdoctor';
+            sqlInfos.port = 3306; 
+
+        }
 
         callback(sqlInfos);
     });
