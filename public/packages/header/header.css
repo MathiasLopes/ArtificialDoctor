@@ -9,6 +9,7 @@
     font-size: 30px;
     padding: 20px;
     display: inline-block;
+    cursor: pointer;
 }
 
 #header .btLogout{

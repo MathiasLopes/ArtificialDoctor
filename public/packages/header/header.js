@@ -8,7 +8,7 @@ fichier nécessaire au bon fonctionnement du header :
 */
 
 //code html du header
-var html_header = `<div class="title">Artificial Doctor</div>
+var html_header = `<div class="title" onclick="goToIndex();">Artificial Doctor</div>
                    <div class="btLogout" onclick="deconnexion();">Se déconnecter</div>`;
 
 //permet d'inclure le code html du header dans la page au chargement
@@ -18,4 +18,8 @@ $(document).ready(function(){
 
 function deconnexion(){
     window.location.href = "/logout";
+}
+
+function goToIndex(){
+    window.location.href = "/index";
 }

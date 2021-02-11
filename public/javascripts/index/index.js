@@ -54,6 +54,7 @@ function showInfosSelectedVirus(id){
 
     $("#virus-nom").html(virus.nom);
     $("#virus-dateapparition").html("Date d'apparition : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));
+    $("#virus-type").html("Type : " + virus.type);
     $("#virus-description").html(virus.description);
  
 }
@@ -62,6 +63,8 @@ function getArticles(data, callback){
 
     call_newyorktime(data, function(result){
         
+        $("#list-articles").html("");
+
         if(result.success){
 
             result = result.message;

@@ -12,6 +12,18 @@ function getListeVirus(callback){
     })
 }
 
+//permet d'ajouter 1 au compteur
+function addToCompteurVirus(idvirus){
+    $.post({
+        url: "/api/addtocompteurvirus",
+        data:{
+            idvirus: idvirus
+        }
+    }).done(function(data){
+        callback(data);
+    });
+}
+
 //permet de récuperer un virus en passant sont id
 function getVirusById(id, listevirus){
     for(var i = 0; i < listevirus.length; i++){
