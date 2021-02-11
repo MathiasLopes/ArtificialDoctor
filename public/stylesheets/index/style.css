@@ -24,11 +24,6 @@
     background-color: #EFEFEF;
 }
 
-#content-list-virus > div{
-    cursor: pointer;
-    border: 1px solid black;
-}
-
 .unArticle{
     margin-bottom: 10px;
     margin-top: 10px;
@@ -44,4 +39,33 @@
 
 .unArticle{
     font-size: 12px;
+}
+
+#content-list-virus{
+    width: 270px;
+    margin-top: 20px;
+    border:1px solid #CCC;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.option_virus{
+    cursor: pointer;
+    border-bottom: 1px solid #CCC;
+    padding: 12px 10px;
+    transition: 0.2s;
+}
+
+.option_virus:hover{
+    padding-left: 25px;
+    background-color: #EEE;
+}
+
+.option_virus:last-of-type{
+    border-bottom: 0px;
+}
+
+#list-articles{
+    display: inline-block;
+    width: calc(100% - 280px);
 }

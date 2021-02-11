@@ -6,6 +6,7 @@ var bodyParser = require('body-parser')
 const crypto = require("crypto");
 var session = require('express-session');
 var requestAuthentification = require('./requests/requestAuthentification');
+var api = require('./requests/api/api.js');
 
 var app = express();
 
@@ -45,31 +46,36 @@ app.get('/register', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/
 
 //route pour deconnecté
 app.get('/logout', (req, res) => {
-
   requestAuthentification.deconnexion(req, function(reponse){
-
-    console.log("deconnexion : ", reponse);
-
     if(reponse.success){
       res.redirect("/login")
     }else{
       res.sendFile("Une erreur est survenue lors de la déconnexion");
     }
   });
-
 });
 
 //page d'accueil lorsque l'utilisateur s'est connecté
 app.get('/index', (req, res) => {
-
-  requestAuthentification.verification(req, function(reponse){
-
+  requestAuthentification.verification(req, function(reponse){ //on verifie que l'utilisateur est authentifié
     if(reponse.success){
       res.sendFile(path.join(pathPublic+'/webpages/index.html'));
     }else{
       res.sendFile(path.join(pathPublic+'/webpages/notconnected.html'));
     }
+  });
+});
 
+//requete du site où l'utilisateur est obligé d'etre authentifié pour avoir la possibilité de les faires
+app.post('/api/*', (req, res) => {
+  requestAuthentification.verification(req, function(reponse){ //on vérifie que l'utilisateur est authentifié
+    api.request(req, function(result){
+
+      if(!result.success) //on affiche l'erreur dans la console si le retour est false
+        console.log(result);
+
+      res.send(result);
+    });    
   });
 });
 
@@ -102,8 +108,7 @@ router.get("/test", function(req, res){
 //app.use('/', router);
 
 
-//laissé ces lignes après toutes les routes : 
-
+//laissé ces lignes après toutes les routes :  ----------------------------------------
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

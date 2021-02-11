@@ -1,3 +1,35 @@
+//une fois que la page est prete
+$(function(){
+    
+    //on recupere la liste des virus que l'on affiche à l'écran de l'utilisateur
+    buildListeVirus();
+
+})
+
+function buildListeVirus(){
+    getListeVirus(function(result){
+        if(result.success){
+
+            var htmlToAdd = getHtmlListeVirus(result.message);
+            $("#content-list-virus").html(htmlToAdd);
+
+        }else{
+            alert("Une erreur est survenue : " + result.message);
+        }
+    });
+}
+
+function getHtmlListeVirus(listevirus){
+    var htmlToReturn = "";
+
+    for(var i = 0; i < listevirus.length; i++){
+        var unVirus = listevirus[i];
+        htmlToReturn += '<div class="option_virus" onclick="getArticles(\'' + unVirus.tradNomVirus.split("'").join("") + '\')">' + unVirus.nom + '</div>';
+    }
+
+    return htmlToReturn;
+}
+
 
 function getArticles(data){
 

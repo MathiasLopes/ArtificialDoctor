@@ -15,5 +15,4 @@ function getConnection(callback){
 }
 
 //Information de connexion à la base de données
-exports.getConnection = getConnection;
-
+exports.getConnection = getConnection; //recupere la connexion de maniere asynchrone

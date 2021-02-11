@@ -1,8 +1,7 @@
 var mysql = require('mysql');
 var url = require('url');
-var requestBase = require('./requestBase');
-const { getPublicKeyFromPem, verifyAuthSignature, makeKeyPair } = require('../crypto-utils')
 const { getConnection } = require('./requestBase');
+const { getPublicKeyFromPem, verifyAuthSignature, makeKeyPair } = require('../crypto-utils')
 var gestionSession = require('./gestionSession');
 
 //methode permettant l'inscription à l'utilisateur
@@ -108,7 +107,7 @@ function connexion(req, callback){
                 }
 
             }else{
-                callback({success: false, message: "L'utilisateur n'éxiste pas"});
+                callback({success: false, message: "L'identifiant ou le mot de passe est incorrect"});
             }
 
         });
