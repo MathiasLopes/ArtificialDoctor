@@ -2,9 +2,9 @@
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
     border: 1px solid black;
     text-align: center;
+    border-top: 0px;
 }
 
 #nav-bar .tab{
