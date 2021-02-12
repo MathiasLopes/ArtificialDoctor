@@ -13,9 +13,9 @@ function getListeVirus(callback){
 }
 
 //permet d'ajouter 1 au compteur
-function addToCompteurVirus(idvirus){
+function virusVisited(idvirus){
     $.post({
-        url: "/api/addtocompteurvirus",
+        url: "/api/visited",
         data:{
             idvirus: idvirus
         }

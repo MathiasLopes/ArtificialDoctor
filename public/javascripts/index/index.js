@@ -54,7 +54,7 @@ function showInfosSelectedVirus(id){
 
     if(virus != null){
 
-        addToCompteurVirus(id);
+        virusVisited(id);
 
         $("#virus-nom").html(virus.nom);
         $("#virus-dateapparition").html("Date d'apparition : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));

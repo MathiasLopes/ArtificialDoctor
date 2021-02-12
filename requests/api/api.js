@@ -2,6 +2,8 @@
 var mysql = require('mysql');
 var url = require('url');
 const { getConnection } = require('../requestBase');
+var table_virus = require('./table_virus/table_virus');
+var table_visite = require('./table_visite/table_visite');
 
 //Permet de gérer le nom des requetes que le site peut faire en partant de là
 filtreRequest = function(req, callback){
@@ -15,14 +17,13 @@ filtreRequest = function(req, callback){
 		
 		switch(urlRequest.pathname){            
             case "/api/getlistvirus": //renvoie la liste complete des virus
-                getListVirus(function(result){
+                table_virus.getListVirus(function(result){
                     callback(result);
                 });
             break;
-            case "/api/addtocompteurvirus":
-                addToCompteurVirus(req.body.idvirus, function(result){
-                    callback(result);
-                })
+            case "/api/visited":
+                table_virus.setLastDateVisiteAtNow(req.body.idvirus); // on met a jour la date de visite du virus
+                table_visite.virusVisited(req.body.idvirus, function(result){ callback(result); }) // on insere une ligne dans la table visite
                 break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});
@@ -32,43 +33,6 @@ filtreRequest = function(req, callback){
         console.log("Une erreur est survenue lors du filtrage de la requête : ", e.message);
         callback(result);
     }
-}
-
-function getListVirus(callback){
-
-    try{
-        getConnection(function (connection){
-
-            connection.query("select * from virus", function (error, results, fields){
-                if(error){
-                    callback({success: false, message: error});
-                }else{
-                    callback({success: true, message: results});
-                }
-            });
-        });
-    }catch(e){
-        callback({success: false, message:"Une erreur est survenue lors de la récupération de la liste des virus"});
-    }
-}
-
-function addToCompteurVirus(idvirus, callback){
-
-    try{
-        getConnection(function (connection){
-
-            connection.query("UPDATE virus SET compteurVisite = compteurVisite + 1 where id = ?", idvirus, function (error, results, fields){
-                if(error){
-                    callback({success: false, message: error});
-                }else{
-                    callback({success: true, message: results});
-                }
-            });
-        });
-    }catch(e){
-        callback({success: false, message:"Une erreur est survenue lors de la récupération de la liste des virus"});
-    }
-
 }
 
 exports.request = filtreRequest;

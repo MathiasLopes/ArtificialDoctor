@@ -50,7 +50,8 @@
     display: inline-block;
     top: 5px;
     height: calc(100% - 10px);
-    overflow-y: auto;
+    overflow-y: auto;    
+    border-radius: 0px 125px 125px 0px;
 }
 
 .option_virus{
