@@ -11,13 +11,13 @@ body{
   background-color:#4285F4;;
 }
 #container{
-  width:400px;
+  width:430px;
   margin:0 auto;
   margin-top:10%;
 }
 /* Bordered form */
 form {
-  width:100%;
+  width:calc(100% - 62px);
   padding: 30px;
   border: 1px solid #f1f1f1;
   background: #fff;
