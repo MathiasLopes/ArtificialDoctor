@@ -4,16 +4,22 @@ var allVirus = null;
 $(function(){
     
     //on recupere la liste des virus que l'on affiche à l'écran de l'utilisateur
-    buildListeVirus();
+    buildListeVirus(function(){
+        selectFirstVirus(); //on selectionne le premier virus de la liste
+    });
 
 })
 
-function buildListeVirus(){
+function selectFirstVirus(){
+    $($(".option_virus")[0]).click();
+}
+
+function buildListeVirus(callback){
     getListeVirus(function(result){
         if(result.success){
             var htmlToAdd = getHtmlListeVirus(result.message);
             $("#content-list-virus").html(htmlToAdd);
-
+            callback();
         }else{
             alert("Une erreur est survenue : " + result.message);
         }
@@ -27,24 +33,33 @@ function getHtmlListeVirus(listevirus){
 
     for(var i = 0; i < listevirus.length; i++){
         var unVirus = listevirus[i];
-        htmlToReturn += '<div class="option_virus" onclick="initInfosSelectedVirus(' + unVirus.id + ', \'' + unVirus.tradNomVirus.split("'").join("") + '\')">' + unVirus.nom + '</div>';
+        htmlToReturn += '<div class="option_virus" onclick="initInfosSelectedVirus(' + unVirus.id + ', \'' + unVirus.tradNomVirus.split("'").join("") + '\', this)">' + unVirus.nom + '</div>';
     }
 
     return htmlToReturn;
 }
 
-function initInfosSelectedVirus(id, nomanglais){
+function initInfosSelectedVirus(id, nomanglais, obj){
 
     showLoading();
 
     //affichage des infos du virus provenant de la base de données
     showInfosSelectedVirus(id);
 
+    //on gere le systeme de class pour la selection des virus
+    addClassToSelectedInList(obj, "option_virus", "selected");
+
     //recuperation des articles en rapport avec ce virus
     getArticles(nomanglais, function(){
         hideLoading(); //on cache le loading quand les articles sont affichés
     });
+}
 
+//supprime la class selected de toutes les options virus et ajoute la class selected à l'obj passé en parametre
+function addClassToSelectedInList(obj, classOfList, classToSelect){
+    $("." + classOfList).removeClass(classToSelect);
+    if(typeof(obj) !== "undefined")
+        $(obj).addClass(classToSelect);
 }
 
 function showInfosSelectedVirus(id){

@@ -24,12 +24,19 @@
     background-color: #EFEFEF;
 }
 
+.unArticle:hover{
+    background-color:#EEE;
+    border-radius: 15px;
+    border-bottom: 1px solid white;
+}
+
 .unArticle{
     margin-bottom: 10px;
     margin-top: 10px;
     border-bottom: 1px solid black;
     padding: 5px;
     cursor: pointer;
+    transition: 0.15s;
 }
 
 .unArticle .content-titre .titre, .unArticle .content-description .description, .unArticle .content-source .source{
@@ -51,7 +58,6 @@
     top: 5px;
     height: calc(100% - 10px);
     overflow-y: auto;    
-    border-radius: 0px 125px 125px 0px;
 }
 
 .option_virus{
@@ -61,10 +67,12 @@
     transition: 0.2s;
 }
 
-.option_virus:hover{
+.option_virus:hover, .option_virus.selected{
     padding-left: 25px;
     background-color: #EEE;
 }
+
+
 
 .option_virus:last-of-type{
     border-bottom: 0px;

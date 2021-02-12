@@ -20,7 +20,7 @@ function virusVisited(idvirus){
             idvirus: idvirus
         }
     }).done(function(data){
-        callback(data);
+        
     });
 }
 
