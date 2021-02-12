@@ -7,6 +7,8 @@ function getListVirus(callback){
         getConnection(function (connection){
 
             connection.query("select * from virus order by nom", function (error, results, fields){
+                connection.end();
+
                 if(error){
                     callback({success: false, message: error});
                 }else{
@@ -25,6 +27,7 @@ function setLastDateVisiteAtNow(idvirus, callback){
         getConnection(function (connection){
 
             connection.query("UPDATE virus SET dateDerniereVisite = '" + OutilsDate.getDateNowSQL() + "' where id = ?", idvirus, function (error, results, fields){
+                connection.end();
                 if(typeof(callback) !== "undefined"){
                     if(error){
                         callback({success: false, message: error});

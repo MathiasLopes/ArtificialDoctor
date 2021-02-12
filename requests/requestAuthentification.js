@@ -44,6 +44,7 @@ function inscription(req, callback){
 function getIdentifiant(identifiant, callback){
     getConnection(function(connection){
         connection.query("select * from utilisateurs where identifiant = ?", identifiant, function (error, results, fields){
+            connection.end();
 
             if(error){
                 console.log("erreur : ", error);
@@ -69,6 +70,7 @@ function insertionUserInTableUtilisateur(identifiant, certificat){
     var post  = {identifiant: identifiant, certificat: certificat};
     getConnection(function(connection){
         connection.query("insert into utilisateurs SET ?", post);
+        connection.end();
     });
 }
 

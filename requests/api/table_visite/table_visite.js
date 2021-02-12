@@ -10,6 +10,7 @@ function virusVisited(idvirus, callback){
             var dateNow = OutilsDate.getDateNowSQL();
 
             connection.query("INSERT INTO visite (date, virus_id) VALUES ('" + dateNow + "', " + idvirus + ")",  function (error, results, fields){
+                connection.end();
                 if(error){
                     callback({success: false, message: error});
                 }else{
