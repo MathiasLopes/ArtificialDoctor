@@ -6,7 +6,7 @@ function getListVirus(callback){
     try{
         getConnection(function (connection){
 
-            connection.query("select * from virus", function (error, results, fields){
+            connection.query("select * from virus order by nom", function (error, results, fields){
                 if(error){
                     callback({success: false, message: error});
                 }else{
