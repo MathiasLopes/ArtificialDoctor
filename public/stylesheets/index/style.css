@@ -58,6 +58,9 @@
     top: 5px;
     height: calc(100% - 10px);
     overflow-y: auto;    
+    transition: 0.2s;
+    transform: translateX(-400px);
+    opacity: 0;
 }
 
 .option_virus{
@@ -72,8 +75,6 @@
     background-color: #EEE;
 }
 
-
-
 .option_virus:last-of-type{
     border-bottom: 0px;
 }
@@ -82,6 +83,9 @@
     display: inline-block;
     width: calc(100% - 280px);
     margin-top: 20px;
+    transition: 0.2s;
+    transform: translateX(-400px);
+    opacity: 0;
 }
 
 #virus-nom{
@@ -107,3 +111,7 @@
     text-align: justify;
 }
 
+#content-body.actualite #content-list-virus, #content-body.actualite #content-selected-virus{
+    transform: translateX(0px);
+    opacity: 1;
+}

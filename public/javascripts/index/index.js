@@ -116,3 +116,42 @@ function openInNewTab(url) {
     var win = window.open(url, '_blank');
     win.focus();
 }
+
+//methode permettant de gérer les fenetres actualités
+const actualite = {
+    hide: function(callback){
+        $("#content-body").removeClass("actualite");
+        setTimeout(function(){
+            $("#content-list-virus").hide();
+            $("#content-selected-virus").hide();       
+            if(typeof(callback) !== "undefined")
+                callback();
+        }, 210);
+    },
+    show: function(callback){
+        $(".tab").removeClass("selected");
+        $("#tabactualite").addClass("selected");
+        $("#content-list-virus").show();
+        $("#content-selected-virus").show();
+        setTimeout(function(){
+            $("#content-body").addClass("actualite");
+            if(typeof(callback) !== "undefined")
+                callback();
+        }, 20);
+               
+    }
+}
+
+//methodes permettant de gérer les fenetres vaccins
+const vaccins = {
+    hide: function(){
+
+    },
+    show: function(){
+        $(".tab").removeClass("selected");
+        $("#tabvaccins").addClass("selected");
+        actualite.hide(function(){
+            //a voir pour afficher les div necessaire ou la class necessaire
+        });
+    }
+}
