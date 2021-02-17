@@ -55,8 +55,8 @@
     vertical-align: top;
     position: sticky;
     display: inline-block;
-    top: 5px;
-    max-height: calc(100% - 155px);
+    top: 88px;
+    max-height: calc(100% - 94px);
     overflow-y: auto;    
     transition: 0.2s;
     transform: translateX(-400px);
@@ -90,8 +90,12 @@
     font-size: 20px;
 }
 
+#content-selected-virus.hide{
+    display: none !important;
+}
+
 #content-body.virus-is-displayed #content-selected-virus{
-    display: inline-block !important;
+    display: inline-block;
 }
 
 #content-body.virus-is-displayed #content-welcome{
@@ -109,7 +113,7 @@
 
 #virus-apropos{
     position: sticky;
-    top: 0px;
+    top: 82px;
     background-color: white;
     padding-bottom: 10px;
     box-shadow: 0px 14px 16px -21px black

@@ -166,12 +166,10 @@ const actualite = {
     },
     contentSelectedVirus: { //composant de la fenetre actualité, la div "content-selected-virus"
         show: function(){
-            if($("#content-body").hasClass("virus-is-displayed")){
-                $("#content-selected-virus").show();
-            }
+            $("#content-selected-virus").removeClass("hide");
         },
         hide: function(){
-            $("#content-selected-virus").hide();
+            $("#content-selected-virus").addClass("hide");
         }
     }
 }
