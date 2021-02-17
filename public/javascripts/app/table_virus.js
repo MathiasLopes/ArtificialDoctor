@@ -20,15 +20,22 @@ function virusVisited(idvirus){
             idvirus: idvirus
         }
     }).done(function(data){
-        
+        //il ne se passe rien car c'est un compteur pour la base de données
     });
 }
 
 //permet de récuperer un virus en passant sont id
-function getVirusById(id, listevirus){
-    for(var i = 0; i < listevirus.length; i++){
-        if(listevirus[i].id == id){
-            return listevirus[i];
+function getVirusById(idvirus, callback){
+    $.post({
+        url: "/api/getinfosvirusbyid",
+        data:{
+            idvirus: idvirus
         }
-    }
+    })
+    .done(function(data){
+        callback(data);
+    })
+    .fail(function(data){
+        callback({success: false, message: data});
+    })
 }

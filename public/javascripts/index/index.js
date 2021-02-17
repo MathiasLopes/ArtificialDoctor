@@ -72,19 +72,27 @@ function addClassToSelectedInList(obj, classOfList, classToSelect){
 function showInfosSelectedVirus(id){
 
     //on recupere le virus
-    var virus = getVirusById(id, allVirus);
+    getVirusById(id, function(data){
 
-    if(virus != null){
+        if(data.success && data.message.length > 0){
 
-        virusVisited(id);
+            var virus = data.message[0];
 
-        $("#virus-nom").html(virus.nom);
-        $("#virus-dateapparition").html("Date d'apparition : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));
-        $("#virus-type").html("Type : " + virus.type);
-        $("#virus-description").html(virus.description);
+            if(virus != null){
 
-    }
- 
+                virusVisited(id);
+        
+                $("#virus-nom").html(virus.nom);
+                $("#virus-have-vaccin").html(virus.vaccins.length > 0 ? virus.vaccins.length + " vaccins trouvés" : "Aucun vaccin trouvé");
+                $("#virus-dateapparition").html("Date d'apparition : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));
+                $("#virus-type").html("Type : " + virus.type);
+                $("#virus-description").html(virus.description);
+        
+            }
+        }else{
+            alert("Une erreur est survenue lors de la récupération des informations du virus");
+        }
+    });
 }
 
 function getArticles(data, callback){

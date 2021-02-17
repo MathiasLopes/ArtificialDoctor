@@ -20,7 +20,12 @@ filtreRequest = function(req, callback){
                 table_virus.getListVirus(function(result){
                     callback(result);
                 });
-            break;
+                break;
+            case "/api/getinfosvirusbyid":
+                table_virus.getAllInfosVirusById(req.body.idvirus, function(result){
+                    callback(result);
+                });
+                break;
             case "/api/visited":
                 table_virus.setLastDateVisiteAtNow(req.body.idvirus); // on met a jour la date de visite du virus
                 table_visite.virusVisited(req.body.idvirus, function(result){ callback(result); }) // on insere une ligne dans la table visite
