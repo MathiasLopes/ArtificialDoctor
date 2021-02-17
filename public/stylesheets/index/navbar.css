@@ -22,6 +22,7 @@
     width: 100px;
     vertical-align: middle;
     transition: 0.15s;
+    color: #EFEFEF;
 }
 
 #nav-bar .tab:hover{
@@ -30,7 +31,7 @@
 }
 
 #nav-bar .tab.selected{
-    background-color: #EFEFEF;
+    background-color:red;
 }
 
 /* ----------------------- systeme d'affichage des fenetres connectés à la navbar --------------------------- */
