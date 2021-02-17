@@ -1,28 +1,3 @@
-#nav-bar{
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid black;
-    text-align: center;
-    border-top: 0px;
-}
-
-#nav-bar .tab{
-    padding: 13px 18px;
-    display: inline-block;
-    cursor: pointer;
-    width: 100px;
-    vertical-align: middle;
-    transition: 0.15s;
-}
-
-#nav-bar .tab:hover{
-    background-color: #EEE;
-}
-
-#nav-bar .tab.selected{
-    background-color: #EFEFEF;
-}
 
 .unArticle:hover{
     background-color:#EEE;
@@ -57,10 +32,7 @@
     display: inline-block;
     top: 88px;
     max-height: calc(100% - 94px);
-    overflow-y: auto;    
-    transition: 0.2s;
-    transform: translateX(-400px);
-    opacity: 0;
+    overflow-y: auto;
 }
 
 .option_virus{
@@ -83,9 +55,6 @@
     display: inline-block;
     width: calc(100% - 310px);
     margin-top: 20px;
-    transition: 0.2s;
-    transform: translateX(-400px);
-    opacity: 0;    
     padding: 15px;
     font-size: 20px;
 }
@@ -106,9 +75,6 @@
     display: none;
     width: calc(100% - 280px);
     margin-top: 20px;
-    transition: 0.2s;
-    transform: translateX(-400px);
-    opacity: 0;
 }
 
 #virus-apropos{
@@ -153,7 +119,10 @@
     text-align: justify;
 }
 
-#content-body.actualite #content-list-virus, #content-body.actualite #content-welcome, #content-body.actualite #content-selected-virus{
-    transform: translateX(0px);
-    opacity: 1;
+#content-vaccins, #content-parametres{
+    padding: 20px;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
 }

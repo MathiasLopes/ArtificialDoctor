@@ -23,6 +23,7 @@
 
         <!-- script de la page index.html UNIQUEMENT -->
         <link rel="stylesheet" href="/stylesheets/index/style.css" type="text/css" />
+        <link rel="stylesheet" href="/stylesheets/index/navbar.css" type="text/css" />
         <script src="/javascripts/index/index.js"></script>
 
         <script src="/packages/api-nyt/nyt.js"></script>
@@ -42,6 +43,7 @@
             <div id="nav-bar">
                 <div id="tabactualite" onclick="actualite.show();" class="tab selected">Actualité</div>
                 <div id="tabvaccins" onclick="vaccins.show();" class="tab">Mes vaccins</div>
+                <div id="tabparametres" onclick="parametre.show();" class="tab">Paramètres</div>
             </div>
 
             <div id="content-list-virus">
@@ -62,6 +64,18 @@
                 <div id="list-articles"></div>
             </div>
             
+            <div id="content-vaccins">
+                Aucune gestion de vos vaccins n'a été réalisé pour le moment
+            </div>
+            
+            <div id="content-parametres">
+                <div>
+                    <h2>Données personnelles : </h2>
+                    <div>
+                        Date de naissance : <input type="date" />
+                    </div>
+                </div>
+            </div>
 
         </div>
 

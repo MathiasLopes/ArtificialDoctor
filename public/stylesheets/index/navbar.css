@@ -1,0 +1,70 @@
+/* design global de la nav bar et des choix possibles */
+
+#nav-bar{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    text-align: center;
+    border-top: 0px;
+}
+
+#nav-bar .tab{
+    padding: 13px 18px;
+    display: inline-block;
+    cursor: pointer;
+    width: 100px;
+    vertical-align: middle;
+    transition: 0.15s;
+}
+
+#nav-bar .tab:hover{
+    background-color: #EEE;
+}
+
+#nav-bar .tab.selected{
+    background-color: #EFEFEF;
+}
+
+/* ----------------------- systeme d'affichage des fenetres connectés à la navbar --------------------------- */
+
+/* composant de la page actualite */
+
+#content-body.actualite #content-list-virus,
+#content-body.actualite #content-welcome,
+#content-body.actualite #content-selected-virus{
+    opacity: 1;
+}
+
+#content-welcome, 
+#content-list-virus, 
+#content-selected-virus{
+    transition: 0.2s;
+    opacity: 0;    
+}
+
+/* composant de la page mes vaccins */
+
+#content-vaccins{
+    transition: 0.2s;
+    opacity: 0;
+    display: none;
+}
+
+#content-body.vaccins #content-vaccins{
+    opacity: 1;
+}
+
+/* composant de la page parametres */
+
+#content-parametres{
+    transition: 0.2s;
+    opacity: 0;
+    display: none;
+}
+
+#content-body.parametres #content-parametres{
+    opacity: 1;
+}
+
+/* ------------------------------------------------------------------------------------------------------ */

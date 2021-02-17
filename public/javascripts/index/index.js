@@ -134,6 +134,9 @@ function openInNewTab(url) {
 
 //methode permettant de gérer les fenetres actualités
 const actualite = {
+    isDisplayed: function(){
+        return $("#content-body").hasClass("actualite");
+    },
     hide: function(callback){
         $("#content-body").removeClass("actualite");
         setTimeout(function(){
@@ -145,16 +148,32 @@ const actualite = {
         }, 210);
     },
     show: function(callback){
+        //gestion de la nav bar
         $(".tab").removeClass("selected");
         $("#tabactualite").addClass("selected");
-        actualite.contentListVirus.show();
-        actualite.contentSelectedVirus.show();
-        welcomePage.displayNone(false);
-        setTimeout(function(){
-            $("#content-body").addClass("actualite");
-            if(typeof(callback) !== "undefined")
-                callback();
-        }, 20);       
+
+        var callback2 = function(){
+
+            //gestion des conteneurs
+            actualite.contentListVirus.show();
+            actualite.contentSelectedVirus.show();
+            welcomePage.displayNone(false);
+
+            //timeout pour laisser les show s'executer avant de terminer l'affichage
+            setTimeout(function(){
+                $("#content-body").addClass("actualite");
+                if(typeof(callback) !== "undefined")
+                    callback();
+            }, 20);
+        }
+
+        //gestion des autres fenetres pouvant etre affiché
+        if(vaccins.isDisplayed())
+            vaccins.hide(callback2);
+
+        if(parametre.isDisplayed()){
+            parametre.hide(callback2);
+        }   
     },
     contentListVirus: { //composant de la fenetre actualité, la div "content-list-virus"
         show: function(){
@@ -176,15 +195,78 @@ const actualite = {
 
 //methodes permettant de gérer les fenetres vaccins
 const vaccins = {
-    hide: function(){
-        alert("cette methode n'a pas encore été développé");
+    isDisplayed: function(){
+        return $("#content-body").hasClass("vaccins");
+    },
+    hide: function(callback){
+        $("#content-body").removeClass("vaccins");
+        setTimeout(function(){
+            $("#content-vaccins").hide();
+            if(typeof(callback) !== "undefined")
+                callback();
+        }, 210);
     },
     show: function(){
         $(".tab").removeClass("selected");
         $("#tabvaccins").addClass("selected");
-        actualite.hide(function(){
-            //a voir pour afficher les div necessaire ou la class necessaire
-        });
+
+        var callback = function(){
+            $("#content-body").addClass("vaccins");
+        }
+
+        var callback = function(){
+
+            //gestion des conteneurs
+            $("#content-vaccins").show();
+
+            //timeout pour laisser les show s'executer avant de terminer l'affichage
+            setTimeout(function(){
+                $("#content-body").addClass("vaccins");
+            }, 20);
+        }
+
+        if(actualite.isDisplayed())
+            actualite.hide(callback);
+
+        if(parametre.isDisplayed()){
+            parametre.hide(callback);
+        }
+    }
+}
+
+const parametre = {
+    isDisplayed: function(){
+        return $("#content-body").hasClass("parametres");
+    },
+    hide: function(callback){
+        $("#content-body").removeClass("parametres");
+        setTimeout(function(){
+            $("#content-parametres").hide();
+            if(typeof(callback) !== "undefined")
+                callback();
+        }, 210);
+    }, 
+    show: function(){
+        $(".tab").removeClass("selected");
+        $("#tabparametres").addClass("selected");
+
+        //la callback a appelé en fonction de ce qu'on veut afficher
+        var callback = function(){
+
+            //gestion des conteneurs
+            $("#content-parametres").show();
+
+            //timeout pour laisser les show s'executer avant de terminer l'affichage
+            setTimeout(function(){
+                $("#content-body").addClass("parametres");
+            }, 20);
+        }
+
+        if(actualite.isDisplayed())
+            actualite.hide(callback)
+
+        if(vaccins.isDisplayed())
+            vaccins.hide(callback);
     }
 }
 
@@ -193,17 +275,17 @@ const welcomePage = {
         return !$("#content-body").hasClass("virus-is-displayed");
     },
     hide: function(){ //cache la page de bienvenu pour laisser la place a la page du virus selectionné
-        if(welcomePage.isDisplayed)
+        if(welcomePage.isDisplayed())
             $("#content-body").addClass("virus-is-displayed");
     },
     show: function(){ //remplace la page du virus sélectionné par la page de bienvenu
-        if(!welcomePage.isDisplayed)
+        if(!welcomePage.isDisplayed())
             $("#content-body").removeClass("virus-is-displayed");
     },
     displayNone: function(active){
-        if(welcomePage.isDisplayed && active){
+        if(welcomePage.isDisplayed() && active){
             $("#content-welcome").hide();
-        }else if(welcomePage.isDisplayed && !active){
+        }else if(welcomePage.isDisplayed() && !active){
             $("#content-welcome").show();
         }
     }
