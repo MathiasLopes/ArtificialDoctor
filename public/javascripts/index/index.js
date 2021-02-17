@@ -82,8 +82,12 @@ function showInfosSelectedVirus(id){
 
                 virusVisited(id);
         
+
+                console.log(virus.vaccins);
+
                 $("#virus-nom").html(virus.nom);
-                $("#virus-have-vaccin").html(virus.vaccins.length > 0 ? virus.vaccins.length + " vaccins trouvés" : "Aucun vaccin trouvé");
+
+                setVaccinsInVirusSelected(virus.vaccins);
                 $("#virus-dateapparition").html("Date d'apparition : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));
                 $("#virus-type").html("Type : " + virus.type);
                 $("#virus-description").html(virus.description);
@@ -93,6 +97,28 @@ function showInfosSelectedVirus(id){
             alert("Une erreur est survenue lors de la récupération des informations du virus");
         }
     });
+}
+
+function setVaccinsInVirusSelected(lesVaccins){
+
+    $("#virus-have-vaccin").html(lesVaccins.length > 0 ? lesVaccins.length + " vaccin(s) trouvé(s)" : "Aucun vaccin trouvé");
+    $("#virus-have-vaccin").unbind();
+    $("#virus-have-vaccin").click(function(){
+
+        //ici affiché une fenêtre avec la liste des vaccins
+        var htmlToCreate = '<div>';
+
+        for(var i = 0; i < lesVaccins.length; i++){
+
+            htmlToCreate += ``;
+
+        }
+
+        htmlToCreate += '</div>';
+
+    });
+    
+
 }
 
 function getArticles(data, callback){

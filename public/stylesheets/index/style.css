@@ -100,6 +100,8 @@
     font-size: 15px;
     font-weight: lighter;
     margin-left: 8px;
+    color:#0059ff;
+    cursor:pointer;
 }
 
 #virus-type{

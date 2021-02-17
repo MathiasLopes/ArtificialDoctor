@@ -1,0 +1,18 @@
+
+.msgBox{
+    transition: 0.2s;
+    opacity: 1;
+    transform: scale(1);
+    width: 400px;
+    height: 300px;
+    top: calc(50% - 150px);
+    left: calc(50% - 200px);
+    background-color: white;
+    border:1px solid black;
+    position: fixed;
+}
+
+.msgBox.hide{
+    opacity: 0;
+    transform: scale(0);
+}
