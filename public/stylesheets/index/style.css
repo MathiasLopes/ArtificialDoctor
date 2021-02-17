@@ -81,11 +81,13 @@
 
 #content-welcome{
     display: inline-block;
-    width: calc(100% - 280px);
+    width: calc(100% - 310px);
     margin-top: 20px;
     transition: 0.2s;
     transform: translateX(-400px);
     opacity: 0;    
+    padding: 15px;
+    font-size: 20px;
 }
 
 #content-body.virus-is-displayed #content-selected-virus{
