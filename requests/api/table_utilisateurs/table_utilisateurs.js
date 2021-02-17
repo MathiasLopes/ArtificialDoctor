@@ -1,18 +1,17 @@
 const { getConnection } = require('../../requestBase');
 
-function getUserById(iduser){
+function getUserById(iduser, callback){
 
     try{
         getConnection(function (connection){
 
-            connection.query("select * from utilisateurs where iduser = ? limit 1", iduser, function (error, results, fields){
+            connection.query("select * from utilisateurs where id = ? limit 1", iduser, function (error, results, fields){
                 connection.end();
 
                 if(error){
                     callback({success: false, message: error});
                 }else{
                     if(results.length > 0){
-                        results[0].identifiant = null;
                         results[0].certificat = null; //on vide les champs qui ne doivent pas etre envoyé sur le réseau
                     }
                     callback({success: true, message: results}); 

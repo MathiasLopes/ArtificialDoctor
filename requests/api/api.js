@@ -32,7 +32,9 @@ filtreRequest = function(req, callback){
                 table_visite.virusVisited(req.body.idvirus, function(result){ callback(result); }) // on insere une ligne dans la table visite
                 break;
             case "/api/me": //renvoie les informations de l'utilisateur
-                table_utilisateurs
+                table_utilisateurs.getUserById(req.session.utilisateur.id, function(result){
+                    callback(result);
+                })
                 break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});

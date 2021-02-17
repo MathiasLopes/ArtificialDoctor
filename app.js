@@ -68,17 +68,32 @@ app.get('/index', (req, res) => {
 
 //requete du site où l'utilisateur est obligé d'etre authentifié pour avoir la possibilité de les faires
 app.post('/api/*', (req, res) => {
-
-  console.log("jarrive ici");
-
   requestAuthentification.verification(req, function(reponse){ //on vérifie que l'utilisateur est authentifié
-    api.request(req, function(result){
+    if(reponse.success){
+      api.request(req, function(result){
+        if(!result.success) //on affiche l'erreur dans la console si le retour est false
+          console.log(result);
+  
+        res.send(result);
+      });
+    }else{
+      res.send(reponse);
+    }
+  });
+});
 
-      if(!result.success) //on affiche l'erreur dans la console si le retour est false
-        console.log(result);
+app.get('/api/*', (req, res) => {
+  requestAuthentification.verification(req, function(reponse){ //on vérifie que l'utilisateur est authentifié
+    if(reponse.success){
+      api.request(req, function(result){
+        if(!result.success) //on affiche l'erreur dans la console si le retour est false
+          console.log(result);
 
-      res.send(result);
-    });    
+        res.send(result);
+      });    
+    }else{
+      res.send(reponse);
+    }
   });
 });
 
