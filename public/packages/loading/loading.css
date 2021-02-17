@@ -63,7 +63,7 @@
   content: "";
   z-index: 1;
   top: 40px;
-  left: 130px;
+  left: 120px;
   width: 6px;
   height: 6px;
   background: #000;
@@ -110,19 +110,19 @@
 
 @-webkit-keyframes dotMove {
   0%, 100% {
-    transform: rotate(180deg) translate(-122px, -10px) rotate(-180deg);
+    transform: rotate(180deg) translate(-118px, -10px) rotate(-180deg);
   }
   50% {
-    transform: rotate(0deg) translate(-122px, 10px) rotate(0deg);
+    transform: rotate(0deg) translate(-118px, 10px) rotate(0deg);
   }
 }
 
 @keyframes dotMove {
   0%, 100% {
-    transform: rotate(180deg) translate(-122px, -10px) rotate(-180deg);
+    transform: rotate(180deg) translate(-118px, -10px) rotate(-180deg);
   }
   50% {
-    transform: rotate(0deg) translate(-122px, 10px) rotate(0deg);
+    transform: rotate(0deg) translate(-118px, 10px) rotate(0deg);
   }
 }
 @-webkit-keyframes letterStretch {
