@@ -10,7 +10,6 @@ fichier nécessaire au bon fonctionnement du header :
 //code html du header
 var html_header = `<div class="title" onclick="goToIndex();">Artificial Doctor</div>
                    <div class="btLogout" onclick="deconnexion();">Se déconnecter</div>`;
-
 //permet d'inclure le code html du header dans la page au chargement
 $(document).ready(function(){
     $("#header").html(html_header);

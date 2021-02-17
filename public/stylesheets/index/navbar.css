@@ -1,12 +1,18 @@
 /* design global de la nav bar et des choix possibles */
 
 #nav-bar{
-    width: fit-content;
+    /*width: fit-content;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid black;
     text-align: center;
-    border-top: 0px;
+    border-top: 0px;*/
+
+    background-color:#333;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    text-align: center;
 }
 
 #nav-bar .tab{
@@ -19,7 +25,8 @@
 }
 
 #nav-bar .tab:hover{
-    background-color: #EEE;
+    /*background-color: #EEE;*/
+    background: red;
 }
 
 #nav-bar .tab.selected{
