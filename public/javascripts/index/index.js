@@ -5,7 +5,7 @@ $(function(){
     
     //on recupere la liste des virus que l'on affiche à l'écran de l'utilisateur
     buildListeVirus(function(){
-        selectFirstVirus(); //on selectionne le premier virus de la liste
+        //selectFirstVirus(); //on selectionne le premier virus de la liste
     });
 
 })
@@ -48,6 +48,13 @@ function initInfosSelectedVirus(id, nomanglais, obj){
 
     //on gere le systeme de class pour la selection des virus
     addClassToSelectedInList(obj, "option_virus", "selected");
+
+    //on cache la page de bienvenu si elle est affiché
+    welcomePage.hide();
+
+    //on cache la page welcome si elle etait affiché
+    if(!$("#content-body").hasClass("virus-is-displayed"))
+        $("#content-body").addClass("virus-is-displayed");
 
     //recuperation des articles en rapport avec ce virus
     getArticles(nomanglais, function(){
@@ -122,8 +129,9 @@ const actualite = {
     hide: function(callback){
         $("#content-body").removeClass("actualite");
         setTimeout(function(){
-            $("#content-list-virus").hide();
-            $("#content-selected-virus").hide();       
+            actualite.contentListVirus.hide();
+            actualite.contentSelectedVirus.hide();
+            welcomePage.displayNone(true);
             if(typeof(callback) !== "undefined")
                 callback();
         }, 210);
@@ -131,21 +139,39 @@ const actualite = {
     show: function(callback){
         $(".tab").removeClass("selected");
         $("#tabactualite").addClass("selected");
-        $("#content-list-virus").show();
-        $("#content-selected-virus").show();
+        actualite.contentListVirus.show();
+        actualite.contentSelectedVirus.show();
+        welcomePage.displayNone(false);
         setTimeout(function(){
             $("#content-body").addClass("actualite");
             if(typeof(callback) !== "undefined")
                 callback();
-        }, 20);
-               
+        }, 20);       
+    },
+    contentListVirus: { //composant de la fenetre actualité, la div "content-list-virus"
+        show: function(){
+            $("#content-list-virus").show();
+        },
+        hide: function(){
+            $("#content-list-virus").hide();
+        }
+    },
+    contentSelectedVirus: { //composant de la fenetre actualité, la div "content-selected-virus"
+        show: function(){
+            if($("#content-body").hasClass("virus-is-displayed")){
+                $("#content-selected-virus").show();
+            }
+        },
+        hide: function(){
+            $("#content-selected-virus").hide();
+        }
     }
 }
 
 //methodes permettant de gérer les fenetres vaccins
 const vaccins = {
     hide: function(){
-
+        alert("cette methode n'a pas encore été développé");
     },
     show: function(){
         $(".tab").removeClass("selected");
@@ -153,5 +179,26 @@ const vaccins = {
         actualite.hide(function(){
             //a voir pour afficher les div necessaire ou la class necessaire
         });
+    }
+}
+
+const welcomePage = {
+    isDisplayed: function(){ //permet de savoir si la page de bienvenu est affiché
+        return !$("#content-body").hasClass("virus-is-displayed");
+    },
+    hide: function(){ //cache la page de bienvenu pour laisser la place a la page du virus selectionné
+        if(welcomePage.isDisplayed)
+            $("#content-body").addClass("virus-is-displayed");
+    },
+    show: function(){ //remplace la page du virus sélectionné par la page de bienvenu
+        if(!welcomePage.isDisplayed)
+            $("#content-body").removeClass("virus-is-displayed");
+    },
+    displayNone: function(active){
+        if(welcomePage.isDisplayed && active){
+            $("#content-welcome").hide();
+        }else if(welcomePage.isDisplayed && !active){
+            $("#content-welcome").show();
+        }
     }
 }

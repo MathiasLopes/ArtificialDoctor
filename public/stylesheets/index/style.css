@@ -56,7 +56,7 @@
     position: sticky;
     display: inline-block;
     top: 5px;
-    height: calc(100% - 10px);
+    max-height: calc(100% - 155px);
     overflow-y: auto;    
     transition: 0.2s;
     transform: translateX(-400px);
@@ -79,8 +79,25 @@
     border-bottom: 0px;
 }
 
-#content-selected-virus{
+#content-welcome{
     display: inline-block;
+    width: calc(100% - 280px);
+    margin-top: 20px;
+    transition: 0.2s;
+    transform: translateX(-400px);
+    opacity: 0;    
+}
+
+#content-body.virus-is-displayed #content-selected-virus{
+    display: inline-block !important;
+}
+
+#content-body.virus-is-displayed #content-welcome{
+    display: none !important;
+}
+
+#content-selected-virus{
+    display: none;
     width: calc(100% - 280px);
     margin-top: 20px;
     transition: 0.2s;
@@ -120,7 +137,7 @@
     text-align: justify;
 }
 
-#content-body.actualite #content-list-virus, #content-body.actualite #content-selected-virus{
+#content-body.actualite #content-list-virus, #content-body.actualite #content-welcome, #content-body.actualite #content-selected-virus{
     transform: translateX(0px);
     opacity: 1;
 }
