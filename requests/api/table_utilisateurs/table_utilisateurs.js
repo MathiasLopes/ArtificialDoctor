@@ -1,24 +1,21 @@
 const { getConnection } = require('../../requestBase');
 
-function getInformationsUsers(iduser){
-
-    
-
-}
-
-//permet initialiser la ligne contenant les informations de l'utilisateur dans cette table
-function initInformationsRecord(iduser){
+function getUserById(iduser){
 
     try{
         getConnection(function (connection){
 
-            connection.query("select * from user_informations where iduser = ?", iduser, function (error, results, fields){
+            connection.query("select * from utilisateurs where iduser = ? limit 1", iduser, function (error, results, fields){
                 connection.end();
 
                 if(error){
                     callback({success: false, message: error});
                 }else{
-                    callback({success: true, message: results});
+                    if(results.length > 0){
+                        results[0].identifiant = null;
+                        results[0].certificat = null; //on vide les champs qui ne doivent pas etre envoyé sur le réseau
+                    }
+                    callback({success: true, message: results}); 
                 }
             });
         });
@@ -27,3 +24,5 @@ function initInformationsRecord(iduser){
     }
 
 }
+
+exports.getUserById = getUserById;

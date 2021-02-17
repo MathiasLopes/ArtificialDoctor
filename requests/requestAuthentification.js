@@ -96,7 +96,9 @@ function connexion(req, callback){
 
                     await verifyAuthSignature(certificat, req.body.message, req.body.signature);
 
-                    if(gestionSession.createSession(req).success){
+                    utilisateur.certificat = ""; //on enleve le certificat avant de stocker en session
+
+                    if(gestionSession.createSession(req, utilisateur).success){
                         //si on arrive ici c'est que l'utilisateur à le bon mot de passe
                         callback({success: true, message: "L'utilisateur est connecté"});
                     }else{

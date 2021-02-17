@@ -1,12 +1,15 @@
 
 //permet de connecté l'utilisateur en session
-function createSession(req){
+function createSession(req, utilisateur){
 
     var result = {success: false, message: "KO"};
 
     try{
         
 		req.session.userconnected = true;
+        req.session.utilisateur = utilisateur;
+
+        console.log(req.session);
 
       	result = {success: true, message: "Session créé"};
 
@@ -26,7 +29,7 @@ function removeSession(req){
 
     try{
         
-		req.session.userconnected = false;
+        req.session.destroy();
 
       	result = {success: true, message: "L'utilisateur a bien été déconnecté"};
 
@@ -41,7 +44,6 @@ function removeSession(req){
 function userIsConnected(req){
     return req.session.userconnected;
 }
-
 
 exports.createSession = createSession;
 exports.removeSession = removeSession;

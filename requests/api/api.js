@@ -4,6 +4,7 @@ var url = require('url');
 const { getConnection } = require('../requestBase');
 var table_virus = require('./table_virus/table_virus');
 var table_visite = require('./table_visite/table_visite');
+var table_utilisateurs = require('./table_utilisateurs/table_utilisateurs');
 
 //Permet de gérer le nom des requetes que le site peut faire en partant de là
 filtreRequest = function(req, callback){
@@ -21,14 +22,17 @@ filtreRequest = function(req, callback){
                     callback(result);
                 });
                 break;
-            case "/api/getinfosvirusbyid":
+            case "/api/getinfosvirusbyid": //recupere les informations d'un virus
                 table_virus.getAllInfosVirusById(req.body.idvirus, function(result){
                     callback(result);
                 });
                 break;
-            case "/api/visited":
+            case "/api/visited": //permet d'ajouter un au compteur d'un virus et dans la table de visite
                 table_virus.setLastDateVisiteAtNow(req.body.idvirus); // on met a jour la date de visite du virus
                 table_visite.virusVisited(req.body.idvirus, function(result){ callback(result); }) // on insere une ligne dans la table visite
+                break;
+            case "/api/me": //renvoie les informations de l'utilisateur
+                table_utilisateurs
                 break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});
