@@ -88,6 +88,15 @@
     opacity: 0;
 }
 
+#virus-apropos{
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    padding-bottom: 10px;
+    box-shadow: 0px 14px 16px -21px black
+}
+
+
 #virus-nom{
     padding: 12px;
     font-weight: bold;
