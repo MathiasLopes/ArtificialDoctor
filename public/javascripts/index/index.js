@@ -161,8 +161,6 @@ function showInfosSelectedVirus(id){
 
 function setVaccinsInVirusSelected(lesVaccins){
 
-    console.log(lesVaccins);
-
     $("#virus-have-vaccin").html(lesVaccins.length > 0 ? lesVaccins.length + " vaccin(s) trouvé(s)" : "Aucun vaccin trouvé");
 
     $("#virus-have-vaccin").unbind();
@@ -174,7 +172,7 @@ function setVaccinsInVirusSelected(lesVaccins){
         if(lesVaccins.length > 0){
             for(var i = 0; i < lesVaccins.length; i++){
 
-                htmlToCreate += `<div class="unvaccin" data-idvaccin="${lesVaccins[i].id}">
+                htmlToCreate += `<div class="unvaccin" id="unvaccin${lesVaccins[i].id}" data-idvaccin="${lesVaccins[i].id}">
                                     <div onclick="showOrHideMoreForVaccin(this);" class="content-nom">${lesVaccins[i].nom}<i class="arrow fas fa-chevron-down"></i></div>
                                     <div class="content-more">
                                         <div class="content-description">${lesVaccins[i].description}</div>
@@ -194,7 +192,9 @@ function setVaccinsInVirusSelected(lesVaccins){
 
         var msgbox = new msgBox({
                 title: $("#virus-nom").html(), 
-                message: htmlToCreate
+                message: htmlToCreate,
+                width: "85%",
+                height: "70%"
             });
     });
 }
@@ -204,22 +204,19 @@ function showOrHideMoreForVaccin(obj){
 
     var parent = $(obj).parent();
 
-    console.log("je passe ici");
-
     //on recupere si l'utilisateur a le vaccin dans sa liste ou non
-    userHaveVaccinInList($(parent).data("id"), function(isVaccined){
+    userHaveVaccinInList($(parent).data("idvaccin"), function(isVaccined){
 
-        var checkBoxToAddInListVaccin = $(parent).find("apple-switch");
+        console.log("idvaccin : " + $(parent).data("idvaccin"));
+        console.log("result : " + isVaccined);
 
-        console.log(checkBoxToAddInListVaccin);
-
-        console.log("is vaccined : ", isVaccined);
+        console.log($(parent).attr('id'));
 
         //s'il a le vaccin dans sa liste
         if(isVaccined){
-            $(checkBoxToAddInListVaccin).prop( "checked", true);
+            $("#" + $(parent).attr('id') + " .apple-switch").prop("checked", true);
         }else{ //s'il n'a pas le vaccin dans sa liste
-            $(checkBoxToAddInListVaccin).prop( "checked", false);
+            $("#" + $(parent).attr('id') + " .apple-switch").prop("checked", false);
         }
 
         //on affiche la description
