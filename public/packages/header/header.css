@@ -21,8 +21,9 @@
     float: right;
     margin-right: 25px;
     padding: 5px 10px;
+    transition: 0.2s;
 }
 
 #header .btLogout:hover{
-    background-color: #EEE;
+    background-color: #609af8;
 }
