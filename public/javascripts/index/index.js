@@ -1,3 +1,4 @@
+
 var allVirus = null;
 
 //une fois que la page est prete
@@ -24,7 +25,7 @@ function getHtmlWithListeTypeVirus(listeTypeVirus){
 
     //on construit l'html avec ces types
     for(var i = 0; i < listeTypeVirus.length; i++){
-        htmlToReturn += `<div class="optionFiltreTypeVirus ${i == 0 ? "selected" : ""}" onclick="showTypeVirus('${listeTypeVirus[i]}', this);">${listeTypeVirus[i]}</div>`;
+        htmlToReturn += `<div class="optionFiltreTypeVirus ${i == 0 ? "selected" : ""}" onclick="showTypeVirus('${listeTypeVirus[i].titre}', this);">${listeTypeVirus[i].titre}</div>`;
     }
 
     return htmlToReturn;
@@ -34,14 +35,29 @@ function getHtmlWithListeTypeVirus(listeTypeVirus){
 //permet de recuperer la liste des types de virus a partir de la liste des virus actuellement chargé
 function loadListeTypeVirus(){
 
-    var listeTypeVirus = ["Tout"];
+    var listeTypeVirus = [{titre: "Tout", nb: allVirus.length}];
 
     for(var i = 0; i < allVirus.length; i++){
+
         var unVirus = allVirus[i];
-        listeTypeVirus.pushIfNotExist(unVirus.type, function(e){
-            return e == unVirus.type;
-        });
+
+        //s'il n'est pas dans le table, on le crée
+        if(!listeTypeVirus.inArray(function(e){ return e.titre == unVirus.type })){
+            listeTypeVirus.push({titre: unVirus.type, nb: 1});
+        }else{ //sinon on ajoute 1 au type
+
+            console.log(listeTypeVirus);
+
+            var index = listeTypeVirus.inArrayAt(function(e){ return e.titre == unVirus.type });
+
+            console.log(index);
+
+            listeTypeVirus[index].nb++;
+        }
     }
+
+    console.log(listeTypeVirus);
+    listeTypeVirus.sort(GetSortOrderDesc("nb"));
 
     return listeTypeVirus;
 
