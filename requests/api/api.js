@@ -5,6 +5,7 @@ const { getConnection } = require('../requestBase');
 var table_virus = require('./table_virus/table_virus');
 var table_visite = require('./table_visite/table_visite');
 var table_utilisateurs = require('./table_utilisateurs/table_utilisateurs');
+var table_vaccination = require('./table_vaccination/table_vaccination');
 
 //Permet de gérer le nom des requetes que le site peut faire en partant de là
 filtreRequest = function(req, callback){
@@ -35,6 +36,22 @@ filtreRequest = function(req, callback){
                 table_utilisateurs.getUserById(req.session.utilisateur.id, function(result){
                     callback(result);
                 })
+                break;
+            case "/api/getvaccination": //renvoie si l'utilisateur a un vaccin en fonction de l'id vaccin donné
+                table_vaccination.getVaccinationByIdVaccinAndIdUser(req.body.idvaccin, req.session.utilisateur.id, function(result){
+                    callback(result);
+                });
+                break;
+            case "/api/add_or_remove_vaccination": //permet d'ajouter ou supprimer un vaccin en fonction de l'id du vaccin et du boolean donné
+                if(req.body.addorremove == "true"){
+                    table_vaccination.addVaccination(req.body.idvaccin, req.session.utilisateur.id, function(result){
+                        callback(result);
+                    });
+                }else{
+                    table_vaccination.removeVaccination(req.body.idvaccin, req.session.utilisateur.id, function(result){
+                        callback(result);
+                    });
+                }
                 break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});

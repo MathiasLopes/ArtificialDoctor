@@ -59,7 +59,7 @@ function getAllInfosVirusById(idvirus, callback){
 
             //recuperation des virus du vaccins
             table_vaccin.getVaccinsByVirusId(idvirus, function(result){
-                
+
                 if(result.success){
                     virus.vaccins = result.message;
                     callback({success: true, message: [virus]});
@@ -67,6 +67,7 @@ function getAllInfosVirusById(idvirus, callback){
                     callback(result);
                 }
             });
+            
         }else{
             callback(result);
         }

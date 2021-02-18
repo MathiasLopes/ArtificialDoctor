@@ -220,8 +220,18 @@
     display: block;
 }
 
-.unvaccin.more .label-description, .unvaccin.more .content-description{
-    
+.unvaccin .content-bt-for-listmesvaccins{
+    vertical-align: top;
+    padding: 10px;
+    position: relative;
+    top: -12px;
+    left: 8px;
+}
+
+.unvaccin .content-bt-for-listmesvaccins .apple-switch{
+    position: absolute;
+    top: 4px;
+    margin-left: 20px;
 }
 
 /* ------------------------------------------------------------------------- */

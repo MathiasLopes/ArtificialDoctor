@@ -10,9 +10,6 @@ function createSession(req, utilisateur){
         
 		req.session.userconnected = true;
         req.session.utilisateur = utilisateur;
-
-        console.log(req.session);
-
       	result = {success: true, message: "Session créé"};
 
     }catch(e){
@@ -48,7 +45,7 @@ function userIsConnected(req){
 
 //permet de mettre à jour les informations de l'utilisateur stocké en session avec les informations de la base de données
 function updateUserInfo(req, callback){
-    table_utilisateurs.getUserByIdWithReq(req.session.utilisateur.id, function(result){
+    table_utilisateurs.getUserById(req.session.utilisateur.id, function(result){
         if(result.success && result.message.length > 0){
             req.session.utilisateur = result.message[0];
         }

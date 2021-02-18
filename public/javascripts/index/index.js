@@ -174,10 +174,14 @@ function setVaccinsInVirusSelected(lesVaccins){
         if(lesVaccins.length > 0){
             for(var i = 0; i < lesVaccins.length; i++){
 
-                htmlToCreate += `<div class="unvaccin">
+                htmlToCreate += `<div class="unvaccin" data-idvaccin="${lesVaccins[i].id}">
                                     <div onclick="showOrHideMoreForVaccin(this);" class="content-nom">${lesVaccins[i].nom}<i class="arrow fas fa-chevron-down"></i></div>
                                     <div class="content-more">
                                         <div class="content-description">${lesVaccins[i].description}</div>
+                                        <div class="content-bt-for-listmesvaccins">
+                                            Lister dans mes vaccins : 
+                                            <input data-idvaccin="${lesVaccins[i].id}" onchange="setVaccinInListMesVaccins(this);" class="apple-switch" type="checkbox">
+                                        </div>
                                     </div>
                                 </div>`;
 
@@ -188,27 +192,66 @@ function setVaccinsInVirusSelected(lesVaccins){
 
         htmlToCreate += '</div>';
 
-        console.log(htmlToCreate);
-
-        var msgbox = new msgBox(
-            {
+        var msgbox = new msgBox({
                 title: $("#virus-nom").html(), 
                 message: htmlToCreate
             });
-
     });
 }
 
+//permet d'afficher le vaccin sélectionné
 function showOrHideMoreForVaccin(obj){
 
     var parent = $(obj).parent();
 
-    if($(parent).hasClass("more")){
-        $(parent).removeClass("more");
-    }else{
-        $(parent).addClass("more");
-    }
+    console.log("je passe ici");
 
+    //on recupere si l'utilisateur a le vaccin dans sa liste ou non
+    userHaveVaccinInList($(parent).data("id"), function(isVaccined){
+
+        var checkBoxToAddInListVaccin = $(parent).find("apple-switch");
+
+        console.log(checkBoxToAddInListVaccin);
+
+        console.log("is vaccined : ", isVaccined);
+
+        //s'il a le vaccin dans sa liste
+        if(isVaccined){
+            $(checkBoxToAddInListVaccin).prop( "checked", true);
+        }else{ //s'il n'a pas le vaccin dans sa liste
+            $(checkBoxToAddInListVaccin).prop( "checked", false);
+        }
+
+        //on affiche la description
+        if($(parent).hasClass("more")){
+            $(parent).removeClass("more");
+        }else{
+            $(parent).addClass("more");
+        }
+
+    });
+}
+
+//permet de savoir si l'utilisateur a le vaccin dans sa liste ou non
+function userHaveVaccinInList(idvaccin, callback){
+    getVaccinationByIdVaccin(idvaccin, function(result){
+        if(result.success){
+            callback((result.message.length > 0))
+        }else{
+            callback(false);
+        }
+    });
+}
+
+//permet d'ajouter ou supprimer un vaccin de la liste "mes vaccins" de l'utilisateur
+function setVaccinInListMesVaccins(obj){
+
+    var addOrRemove = $(obj).is(":checked");
+    var idvaccin = $(obj).data("idvaccin");
+
+    addOrRemoveVaccination(idvaccin, addOrRemove, function(result){
+        console.log(result);
+    });
 }
 
 function getArticles(data, callback){
