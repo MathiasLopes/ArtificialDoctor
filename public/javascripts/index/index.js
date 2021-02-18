@@ -161,24 +161,34 @@ function showInfosSelectedVirus(id){
 
 function setVaccinsInVirusSelected(lesVaccins){
 
+    console.log(lesVaccins);
+
     $("#virus-have-vaccin").html(lesVaccins.length > 0 ? lesVaccins.length + " vaccin(s) trouvé(s)" : "Aucun vaccin trouvé");
+
     $("#virus-have-vaccin").unbind();
     $("#virus-have-vaccin").click(function(){
 
         //ici affiché une fenêtre avec la liste des vaccins
-        var htmlToCreate = '<div>';
+        var htmlToCreate = `<div>`;
 
         for(var i = 0; i < lesVaccins.length; i++){
 
-            htmlToCreate += ``;
+            htmlToCreate += `<div>
+                                <div>Nom :</div>
+                                <div>${lesVaccins[i].nom}</div>
+                                <div>Description :</div>
+                                <div>${lesVaccins[i].description}</div>
+                            </div>`;
 
         }
 
         htmlToCreate += '</div>';
 
-    });
-    
+        console.log(htmlToCreate);
 
+        var msgbox = new msgBox({title: $("#virus-nom").html(), message:htmlToCreate});
+
+    });
 }
 
 function getArticles(data, callback){

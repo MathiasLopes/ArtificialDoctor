@@ -73,15 +73,22 @@ var msgBox = function(options){
         base.setHeight(height);
     }
 
+    this.initMethodes = function(){
+        $("#" + base.id + " .closeMsgBox").unbind();
+        $("#" + base.id + " .closeMsgBox").click(function(){
+            base.hide();
+        });
+    }
+
     //initialisation ---------------------------------------------------------------------
-    this.html = `<div id="` + this.getMyIdAtCreation() + `" class="msgBox hide">
-                    <div class="title"></div>
-                    <div class="message"></div>
+    this.html = `<div id="${this.getMyIdAtCreation()}" class="msgBox hide">
+                    <div class="title">${this.title}<i class="closeMsgBox fas fa-times"></i></div>
+                    <div class="message">${this.message}</div>
                 </div>`;
 
     $("body").append(this.html);
-    this.setTitle(this.title);
-    this.setMessage(this.message);
+
+    this.initMethodes();
 
     if(this.showOnCreate){
         setTimeout(function(){ //setTimeout pour laisser le temps à l'objet d'entrer dans la page

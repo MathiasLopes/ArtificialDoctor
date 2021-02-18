@@ -8,11 +8,29 @@
     top: calc(50% - 150px);
     left: calc(50% - 200px);
     background-color: white;
-    border:1px solid black;
     position: fixed;
+    box-shadow: 0px 0px 9px -6px black;
+    border-radius: 15px;
 }
 
 .msgBox.hide{
     opacity: 0;
     transform: scale(0);
+}
+
+.msgBox .title{
+    padding: 7px 10px;
+    background-color: #4285F4;
+    border-radius: 5px 5px 0px 0px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+}
+
+.msgBox .closeMsgBox{
+    cursor: pointer;
+    float: right;
+    position: relative;
+    top: 4px;
+    right: 5px;
 }
