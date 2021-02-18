@@ -5,10 +5,63 @@ $(function(){
     
     //on recupere la liste des virus que l'on affiche à l'écran de l'utilisateur
     buildListeVirus(function(){
-        //selectFirstVirus(); //on selectionne le premier virus de la liste
+        buildListeTypeVirus(); //on construit la liste des types de virus
     });
 
 })
+
+function buildListeTypeVirus(){
+
+    // on recuepre l'html construit a partir de la liste des types de virus
+    var htmlListeTypeVirus = getHtmlWithListeTypeVirus(loadListeTypeVirus());
+
+    $("#content-type-virus-selected").html(htmlListeTypeVirus);
+}
+
+function getHtmlWithListeTypeVirus(listeTypeVirus){
+
+    var htmlToReturn = '<label>Type : </label>';
+
+    //on construit l'html avec ces types
+    for(var i = 0; i < listeTypeVirus.length; i++){
+        htmlToReturn += `<div class="optionFiltreTypeVirus ${i == 0 ? "selected" : ""}" onclick="showTypeVirus('${listeTypeVirus[i]}', this);">${listeTypeVirus[i]}</div>`;
+    }
+
+    return htmlToReturn;
+
+}
+
+//permet de recuperer la liste des types de virus a partir de la liste des virus actuellement chargé
+function loadListeTypeVirus(){
+
+    var listeTypeVirus = ["Tout"];
+
+    for(var i = 0; i < allVirus.length; i++){
+        var unVirus = allVirus[i];
+        listeTypeVirus.pushIfNotExist(unVirus.type, function(e){
+            return e == unVirus.type;
+        });
+    }
+
+    return listeTypeVirus;
+
+}
+
+//permet d'afficher uniquement les types de virus  sélectionné
+function showTypeVirus(type, obj){
+
+    $(".optionFiltreTypeVirus").removeClass("selected");
+    $(obj).addClass("selected");
+
+    if(type != "Tout"){
+        //pour afficher uniquement les virus/maladie du type sélectionné
+        $(".option_virus").addClass("hide");
+        $(".option_virus[data-type='" + type + "']").removeClass("hide");
+    }else{
+        //pour tout afficher
+        $(".option_virus").removeClass("hide");
+    }
+}
 
 function selectFirstVirus(){
     $($(".option_virus")[0]).click();
@@ -33,7 +86,7 @@ function getHtmlListeVirus(listevirus){
 
     for(var i = 0; i < listevirus.length; i++){
         var unVirus = listevirus[i];
-        htmlToReturn += '<div class="option_virus" onclick="initInfosSelectedVirus(' + unVirus.id + ', \'' + unVirus.tradNomVirus.split("'").join("") + '\', this)">' + unVirus.nom + '</div>';
+        htmlToReturn += '<div class="option_virus" data-type="' + unVirus.type + '" onclick="initInfosSelectedVirus(' + unVirus.id + ', \'' + unVirus.tradNomVirus.split("'").join("") + '\', this)">' + unVirus.nom + '</div>';
     }
 
     return htmlToReturn;
@@ -168,6 +221,7 @@ const actualite = {
         setTimeout(function(){
             actualite.contentListVirus.hide();
             actualite.contentSelectedVirus.hide();
+            actualite.contentSelectedTypeVirus.hide();
             welcomePage.displayNone(true);
             if(typeof(callback) !== "undefined")
                 callback();
@@ -183,6 +237,8 @@ const actualite = {
             //gestion des conteneurs
             actualite.contentListVirus.show();
             actualite.contentSelectedVirus.show();
+            actualite.contentSelectedTypeVirus.show();
+
             welcomePage.displayNone(false);
 
             //timeout pour laisser les show s'executer avant de terminer l'affichage
@@ -215,6 +271,14 @@ const actualite = {
         },
         hide: function(){
             $("#content-selected-virus").addClass("hide");
+        }
+    },
+    contentSelectedTypeVirus: { //composant de la fenetre actualité, la div "content-type-virus-selected"
+        show: function(){
+            $("#content-type-virus-selected").removeClass("hide");
+        },
+        hide: function(){
+            $("#content-type-virus-selected").addClass("hide");
         }
     }
 }

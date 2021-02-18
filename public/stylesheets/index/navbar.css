@@ -33,13 +33,15 @@
 
 #content-body.actualite #content-list-virus,
 #content-body.actualite #content-welcome,
-#content-body.actualite #content-selected-virus{
+#content-body.actualite #content-selected-virus,
+#content-body.actualite #content-type-virus-selected {
     opacity: 1;
 }
 
 #content-welcome, 
 #content-list-virus, 
-#content-selected-virus{
+#content-selected-virus,
+#content-type-virus-selected {
     transition: 0.2s;
     opacity: 0;    
 }
