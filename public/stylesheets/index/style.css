@@ -25,18 +25,18 @@
 #content-list-virus{
     width: 270px;
     margin-top: 20px;
-    border: 1px solid #CCC;
     vertical-align: top;
     position: sticky;
     display: inline-block;
     top: 88px;
     max-height: calc(100% - 94px);
     overflow-y: auto;
+    background-color: #e5efff;
+    border-radius: 0px 10px 10px 0px;
 }
 
 .option_virus{
     cursor: pointer;
-    border-bottom: 1px solid #CCC;
     padding: 12px 10px;
     transition: 0.2s;
     transform-origin: top;
@@ -46,9 +46,17 @@
     display: none;
 }
 
+.option_virus:hover{
+    background-color: #7babf8;
+}
+
+.option_virus.selected{
+    background-color: #4285F4;
+}
+
 .option_virus:hover, .option_virus.selected{
     padding-left: 25px;
-    background-color: #EEE;
+    color: white;
 }
 
 .option_virus:last-of-type{

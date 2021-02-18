@@ -22,7 +22,8 @@
 }
 
 #nav-bar .tab:hover{
-    background-color: #EEE;
+    background-color: #7babf8;
+    color:white;
 }
 
 #nav-bar .tab.selected{
