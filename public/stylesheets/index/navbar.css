@@ -4,9 +4,11 @@
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid black;
     text-align: center;
     border-top: 0px;
+    overflow: hidden;
+    border-radius: 0px 0px 10px 10px;
+    background-color: #e5efff;
 }
 
 #nav-bar .tab{
@@ -24,7 +26,8 @@
 }
 
 #nav-bar .tab.selected{
-    background-color:#EEE;
+    background-color:#4285F4;
+    color: white;
 }
 
 /* ----------------------- systeme d'affichage des fenetres connectés à la navbar --------------------------- */

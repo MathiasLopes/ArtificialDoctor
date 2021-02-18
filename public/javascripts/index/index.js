@@ -46,17 +46,11 @@ function loadListeTypeVirus(){
             listeTypeVirus.push({titre: unVirus.type, nb: 1});
         }else{ //sinon on ajoute 1 au type
 
-            console.log(listeTypeVirus);
-
             var index = listeTypeVirus.inArrayAt(function(e){ return e.titre == unVirus.type });
-
-            console.log(index);
-
             listeTypeVirus[index].nb++;
         }
     }
 
-    console.log(listeTypeVirus);
     listeTypeVirus.sort(GetSortOrderDesc("nb"));
 
     return listeTypeVirus;
@@ -150,9 +144,6 @@ function showInfosSelectedVirus(id){
             if(virus != null){
 
                 virusVisited(id);
-        
-
-                console.log(virus.vaccins);
 
                 $("#virus-nom").html(virus.nom);
 
