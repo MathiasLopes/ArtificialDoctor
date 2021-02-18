@@ -172,3 +172,56 @@
 .optionFiltreTypeVirus:last-of-type{
     border-right: 1px solid #EEE;
 }
+
+/* ----------------------- affichage des vaccins dans le composant actualité --------------------- */
+
+.virus-liste-vaccin{
+}
+
+.unvaccin {
+
+}
+
+.unvaccin .content-nom {
+    padding: 14px;
+    background-color: #e5efff;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.unvaccin .arrow{
+    transition: 0.2s;
+    float: right;
+    position: relative;
+    right: 12px;
+    top: 3px;
+}
+
+.unvaccin.more .arrow{
+    transform: rotate(180deg);
+}
+
+.unvaccin .content-nom:hover {
+    background-color: #7babf8;
+    padding-left: 35px;
+    color: white;
+}
+
+.unvaccin .content-description {
+    padding: 20px;
+    text-align: justify;
+}
+
+.unvaccin .content-more{
+    display: none;
+}
+
+.unvaccin.more .content-more{
+    display: block;
+}
+
+.unvaccin.more .label-description, .unvaccin.more .content-description{
+    
+}
+
+/* ------------------------------------------------------------------------- */

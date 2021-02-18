@@ -169,26 +169,46 @@ function setVaccinsInVirusSelected(lesVaccins){
     $("#virus-have-vaccin").click(function(){
 
         //ici affiché une fenêtre avec la liste des vaccins
-        var htmlToCreate = `<div>`;
+        var htmlToCreate = `<div class="virus-liste-vaccin">`;
 
-        for(var i = 0; i < lesVaccins.length; i++){
+        if(lesVaccins.length > 0){
+            for(var i = 0; i < lesVaccins.length; i++){
 
-            htmlToCreate += `<div>
-                                <div>Nom :</div>
-                                <div>${lesVaccins[i].nom}</div>
-                                <div>Description :</div>
-                                <div>${lesVaccins[i].description}</div>
-                            </div>`;
+                htmlToCreate += `<div class="unvaccin">
+                                    <div onclick="showOrHideMoreForVaccin(this);" class="content-nom">${lesVaccins[i].nom}<i class="arrow fas fa-chevron-down"></i></div>
+                                    <div class="content-more">
+                                        <div class="content-description">${lesVaccins[i].description}</div>
+                                    </div>
+                                </div>`;
 
+            }
+        }else{
+            htmlToCreate += `<div style="text-align:center;padding:5px;margin-top: 18px;">Aucun vaccin trouvé</div>`;
         }
 
         htmlToCreate += '</div>';
 
         console.log(htmlToCreate);
 
-        var msgbox = new msgBox({title: $("#virus-nom").html(), message:htmlToCreate});
+        var msgbox = new msgBox(
+            {
+                title: $("#virus-nom").html(), 
+                message: htmlToCreate
+            });
 
     });
+}
+
+function showOrHideMoreForVaccin(obj){
+
+    var parent = $(obj).parent();
+
+    if($(parent).hasClass("more")){
+        $(parent).removeClass("more");
+    }else{
+        $(parent).addClass("more");
+    }
+
 }
 
 function getArticles(data, callback){
