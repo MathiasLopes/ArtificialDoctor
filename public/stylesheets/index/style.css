@@ -217,6 +217,11 @@
     text-align: justify;
 }
 
+.unvaccin .content-ageminimum {
+    padding: 20px;
+    text-align: justify;
+}
+
 .unvaccin .content-more{
     display: none;
 }
