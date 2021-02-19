@@ -27,3 +27,8 @@
 #header .btLogout:hover{
     background-color: #609af8;
 }
+
+img {
+    width: 40px;
+    float: left;
+  }
