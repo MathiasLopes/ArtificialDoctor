@@ -1,5 +1,5 @@
 .unArticle:hover{
-    background-color:#EEE;
+    background-color:#e5efff;
     border-radius: 15px;
     border-bottom: 1px solid white;
 }
@@ -208,6 +208,11 @@
 }
 
 .unvaccin .content-description {
+    padding: 20px;
+    text-align: justify;
+}
+
+.unvaccin .content-datesortie {
     padding: 20px;
     text-align: justify;
 }

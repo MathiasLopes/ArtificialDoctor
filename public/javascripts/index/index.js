@@ -175,9 +175,10 @@ function setVaccinsInVirusSelected(lesVaccins){
                 htmlToCreate += `<div class="unvaccin" id="unvaccin${lesVaccins[i].id}" data-idvaccin="${lesVaccins[i].id}">
                                     <div onclick="showOrHideMoreForVaccin(this);" class="content-nom">${lesVaccins[i].nom}<i class="arrow fas fa-chevron-down"></i></div>
                                     <div class="content-more">
-                                        <div class="content-description">${lesVaccins[i].description}</div>
+                                        <div class="content-description">Description : ${lesVaccins[i].description}</div>
+                                        <div class="content-datesortie">Date de commercialisation : ${lesVaccins[i].dateSortie.split("-")[0]}</div>
                                         <div class="content-bt-for-listmesvaccins">
-                                            Lister dans mes vaccins : 
+                                            Ajouter à mes vaccins : 
                                             <input data-idvaccin="${lesVaccins[i].id}" onchange="setVaccinInListMesVaccins(this);" class="apple-switch" type="checkbox">
                                         </div>
                                     </div>
@@ -266,9 +267,9 @@ function getArticles(data, callback){
             for(var i = 0; i < result.response.docs.length; i++){
                 var unArticle = result.response.docs[i];
                 htmlArticles += `<div class="unArticle" onclick="openInNewTab('` + unArticle.web_url + `')">
-                                    <div class="content-titre"><div class="titre">Titre :</div><div>` + unArticle.headline.main + `</div></div>
-                                    <div class="content-description"><div class="description">Description :</div><div>` + unArticle.snippet + `</div></div>
-                                    <div class="content-source"><div class="source">Source :</div><div>` + unArticle.source + `</div></div>
+                                    <div class="content-titre"><p><div class="titre">Titre : ` + unArticle.headline.main + `</div></p></div>
+                                    <div class="content-description"><p><div class="description">Description :</div><div>` + unArticle.snippet + `</div></p></div>
+                                    <div class="content-source"><p><div class="source">Source : ` + unArticle.source + `</div></p></div>
                                 </div>`;
             }
 
