@@ -6,6 +6,7 @@ var table_virus = require('./table_virus/table_virus');
 var table_visite = require('./table_visite/table_visite');
 var table_utilisateurs = require('./table_utilisateurs/table_utilisateurs');
 var table_vaccination = require('./table_vaccination/table_vaccination');
+var table_vaccin = require('./table_vaccin/table_vaccin');
 
 //Permet de gérer le nom des requetes que le site peut faire en partant de là
 filtreRequest = function(req, callback){
@@ -52,6 +53,18 @@ filtreRequest = function(req, callback){
                         callback(result);
                     });
                 }
+                break;
+            case "/api/get_my_vaccinations":
+                    table_vaccination.getMyVaccinations(req.session.utilisateur.id, function(result){
+                        //si on a bien récupéré les vaccins de l'utilisateur, on va récupéré les informations sur les vaccins
+                        if(result.success){
+                            table_vaccin.getInformationsVaccinsByVaccinationsUser(result.message, function(result2){
+                                callback(result2);
+                            });
+                        }
+                        else
+                            callback(result);
+                    })
                 break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});

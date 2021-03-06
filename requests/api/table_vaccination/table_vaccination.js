@@ -65,6 +65,27 @@ function addVaccination(idvaccin, iduser, callback){
 
 }
 
+function getMyVaccinations(iduser, callback){
+
+    try{
+        getConnection(function (connection){
+            connection.query("select * from vaccination where utilisateurs_id = ?", iduser, function (error, results, fields){
+                connection.end();
+
+                if(error){
+                    callback({success: false, message: error});
+                }else{
+                    callback({success: true, message: results});
+                }
+            });
+        });
+    }catch(e){
+        callback({success: false, message:"Une erreur est survenue lors de la récupération de la liste des vaccinations de l'utilisateur : " + userid});
+    }
+
+}
+
 exports.getVaccinationByIdVaccinAndIdUser = getVaccinationByIdVaccinAndIdUser;
 exports.addVaccination = addVaccination;
 exports.removeVaccination = removeVaccination;
+exports.getMyVaccinations = getMyVaccinations;

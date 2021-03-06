@@ -31,3 +31,16 @@ function addOrRemoveVaccination(idvaccin, addOrRemove, callback){
         callback({success: false, message: data});
     })
 }
+
+//permet de recuperation la liste des vaccinations de l'utilisateur
+function getMyVaccinations(callback){
+    $.post({
+        url: "/api/get_my_vaccinations"
+    })
+    .done(function(data){
+        callback(data);
+    })
+    .fail(function(data){
+        callback({success: false, message: data});
+    })
+}

@@ -28,7 +28,11 @@
     background-color: #609af8;
 }
 
-img {
+#header .iconeLogo {
     width: 40px;
     float: left;
-  }
+}
+
+#header .iconeLogo{
+    margin-right: 10px;
+}
