@@ -47,17 +47,32 @@ function recuperationVaccinsUser(){
 
     getMyVaccinations(function(result){
 
-        console.log(result);
-
-        if(result.success){
-            
-            
-
+        if(result.success){            
+            var vaccinations = result.message;
+            var htmlVaccinations = genereHtmlForVaccinations(vaccinations);
+            $("#content-vaccins").html(htmlVaccinations);
         }else{
             alert("Une erreur est survenue lors de la récupération de la liste des vaccinations");
         }
 
         hideLoading();
     });
+}
 
+//genere le code html pour afficher la liste des vaccinations
+function genereHtmlForVaccinations(vaccinations){
+
+    var htmlToReturn = '';
+
+    for(var i = 0; i < vaccinations.length; i++){
+
+        var uneVaccination = vaccinations[i];
+        var infoVaccin = uneVaccination.vaccin[0];
+
+        htmlToReturn += '<div class="uneVaccination">' + 
+                            'Nom : ' + infoVaccin.nom +
+                        '</div>';
+    }
+
+    return htmlToReturn;
 }
