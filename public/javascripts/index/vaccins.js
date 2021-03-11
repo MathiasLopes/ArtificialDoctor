@@ -63,6 +63,11 @@ function recuperationVaccinsUser(){
 function genereHtmlForVaccinations(vaccinations){
 
     var htmlToReturn = '';
+    
+    if(vaccinations.length == 0)
+    {
+        htmlToReturn += '<div class="noVaccination">Vous n\'êtes abonné à aucun vaccin</div>';
+    }
 
     for(var i = 0; i < vaccinations.length; i++){
 

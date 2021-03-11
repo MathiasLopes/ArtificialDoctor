@@ -56,8 +56,9 @@ filtreRequest = function(req, callback){
                 break;
             case "/api/get_my_vaccinations":
                     table_vaccination.getMyVaccinations(req.session.utilisateur.id, function(result){
+
                         //si on a bien récupéré les vaccins de l'utilisateur, on va récupéré les informations sur les vaccins
-                        if(result.success){
+                        if(result.success && result.message.length > 0){
                             table_vaccin.getInformationsVaccinsByVaccinationsUser(result.message, function(result2){
                                 callback(result2);
                             });
