@@ -177,11 +177,12 @@ function setVaccinsInVirusSelected(lesVaccins){
                                     <div class="content-more">
                                         <div class="content-description">Description : ${lesVaccins[i].description}</div>
                                         <div class="content-datesortie">Date de commercialisation : ${lesVaccins[i].dateSortie.split("-")[0]}</div>
-                                        <div class="content-ageminimum">Age minimum : ${lesVaccins[i].ageMinimum.split(".")[0]} an(s)</div>
+                                        <div class="content-ageminimum">Age minimum : ${lesVaccins[i].ageMinimum} an(s)</div>
                                         <div class="content-bt-for-listmesvaccins">
                                             Ajouter à mes vaccins : 
                                             <input data-idvaccin="${lesVaccins[i].id}" onchange="setVaccinInListMesVaccins(this);" class="apple-switch" type="checkbox">
                                         </div>
+                                        <br>
                                     </div>
                                 </div>`;
 

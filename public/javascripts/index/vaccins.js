@@ -63,10 +63,14 @@ function recuperationVaccinsUser(){
 function genereHtmlForVaccinations(vaccinations){
 
     var htmlToReturn = '';
+
+    htmlToReturn += '<div>Vous êtes à présent dans votre espace. Cet espace est dédié aux vaccins que vous avez pu effectuer. Le nom et la date vous seront affichés.</div>'
     
     if(vaccinations.length == 0)
     {
-        htmlToReturn += '<div class="noVaccination">Vous n\'êtes abonné à aucun vaccin</div>';
+        htmlToReturn += '<div class="noVaccination">' + 
+            '<br>Vous n\'êtes abonné à aucun vaccin' +
+            '</div>';
     }
 
     for(var i = 0; i < vaccinations.length; i++){
@@ -75,7 +79,7 @@ function genereHtmlForVaccinations(vaccinations){
         var infoVaccin = uneVaccination.vaccin[0];
 
         htmlToReturn += '<div class="uneVaccination">' + 
-                            'Nom : ' + infoVaccin.nom +
+                            '<p>- <b>' + infoVaccin.nom + '</b> vous a été administré le ' + '<b>DATE à METTRE </b>' + 'dans le cadre du vaccin contre ' + '<b>VIRUS à METTRE</b></p>'
                         '</div>';
     }
 

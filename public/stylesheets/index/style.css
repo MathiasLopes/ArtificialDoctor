@@ -208,17 +208,20 @@
 }
 
 .unvaccin .content-description {
-    padding: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
     text-align: justify;
 }
 
 .unvaccin .content-datesortie {
-    padding: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
     text-align: justify;
 }
 
 .unvaccin .content-ageminimum {
-    padding: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
     text-align: justify;
 }
 
@@ -232,16 +235,15 @@
 
 .unvaccin .content-bt-for-listmesvaccins{
     vertical-align: top;
-    padding: 10px;
     position: relative;
-    top: -12px;
-    left: 8px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .unvaccin .content-bt-for-listmesvaccins .apple-switch{
     position: absolute;
-    top: 4px;
-    margin-left: 20px;
+    left: 180px;
+    top: -5px;
 }
 
 /* ------------------------------------------------------------------------- */
