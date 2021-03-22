@@ -60,9 +60,9 @@ function getInformationsVaccinsByVaccinationsUser(vaccinations, callback){
         var vaccinationsToSend = vaccinations;
 
         //pour chaque vaccination on recupere les informations du vaccin
-        forAsync(vaccinations, function(vaccin, index, callbackForAsync){
-            getVaccinByVaccinId(vaccin.id, function(result){
+        forAsync(vaccinations, function(uneVaccination, index, callbackForAsync){
 
+            getVaccinByVaccinId(uneVaccination.vaccin_id, function(result){
                 if(result.success){
                     vaccinationsToSend[index].vaccin = result.message;
                     callbackForAsync();

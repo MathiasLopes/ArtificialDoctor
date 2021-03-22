@@ -46,6 +46,7 @@ filtreRequest = function(req, callback){
                 break;
             case "/api/add_or_remove_vaccination": //permet d'ajouter ou supprimer un vaccin en fonction de l'id du vaccin et du boolean donné
                 if(req.body.addorremove == "true"){
+                    console.log("id vaccin : " + req.body.idvaccin);
                     table_vaccination.addVaccination(req.body.idvaccin, req.session.utilisateur.id, function(result){
                         callback(result);
                     });
