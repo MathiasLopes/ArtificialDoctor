@@ -78,8 +78,6 @@ function genereHtmlForVaccinations(vaccinations){
         var uneVaccination = vaccinations[i];
         var infoVaccin = uneVaccination.vaccin[0];
 
-        console.log(uneVaccination);
-
         htmlToReturn += '<div class="uneVaccination">' + 
                             '<p>- <b>' + infoVaccin.nom + '</b> vous a été administré le <b>DATE à METTRE </b>dans le cadre du vaccin contre <b>' + infoVaccin.virus.nom + '</b></p>'
                         '</div>';

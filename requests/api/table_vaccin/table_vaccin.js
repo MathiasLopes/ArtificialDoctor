@@ -73,7 +73,6 @@ function getInformationsVaccinsByVaccinationsUser(vaccinations, callback){
             })
         }, function(){
             if(success){
-                console.log(vaccinationsToSend);
                 callback({success: success, message: vaccinationsToSend});
             }
             else{

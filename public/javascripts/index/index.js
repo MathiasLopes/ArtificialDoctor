@@ -233,11 +233,6 @@ function showOrHideMoreForVaccin(obj){
     //on recupere si l'utilisateur a le vaccin dans sa liste ou non
     userHaveVaccinInList($(parent).data("idvaccin"), function(isVaccined){
 
-        console.log("idvaccin : " + $(parent).data("idvaccin"));
-        console.log("result : " + isVaccined);
-
-        console.log($(parent).attr('id'));
-
         //s'il a le vaccin dans sa liste
         if(isVaccined){
             $("#" + $(parent).attr('id') + " .apple-switch").prop("checked", true);
@@ -300,9 +295,8 @@ function getArticles(data, callback){
 
             $("#list-articles").html(htmlArticles);
         }else{
-
+            //on log pour avoir un suivi s'il y a eu une erreur
             console.log(result.message);
-
         }
 
         callback();

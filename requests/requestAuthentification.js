@@ -47,6 +47,7 @@ function getIdentifiant(identifiant, callback){
             connection.end();
 
             if(error){
+                //on log pour avoir un suivi des erreurs lors des connexions
                 console.log("erreur : ", error);
             }
 

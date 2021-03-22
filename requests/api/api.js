@@ -16,6 +16,7 @@ filtreRequest = function(req, callback){
 	try{
 		var urlRequest = url.parse(req.url, true);
 		
+        //on log tous les path qui sont utilisé
 		console.log(urlRequest.pathname);
 		
 		switch(urlRequest.pathname){            
