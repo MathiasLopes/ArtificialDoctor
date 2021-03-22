@@ -1,5 +1,6 @@
 const { getConnection } = require('../../requestBase');
 const { forAsync } = require('../../outils/async');
+const table_virus = require('../table_virus/table_virus');
 
 function getVaccinsByVirusId(virusid, callback){
 
@@ -33,7 +34,15 @@ function getVaccinByVaccinId(vaccinid ,callback){
                 if(error){
                     callback({success: false, message: error});
                 }else{
-                    callback({success: true, message: results});
+                    //on recupere le virus lié à ce vaccin
+                    table_virus.getVirusById(results[0].virus_id, function(result){
+                        if(result.success){
+                            results[0].virus = result.message[0];
+                            callback({success: true, message: results});
+                        }else{
+                            callback(result);
+                        }
+                    });
                 }
             });
         });

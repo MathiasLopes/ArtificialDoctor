@@ -160,8 +160,18 @@
     background-color: #4285F4;
     color:white;
 }
+.optionFiltreTypeVirus.selected:hover{
+    background-color: #4285F4;
+    color:white;
+}
+
+.optionFiltreTypeVirus:hover{
+    background-color: #4285F477;
+    color:white;
+}
 
 .optionFiltreTypeVirus{
+    transition: 0.2s;
     padding: 6px 12px;
     cursor: pointer;
     color:black;
