@@ -53,8 +53,50 @@ function initInformationsUser(){
 }
 
 function remplissageInformationUser(infosUser){
-
     $("#paramInputIdentifiant").val(infosUser.identifiant);
     $("#paramInputDateNaissance").val(infosUser.dateNaissance);
+}
+
+function updateParamDateNaissance(){
+
+    var dateNaissance = $("#paramInputDateNaissance").val();
     
+    if(verifieDateNaissanceIsValid(dateNaissance)){
+        alert("La date de naissance est valide : code à terminer");
+    }else{
+        console.log("La date de naissance n'est pas valide : code à terminer");
+    }
+
+}
+
+function verifieDateNaissanceIsValid(dateNaissanceFormatSQL){
+
+    var annee = parseInt(dateNaissanceFormatSQL.split("-")[0]);
+    var mois = parseInt(dateNaissanceFormatSQL.split("-")[1]);
+    var jour = parseInt(dateNaissanceFormatSQL.split("-")[2]);
+
+    var dateNow = new Date();
+    var dateNaissanceEnDateTime = new Date();
+
+    dateNaissanceEnDateTime.setFullYear(annee);
+    dateNaissanceEnDateTime.setMonth(mois-1);
+    dateNaissanceEnDateTime.setDate(jour);
+
+    if(dateNaissanceEnDateTime > dateNow){
+        alert("La date que vous avez saisi est plus grande que la date actuel");
+        return false;
+    }
+
+    if(dateNaissanceEnDateTime.getFullYear() != annee || (dateNaissanceEnDateTime.getMonth() + 1) != mois || dateNaissanceEnDateTime.getDate() != jour)
+    {
+        alert("La date de naissance que vous avez saisi n'est pas valide");
+        return false;
+    }
+
+    if((dateNow.getFullYear() - dateNaissanceEnDateTime.getFullYear()) > 120){
+        alert("Vous ne pouvez pas avoir plus de 120 ans");
+        return false;
+    }
+
+    return true;
 }
