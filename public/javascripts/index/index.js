@@ -177,7 +177,7 @@ function setVaccinsInVirusSelected(lesVaccins){
                                     <div class="content-more">
                                         <div class="content-description">Description : ${lesVaccins[i].description}</div>
                                         <div class="content-datesortie">Date de commercialisation : ${lesVaccins[i].dateSortie.split("-")[0]}</div>
-                                        <div class="content-ageminimum">Age minimum : ${lesVaccins[i].ageMinimum} an(s)</div>
+                                        <div class="content-ageminimum">Age minimum : ${getAge(lesVaccins[i].ageMinimum)}</div>
                                         <div class="content-bt-for-listmesvaccins">
                                             Ajouter à mes vaccins : 
                                             <input data-idvaccin="${lesVaccins[i].id}" onchange="setVaccinInListMesVaccins(this);" class="apple-switch" type="checkbox">
@@ -200,6 +200,29 @@ function setVaccinsInVirusSelected(lesVaccins){
                 height: "70%"
             });
     });
+}
+
+//renvoie un string de l'age en fonction du parametre (type float : 18.1 = 18 ans et 1 mois)
+function getAge(age)
+{
+    var ageString = "";
+
+    var annee = age.split(".")[0];
+    var mois = age.split(".")[1];
+
+    if(annee > 0){
+        ageString = (annee > 1 ? annee + " ans" : annee + " an");
+    }
+
+    if(mois > 0)
+    {
+        if(ageString != "")
+            ageString += " ";
+
+        ageString = mois + " mois"
+    }
+
+    return ageString;
 }
 
 //permet d'afficher le vaccin sélectionné
