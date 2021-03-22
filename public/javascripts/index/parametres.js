@@ -54,7 +54,7 @@ function initInformationsUser(){
 
 function remplissageInformationUser(infosUser){
     $("#paramInputIdentifiant").val(infosUser.identifiant);
-    $("#paramInputDateNaissance").val(infosUser.dateNaissance);
+    $("#paramInputDateNaissance").val(infosUser.dateNaissance != "" ? infosUser.dateNaissance.split("T")[0] : "");
 }
 
 function updateParamDateNaissance(){
@@ -62,11 +62,16 @@ function updateParamDateNaissance(){
     var dateNaissance = $("#paramInputDateNaissance").val();
     
     if(verifieDateNaissanceIsValid(dateNaissance)){
-        alert("La date de naissance est valide : code à terminer");
-    }else{
-        console.log("La date de naissance n'est pas valide : code à terminer");
+        setNewDateNaissance(new Date(dateNaissance).toISOString(), function(data){
+            if(data.success){
+                alert("Date de naissance sauvegardé");
+            }else{
+                alert("Une erreur est survenue lors de l'enregistrement de votre date de naissance");
+            }
+        });
     }
 
+    //sinon besoin de rien car tout a été géré dans la vérification
 }
 
 function verifieDateNaissanceIsValid(dateNaissanceFormatSQL){

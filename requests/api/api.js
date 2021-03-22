@@ -71,6 +71,11 @@ filtreRequest = function(req, callback){
                             callback(result);
                     })
                 break;
+            case "/api/user/savedatenaissance":
+                table_utilisateurs.saveNewDateNaissance(req.body.datenaissance, req.session.utilisateur.id, function(result){
+                    callback(result);
+                })
+                break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});
         }

@@ -11,3 +11,19 @@ function getMe(callback){
         callback({success: false, message: data});
     })
 }
+
+//permet de mettre à jour la date de naissance de l'utilisateur
+function setNewDateNaissance(datenaissance, callback){
+    $.post({
+        url: "/api/user/savedatenaissance",
+        data:{
+            datenaissance: datenaissance
+        }
+    })
+    .done(function(data){
+        callback(data);
+    })
+    .fail(function(data){
+        callback({success: false, message: data});
+    });
+}

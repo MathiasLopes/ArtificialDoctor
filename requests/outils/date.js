@@ -31,6 +31,32 @@ Date.prototype.addHours = function(h) {
   return this;
 }
 
+//renvoie true ou false si la date est une date de naissance valide
+function verifIfDateNaissanceIsValide(date){
+
+	var annee = parseInt(date.split("-")[0]);
+    var mois = parseInt(date.split("-")[1]);
+    var jour = parseInt(date.split("-")[2].split("T")[0]);
+
+    var dateNow = new Date();
+    var dateNaissanceEnDateTime = new Date();
+
+    dateNaissanceEnDateTime.setFullYear(annee);
+    dateNaissanceEnDateTime.setMonth(mois-1);
+    dateNaissanceEnDateTime.setDate(jour);
+
+    if(dateNaissanceEnDateTime > dateNow)
+        return false;
+
+    if(dateNaissanceEnDateTime.getFullYear() != annee || (dateNaissanceEnDateTime.getMonth() + 1) != mois || dateNaissanceEnDateTime.getDate() != jour)
+        return false;
+
+    if((dateNow.getFullYear() - dateNaissanceEnDateTime.getFullYear()) > 120)
+        return false;
+
+    return true;
+}
+
 //passé une date format javascript en parametre, renvoie un string au format mysql
 exports.dateJsToSql = dateJsToSql;
 
@@ -42,3 +68,6 @@ exports.dateSqlToDateFR = dateSqlToDateFR;
 
 //recupere une date now au format SQL
 exports.getDateNowSQL = getDateNowSQL;
+
+//renvoie true ou false si la date est passé en parametre est une date de naissance valide
+exports.verifIfDateNaissanceIsValide = verifIfDateNaissanceIsValide;
