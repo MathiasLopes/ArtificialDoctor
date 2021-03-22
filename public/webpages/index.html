@@ -31,6 +31,7 @@
         <!-- importation des scripts permettant de communiquer avec les tables de la base de données-->
         <script src="/javascripts/app/table_virus.js"></script>
         <script src="/javascripts/app/table_vaccination.js"></script>
+        <script src="/javascripts/app/table_utilisateur.js"></script>
 
         <!-- script de la page index.html UNIQUEMENT -->
         <link rel="stylesheet" href="/stylesheets/index/style.css" type="text/css" />
@@ -87,9 +88,11 @@
             <div id="content-parametres">
                 <div>
                     <h2>Données personnelles : </h2>
-                    <div><p>Identifiant : <input></p></div>
-                    <div><p>Mot de passe : <input></p></div>
-                    <div><p>Date de naissance : <input type="date" /></p></div>  
+                    <div><p>Identifiant : <input id="paramInputIdentifiant" type="text" disabled value="" /></p></div>  
+                    <h3>Gérer mes données personnelles</h3>
+                    <div><p>Date de naissance : <input id="paramInputDateNaissance" type="date" /></p></div>  
+                    <div><p>Ancien mot de passe : <input></p></div>
+                    <div><p>Nouveau mot de passe : <input></p></div>
                     <input type=submit value='Enregistrer'/>
                 </div>
             </div>

@@ -24,6 +24,7 @@ const parametre = {
             //timeout pour laisser les show s'executer avant de terminer l'affichage
             setTimeout(function(){
                 $("#content-body").addClass("parametres");
+                initInformationsUser();
             }, 20);
         }
 
@@ -33,4 +34,27 @@ const parametre = {
         if(vaccins.isDisplayed())
             vaccins.hide(callback);
     }
+}
+
+function initInformationsUser(){
+
+    showLoading();
+
+    getMe(function(result){
+
+        hideLoading();
+
+        if(result.success){
+            remplissageInformationUser(result.message[0]);
+        }else{
+            alert("Une erreur est survenue : " + result.message);
+        }
+    });
+}
+
+function remplissageInformationUser(infosUser){
+
+    $("#paramInputIdentifiant").val(infosUser.identifiant);
+    $("#paramInputDateNaissance").val(infosUser.dateNaissance);
+    
 }
