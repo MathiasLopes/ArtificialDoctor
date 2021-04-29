@@ -7,6 +7,7 @@ var table_visite = require('./table_visite/table_visite');
 var table_utilisateurs = require('./table_utilisateurs/table_utilisateurs');
 var table_vaccination = require('./table_vaccination/table_vaccination');
 var table_vaccin = require('./table_vaccin/table_vaccin');
+var manage_session = require('../gestionSession');
 
 //Permet de gérer le nom des requetes que le site peut faire en partant de là
 filtreRequest = function(req, callback){
@@ -45,9 +46,9 @@ filtreRequest = function(req, callback){
                 });
                 break;
             case "/api/add_or_remove_vaccination": //permet d'ajouter ou supprimer un vaccin en fonction de l'id du vaccin et du boolean donné
+                console.log(req.session.utilisateur);
                 if(req.body.addorremove == "true"){
-                    console.log("id vaccin : " + req.body.idvaccin);
-                    table_vaccination.addVaccination(req.body.idvaccin, req.session.utilisateur.id, function(result){
+                    table_vaccination.addVaccination(req, req.body.idvaccin, req.session.utilisateur.id, function(result){
                         callback(result);
                     });
                 }else{
@@ -73,7 +74,10 @@ filtreRequest = function(req, callback){
                 break;
             case "/api/user/savedatenaissance":
                 table_utilisateurs.saveNewDateNaissance(req.body.datenaissance, req.session.utilisateur.id, function(result){
-                    callback(result);
+                    
+                    //si la date de naissance a bien été changé, on met à jour les informations de sessions de l'utilisateur
+                    if(result.success)
+                        manage_session.updateUserInfo(req, callback);
                 })
                 break;
 			default:

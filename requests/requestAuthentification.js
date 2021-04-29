@@ -108,7 +108,7 @@ function connexion(req, callback){
 
                 
                 }catch(e){
-                    callback({success: false, message: "Mot de passe est erroné"});
+                    callback({success: false, message: "L'identifiant ou le mot de passe est incorrect"});
                 }
 
             }else{

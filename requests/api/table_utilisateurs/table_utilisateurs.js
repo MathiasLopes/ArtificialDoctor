@@ -31,9 +31,7 @@ function saveNewDateNaissance(dateNaissance, idUser, callback)
     {
         //on fait d'abord la verification de la date de naissance pour etre sur que c'est une date de naissance valide
         if(dateManager.verifIfDateNaissanceIsValide(dateNaissance)){
-
             getConnection(function (connection){
-
                 //on met à jour la date de naissance
                 connection.query("update utilisateurs SET dateNaissance = ? where id = " + idUser, dateManager.dateJsToSql(dateNaissance), function (error, results, fields){
                     connection.end();

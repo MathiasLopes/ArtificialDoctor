@@ -268,7 +268,11 @@ function setVaccinInListMesVaccins(obj){
     var idvaccin = $(obj).data("idvaccin");
 
     addOrRemoveVaccination(idvaccin, addOrRemove, function(result){
-        console.log(result);
+        if(!result.success)
+        {
+            $(obj).prop("checked", false);
+            alert(result.message);
+        }
     });
 }
 

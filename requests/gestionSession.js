@@ -48,6 +48,9 @@ function updateUserInfo(req, callback){
     table_utilisateurs.getUserById(req.session.utilisateur.id, function(result){
         if(result.success && result.message.length > 0){
             req.session.utilisateur = result.message[0];
+            callback({success:true, message:"Date de naissance mise à jour"});
+        }else{
+            callback({success:false, message: "Une erreur est survenue lors de la mise à jour de la date de naissance, recharger la page pour résoudre le problème"});
         }
     });
 }

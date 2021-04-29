@@ -57,6 +57,32 @@ function verifIfDateNaissanceIsValide(date){
     return true;
 }
 
+function getAgeYearAndMonth(birthday)
+{
+    var ageDifMs = Date.now() - birthday.getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    var ageYear = Math.abs(ageDate.getUTCFullYear() - 1970);
+    var ageMonth = Math.abs((new Date(Date.now() - birthday)).getUTCMonth());
+    return [ageYear, ageMonth];
+}
+
+function getAgeOfDatabase(age)
+{
+    var ageSplit = age.split(".");
+    var tabToReturn = [];
+
+    for(var i = 0; i < 3; i++)
+    {
+        if(ageSplit[i] !== undefined)
+        {
+            tabToReturn.push(ageSplit[i]);
+        }else
+            tabToReturn.push(0);
+    }
+
+    return tabToReturn;
+}
+
 //passé une date format javascript en parametre, renvoie un string au format mysql
 exports.dateJsToSql = dateJsToSql;
 
@@ -71,3 +97,8 @@ exports.getDateNowSQL = getDateNowSQL;
 
 //renvoie true ou false si la date est passé en parametre est une date de naissance valide
 exports.verifIfDateNaissanceIsValide = verifIfDateNaissanceIsValide;
+
+//renvoie l'age de la date de naissance passé en paramètre
+exports.getAgeYearAndMonth = getAgeYearAndMonth
+
+exports.getAgeOfDatabase = getAgeOfDatabase;

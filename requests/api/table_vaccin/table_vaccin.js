@@ -23,7 +23,9 @@ function getVaccinsByVirusId(virusid, callback){
 
 }
 
-function getVaccinByVaccinId(vaccinid ,callback){
+function getVaccinByVaccinId(vaccinid, callback){
+
+    console.log("vaccin id by vaccin id : ", vaccinid);
 
     try{
         getConnection(function (connection){
@@ -87,3 +89,4 @@ function getInformationsVaccinsByVaccinationsUser(vaccinations, callback){
 
 exports.getVaccinsByVirusId = getVaccinsByVirusId;
 exports.getInformationsVaccinsByVaccinationsUser = getInformationsVaccinsByVaccinationsUser;
+exports.getVaccinByVaccinId = getVaccinByVaccinId;

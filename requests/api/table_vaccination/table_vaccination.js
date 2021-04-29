@@ -1,5 +1,6 @@
 const { getConnection } = require('../../requestBase');
-var OutilsDate = require('../../outils/date');
+var OutilDate = require('../../outils/date');
+var table_vaccin = require('../table_vaccin/table_vaccin');
 
 function getVaccinationByIdVaccinAndIdUser(vaccinid, userid, callback){
 
@@ -43,26 +44,39 @@ function removeVaccination(idvaccin, iduser, callback){
 
 }
 
-function addVaccination(idvaccin, iduser, callback){
+//permet d'ajouter le vaccin
+function addVaccination(req, idvaccin, iduser, callback){
 
     try{
-        getConnection(function (connection){
 
-            var post  = {utilisateurs_id: iduser, vaccin_id: idvaccin};
-            connection.query("insert into vaccination SET ?", post, function (error, results, fields){
-                connection.end();
+        //verification que l'age de l'utilisateur est supérieur à l'age de minimum pour un vaccin
+        var age = OutilDate.getAgeYearAndMonth(new Date(req.session.utilisateur.dateNaissance));
+        
+        table_vaccin.getVaccinByVaccinId(idvaccin, function(result){
 
-                if(error){
-                    callback({success: false, message: error});
-                }else{
-                    callback({success: true, message: results});
-                }
-            });
+            var ageMinimumForVaccin = OutilDate.getAgeOfDatabase(result.message[0].ageMinimum);
+            
+            if(age[0] >= ageMinimumForVaccin[0] && age[1] >= ageMinimumForVaccin[1])
+            { 
+                getConnection(function (connection){
+                    var post  = {utilisateurs_id: iduser, vaccin_id: idvaccin};
+                    connection.query("insert into vaccination SET ?", post, function (error, results, fields){
+                        connection.end();
+                        if(error){
+                            callback({success: false, message: error});
+                        }else{
+                            callback({success: true, message: results});
+                        }
+                    });
+                });
+            }else
+               callback({success: false, message: "Vous n'avez pas l'age minimum requis pour avoir réalisé ce vaccin."})
         });
-    }catch(e){
-        callback({success: false, message:"Une erreur est survenue lors de l'ajout d'une vaccination': " + vaccinid + "/" + userid});
-    }
 
+    }catch(e){
+        console.log(e);
+        callback({success: false, message:"Une erreur est survenue lors de l'ajout d'une vaccination': " + idvaccin + "/" + iduser});
+    }
 }
 
 function getMyVaccinations(iduser, callback){
