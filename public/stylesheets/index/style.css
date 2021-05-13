@@ -226,13 +226,13 @@
 
 .unvaccin .content-datesortie {
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 15px;
     text-align: justify;
 }
 
 .unvaccin .content-ageminimum {
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 15px;
     text-align: justify;
 }
 
@@ -248,7 +248,7 @@
     vertical-align: top;
     position: relative;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .unvaccin .content-bt-for-listmesvaccins .apple-switch{

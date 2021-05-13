@@ -1,4 +1,3 @@
-
 const parametre = {
     isDisplayed: function(){
         return $("#content-body").hasClass("parametres");
