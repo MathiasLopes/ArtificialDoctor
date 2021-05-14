@@ -110,7 +110,7 @@ function showWindowPassword(){
 
     var htmlForPassword = `<div><p>Ancien mot de passe : <input type="password"></p></div>
                            <div><p>Nouveau mot de passe : <input type="password"></p></div>
-                           <input type=submit value='Enregistrer'/>`;
+                           <div class='buttonArtificialDoctor buttonParam'>Enregistrer</div>`;
 
     new msgBox({
         title: "Modifier mon mot de passe", 
