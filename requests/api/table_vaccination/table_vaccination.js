@@ -57,7 +57,10 @@ function addVaccination(req, idvaccin, iduser, callback){
 
             var ageMinimumForVaccin = OutilDate.getAgeOfDatabase(result.message[0].ageMinimum);
             
-            if(age[0] >= ageMinimumForVaccin[0] && age[1] >= ageMinimumForVaccin[1])
+            console.log(age);
+            console.log(ageMinimumForVaccin);
+
+            if(age[0] > ageMinimumForVaccin[0] || (age[0] >= ageMinimumForVaccin[0] && age[1] >= ageMinimumForVaccin[1]))
             { 
                 getConnection(function (connection){
                     var post  = {utilisateurs_id: iduser, vaccin_id: idvaccin};
@@ -115,21 +118,23 @@ function modifyVaccination(idvaccination, datevaccination, iduser, callback)
 
             //on verifie que la date de naissance n'est pas superieur a la date de vaccin
             if(result.message[0].dateNaissance != null && new Date(result.message[0].dateNaissance) >= new Date(datevaccination))
-                throw new Error("Date de vaccination inférieur à la date de naissance");
+                callback({success: false, message: "Date de vaccination inférieur à la date de naissance"});
+            else
+            {
+                //on modifie la date de vaccination
+                getConnection(function(connection){
+                    connection.query("update vaccination SET dateDerniereVaccination = ? WHERE utilisateurs_id = " + iduser + " AND vaccin_id = " + idvaccination, OutilDate.dateJsToSql(datevaccination), function (error, results, fields){
+                        connection.end();
 
-            //on modifie la date de vaccination
-            getConnection(function(connection){
-                connection.query("update vaccination SET dateDerniereVaccination = ? WHERE utilisateurs_id = " + iduser + " AND vaccin_id = " + idvaccination, OutilDate.dateJsToSql(datevaccination), function (error, results, fields){
-                    connection.end();
-
-                    if(error){
-                        callback({success: false, message: error});
-                    }
-                    else{
-                        callback({success: true, message: results});
-                    }
+                        if(error){
+                            callback({success: false, message: error});
+                        }
+                        else{
+                            callback({success: true, message: results});
+                        }
+                    });
                 });
-            });
+            }
 
         })
 
