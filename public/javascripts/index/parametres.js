@@ -11,6 +11,7 @@ const parametre = {
         }, 210);
     }, 
     show: function(){
+
         $(".tab").removeClass("selected");
         $("#tabparametres").addClass("selected");
 

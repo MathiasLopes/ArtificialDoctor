@@ -13,12 +13,11 @@ const vaccins = {
         }, 210);
     },
     show: function(){
+
+        console.log("test");
+
         $(".tab").removeClass("selected");
         $("#tabvaccins").addClass("selected");
-
-        var callback = function(){
-            $("#content-body").addClass("vaccins");
-        }
 
         var callback = function(){
 
@@ -35,8 +34,8 @@ const vaccins = {
         if(actualite.isDisplayed())
             actualite.hide(callback);
 
-        if(vaccin.isDisplayed()){
-            vaccin.hide(callback);
+        if(parametre.isDisplayed()){
+            parametre.hide(callback);
         }
     }
 }
@@ -72,83 +71,27 @@ function genereHtmlForVaccinations(vaccinations){
             '</div>';
     }
 
+    console.log(vaccinations);
+
     for(var i = 0; i < vaccinations.length; i++){
 
         var uneVaccination = vaccinations[i];
         var infoVaccin = uneVaccination.vaccin[0];
 
         htmlToReturn += '<div class="uneVaccination">' + 
-                            '<p>- <b>' + infoVaccin.nom + '</b> : fait le <input id="vaccinInputDateNaissance" type="date" /> contre <b>' + infoVaccin.virus.nom + '</b>. <span class="buttonArtificialDoctor buttonParam" onclick="updateDateVaccinEffectue();">Mettre à jour</span></p>'
+                            '<p>- <b>' + infoVaccin.nom + '</b> : fait le <input class="vaccinInputDateNaissance vaccination' + infoVaccin.id + '" type="date" /> contre <b>' + infoVaccin.virus.nom + '</b>. <span class="buttonArtificialDoctor buttonParam" onclick="updateDateVaccinEffectue(\'' + infoVaccin.id + '\');">Mettre à jour</span></p>'
                         '</div>';
     }
 
     return htmlToReturn;
 }
 
-const vaccin = {
-    isDisplayed: function(){
-        return $("#content-body").hasClass("vaccin");
-    },
-    hide: function(callback){
-        $("#content-body").removeClass("vaccin");
-        setTimeout(function(){
-            $("#content-vaccin").hide();
-            if(typeof(callback) !== "undefined")
-                callback();
-        }, 210);
-    }, 
-    show: function(){
-        $(".tab").removeClass("selected");
-        $("#tabvaccins").addClass("selected");
-
-        //la callback a appelé en fonction de ce qu'on veut afficher
-        var callback = function(){
-
-            //gestion des conteneurs
-            $("#content-vaccin").show();
-
-            //timeout pour laisser les show s'executer avant de terminer l'affichage
-            setTimeout(function(){
-                $("#content-body").addClass("vaccin");
-                initInformationsVaccin();
-            }, 20);
-        }
-
-        if(actualite.isDisplayed())
-            actualite.hide(callback)
-
-        if(vaccins.isDisplayed())
-            vaccins.hide(callback);
-    }
-}
-
-function initInformationsVaccin(){
-
-    showLoading();
-
-    getMe(function(result){
-
-        hideLoading();
-
-        if(result.success){
-            remplissageInformationVaccin(result.message[0]);
-        }else{
-            alert("Une erreur est survenue : " + result.message);
-        }
-    });
-}
-
-function remplissageInformationVaccin(infosVaccin){
-    $("#paramInputIdentifiant").val(infosVaccin.identifiant);
-    $("#paramInputDateVaccin").val(infosVaccin.dateVaccin != "" ? infosVaccin.dateVaccin.split("T")[0] : "");
-}
-
-function updateDateVaccinEffectue(){
-
-    var dateVaccin = $("#paramInputDateVaccin").val();
+function updateDateVaccinEffectue(idvaccination){
     
-    if(verifieDateVaccinIsValid(dateVaccin)){
-        setNewDateNaissance(new Date(dateVaccin).toISOString(), function(data){
+    var dateVaccination = $(".vaccination" + idvaccination).val();
+
+    if(verifieDateVaccinIsValid(dateVaccination)){
+        modifyDateVaccination(idvaccination, new Date(dateVaccination).toISOString(), function(data){
             if(data.success){
                 alert("Date du vaccin sauvegardé");
             }else{
@@ -178,16 +121,10 @@ function verifieDateVaccinIsValid(dateVaccinFormatSQL){
         return false;
     }
 
-    if(dateVaccinEnDateTime.getFullYear() != annee || (dateVaccinEnDateTime.getMonth() + 1) != mois || dateVaccinEnDateTime.getDate() != jour)
-    {
-        alert("La date de naissance que vous avez saisi n'est pas valide");
+    if(dateVaccinEnDateTime.getFullYear() != annee || (dateVaccinEnDateTime.getMonth() + 1) != mois || dateVaccinEnDateTime.getDate() != jour){
+        alert("La date saisi n'est pas valide");
         return false;
     }
-
-    /*if((dateNow.getFullYear() - dateVaccinEnDateTime.getFullYear()) > 120){
-        alert("Vous ne pouvez pas avoir plus de 120 ans");
-        return false;
-    }*/
 
     return true;
 }

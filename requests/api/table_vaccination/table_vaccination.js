@@ -1,6 +1,7 @@
 const { getConnection } = require('../../requestBase');
 var OutilDate = require('../../outils/date');
 var table_vaccin = require('../table_vaccin/table_vaccin');
+var table_utilisateurs = require('../table_utilisateurs/table_utilisateurs');
 
 function getVaccinationByIdVaccinAndIdUser(vaccinid, userid, callback){
 
@@ -94,12 +95,52 @@ function getMyVaccinations(iduser, callback){
             });
         });
     }catch(e){
-        callback({success: false, message:"Une erreur est survenue lors de la récupération de la liste des vaccinations de l'utilisateur : " + userid});
+        callback({success: false, message:"Une erreur est survenue lors de la récupération de la liste des vaccinations de l'utilisateur : " + iduser});
     }
 
+}
+
+function modifyVaccination(idvaccination, datevaccination, iduser, callback)
+{
+
+    try{
+
+        //on verifie si l'id de vaccination est valide
+        if(isNaN(parseInt(idvaccination))){ throw new Error("L'id de vaccination est invalide"); }
+
+        //on recupere la date de naissance de l'utilisateur
+        table_utilisateurs.getUserById(iduser, function(result){
+
+            if(!result.success){ throw new Error(result.message); }
+
+            //on verifie que la date de naissance n'est pas superieur a la date de vaccin
+            if(result.message[0].dateNaissance != null && new Date(result.message[0].dateNaissance) >= new Date(datevaccination))
+                throw new Error("Date de vaccination inférieur à la date de naissance");
+
+            //on modifie la date de vaccination
+            getConnection(function(connection){
+                connection.query("update vaccination SET dateDerniereVaccination = ? WHERE utilisateurs_id = " + iduser + " AND vaccin_id = " + idvaccination, OutilDate.dateJsToSql(datevaccination), function (error, results, fields){
+                    connection.end();
+
+                    if(error){
+                        callback({success: false, message: error});
+                    }
+                    else{
+                        callback({success: true, message: results});
+                    }
+                });
+            });
+
+        })
+
+    }catch(e)
+    {
+        callback({success: false, message:"Une erreur est survenue lors de la modification de la date de vaccination : " + iduser + " - " + idvaccination + " - " + datevaccination});
+    }
 }
 
 exports.getVaccinationByIdVaccinAndIdUser = getVaccinationByIdVaccinAndIdUser;
 exports.addVaccination = addVaccination;
 exports.removeVaccination = removeVaccination;
 exports.getMyVaccinations = getMyVaccinations;
+exports.modifyVaccination = modifyVaccination;

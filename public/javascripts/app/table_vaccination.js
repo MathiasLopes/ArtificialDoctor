@@ -44,3 +44,20 @@ function getMyVaccinations(callback){
         callback({success: false, message: data});
     })
 }
+
+//permet de modifier la date d'une vaccination
+function modifyDateVaccination(idvaccination, dateVaccination, callback){
+    $.post({
+        url: "/api/modify_date_vaccination",
+        data: {
+            id: idvaccination,
+            date: dateVaccination
+        }
+    })
+    .done(function(data){
+        callback(data);
+    })
+    .fail(function(data){
+        callback({success: false, message: data});
+    })
+}

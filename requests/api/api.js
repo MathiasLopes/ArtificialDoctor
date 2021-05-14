@@ -80,6 +80,11 @@ filtreRequest = function(req, callback){
                         manage_session.updateUserInfo(req, callback);
                 })
                 break;
+            case "/api/modify_date_vaccination":
+                table_vaccination.modifyVaccination(req.body.id, req.body.date, req.session.utilisateur.id, function(result){
+                    callback(result);
+                });
+                break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});
         }
