@@ -105,3 +105,17 @@ function verifieDateNaissanceIsValid(dateNaissanceFormatSQL){
 
     return true;
 }
+
+function showWindowPassword(){
+
+    var htmlForPassword = `<div><p>Ancien mot de passe : <input type="password"></p></div>
+                           <div><p>Nouveau mot de passe : <input type="password"></p></div>
+                           <input type=submit value='Enregistrer'/>`;
+
+    new msgBox({
+        title: "Modifier mon mot de passe", 
+        message: htmlForPassword,
+        width: "400px",
+        height: "200px"
+    });
+}
