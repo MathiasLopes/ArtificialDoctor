@@ -95,6 +95,7 @@ function updateDateVaccinEffectue(idvaccination){
             if(data.success){
                 alert("Date du vaccin sauvegardé");
             }else{
+                $(".vaccination" + idvaccination).val("");
                 alert("Une erreur est survenue lors de l'enregistrement de votre date du vaccin");
             }
         });
