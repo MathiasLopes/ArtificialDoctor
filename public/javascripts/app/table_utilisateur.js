@@ -27,3 +27,19 @@ function setNewDateNaissance(datenaissance, callback){
         callback({success: false, message: data});
     });
 }
+
+function setNewPassword(publickey, callback)
+{
+    $.post({
+        url: "/api/user/setnewpassword",
+        data:{
+            publickey: publickey
+        }
+    })
+    .done(function(data){
+        callback(data);
+    })
+    .fail(function(data){
+        callback({success: false, message: data});
+    });
+}

@@ -55,5 +55,28 @@ function saveNewDateNaissance(dateNaissance, idUser, callback)
     }
 }
 
+function setNewPassword(publickey, iduser, callback)
+{
+    try{
+        getConnection(function(connection){
+            connection.query("update utilisateurs SET certificat = ? where id = " + iduser, publickey, function (error, results, fields){
+                connection.end();
+
+                if(error){
+                    callback({success: false, message: error});
+                }
+                else{
+                    callback({success: true, message: results});
+                }
+            });
+        });
+    }
+    catch(e)
+    {
+        callback({success: false, message:"Une erreur est survenue lors de la mise à jour du mot de passe"});
+    }
+}
+
 exports.getUserById = getUserById;
 exports.saveNewDateNaissance = saveNewDateNaissance;
+exports.setNewPassword = setNewPassword;

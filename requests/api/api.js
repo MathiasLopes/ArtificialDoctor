@@ -8,6 +8,7 @@ var table_utilisateurs = require('./table_utilisateurs/table_utilisateurs');
 var table_vaccination = require('./table_vaccination/table_vaccination');
 var table_vaccin = require('./table_vaccin/table_vaccin');
 var manage_session = require('../gestionSession');
+const { table } = require('console');
 
 //Permet de gérer le nom des requetes que le site peut faire en partant de là
 filtreRequest = function(req, callback){
@@ -79,6 +80,11 @@ filtreRequest = function(req, callback){
                     if(result.success)
                         manage_session.updateUserInfo(req, callback);
                 })
+                break;
+            case "/api/user/setnewpassword":
+                table_utilisateurs.setNewPassword(req.body.publickey, req.session.utilisateur.id, function(result){
+                    callback(result);
+                });
                 break;
             case "/api/modify_date_vaccination":
                 table_vaccination.modifyVaccination(req.body.id, req.body.date, req.session.utilisateur.id, function(result){

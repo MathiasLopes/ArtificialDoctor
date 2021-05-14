@@ -24,6 +24,7 @@
     transition: 0.15s;
     transform: scale(1);
     opacity: 1;
+    z-index: 9999999;
 }
 
 #content-loading.hide {

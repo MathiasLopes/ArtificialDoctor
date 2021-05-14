@@ -108,14 +108,42 @@ function verifieDateNaissanceIsValid(dateNaissanceFormatSQL){
 
 function showWindowPassword(){
 
-    var htmlForPassword = `<div><p>Ancien mot de passe : <input type="password"></p></div>
-                           <div><p>Nouveau mot de passe : <input type="password"></p></div>
-                           <div class='buttonArtificialDoctor buttonParam'>Enregistrer</div>`;
+    var htmlForPassword = `<div><p>Nouveau mot de passe : <input id="newpassword" type="password"></p></div>
+                           <div><p>Confirmation du nouveau mot de passe : <input id="confirmpassword" type="password"></p></div>
+                           <div class='buttonArtificialDoctor buttonParam' onclick="modifyPassword();">Enregistrer</div>`;
 
     new msgBox({
         title: "Modifier mon mot de passe", 
         message: htmlForPassword,
-        width: "400px",
-        height: "200px"
+        width: "475px",
+        height: "184px"
     });
+}
+
+async function modifyPassword(){
+
+    var newpassword = $("#newpassword").val();
+    var confirmpassword = $("#confirmpassword").val(); 
+
+    //verification des deux mots de passes
+    if(newpassword != confirmpassword){
+        alert("Les mots de passe ne sont pas identique");
+        return;
+    }
+
+    showLoading();
+
+    //modification du mot de passe
+    var publicKey = await getPublicKeyForZKP(newpassword);
+
+    setNewPassword(publicKey, function(result){
+
+        hideLoading();
+
+        if(result.success)
+            alert("Mot de passe modifié avec succès");
+        else
+            alert("Une erreur est survenue lors de la modication du mot de passe");
+    });
+
 }
