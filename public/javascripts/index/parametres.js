@@ -108,15 +108,17 @@ function verifieDateNaissanceIsValid(dateNaissanceFormatSQL){
 
 function showWindowPassword(){
 
-    var htmlForPassword = `<div><p>Nouveau mot de passe : <input id="newpassword" type="password"></p></div>
-                           <div><p>Confirmation du nouveau mot de passe : <input id="confirmpassword" type="password"></p></div>
-                           <div class='buttonArtificialDoctor buttonParam' onclick="modifyPassword();">Enregistrer</div>`;
+    var htmlForPassword = `<div id="changepassword"><p><font size='5'>Bienvenue dans la fenêtre pour modifier votre mot de passe.</font size></p>
+                            <p>Vous devez dans un premier temps saisir un première mot de passe et ensuite pour confirmer le changement un deuxième. Les deux mots de passe doivent être identiques. Il n'y a pas de restriction sur les mots de passe</p>
+                            <p>Nouveau mot de passe : <input id="newpassword" type="password"></p>
+                            <p>Confirmation du nouveau mot de passe : <input id="confirmpassword" type="password"></p></div>
+                            <div style="max-width:65px;" class='buttonArtificialDoctor buttonParam' onclick="modifyPassword();">Enregistrer</div>`;
 
     new msgBox({
         title: "Modifier mon mot de passe", 
         message: htmlForPassword,
-        width: "475px",
-        height: "184px"
+        width: "725px",
+        height: "325px"
     });
 }
 
