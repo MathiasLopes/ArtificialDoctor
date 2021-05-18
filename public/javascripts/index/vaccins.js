@@ -63,7 +63,7 @@ function genereHtmlForVaccinations(vaccinations){
 
     var htmlToReturn = '';
 
-    htmlToReturn += "<div><p><font size='5'>Bienvenue, vous êtes à présent dans votre espace personnel.</font size></p>Cet espace est dédié aux vaccins auxquelles vous vous êtes abonné dans la page Actualité. Vous y retrouvez l'intégralité des vaccins que vous avez ajoutés. Le nom du vaccin et le virus, la maladie, l'infection... y seront affichés et contre quoi vous avez subi une infection.<p>Il restera plus que la date à mettre pour avoir un historique de vos vaccins.</p></div>"
+    htmlToReturn += "<div><h2>Bienvenue, vous êtes à présent dans votre espace personnel.</h2>Cet espace est dédié aux vaccins auxquelles vous vous êtes abonné dans la page Actualité. Vous y retrouvez l'intégralité des vaccins que vous avez ajoutés. Le nom du vaccin et le virus, la maladie, l'infection... y seront affichés et contre quoi vous avez subi une infection.<p>Il restera plus que la date à mettre pour avoir un historique de vos vaccins.</p></div>"
     if(vaccinations.length == 0)
     {
         htmlToReturn += '<div class="noVaccination">' + 

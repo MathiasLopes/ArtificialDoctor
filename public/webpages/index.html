@@ -67,7 +67,14 @@
 
             <div id="content-list-virus"></div>
 
-            <div id="content-welcome">Bienvenue sur Artificial Doctor</div>
+            <div id="content-welcome">
+                <h2>Bienvenue sur Artificial Doctor.</h2> 
+                <p>Vous pouvez apercevoir trois onglets :</p>
+                <p>- Un premier onglet qui est destiné à l'actualité donc maladies, virus ainsi que les vaccins pour traiter certaines maladies</p> 
+                <p>- Un deuxième onglet pour avoir la liste des vaccins oû vous vous êtes abonné</p>
+                <p>- Un troisième onglet pour paramétrer les informations de votre compte.</p>
+            </div>
+
 
             <div id="content-selected-virus">
                 <div id="virus-apropos">
@@ -88,10 +95,14 @@
 
             <div id="content-parametres">
                 <div>
-                    <h2>Données personnelles : </h2>
-                    <div><p>Identifiant : <input id="paramInputIdentifiant" type="text" disabled value="" /></p></div>  
-                    <div style="max-width:172px;" class="buttonArtificialDoctor buttonParam" onclick="showWindowPassword();">Modifier mon mot de passe</div>
-                    <h3>Gérer mes données personnelles</h3>
+                    <h2>Vous êtes dans les paramètres de votre compte.</h2>
+                    <div><p>C'est dans cette onglet que vous allez pouvoir modifier les informations de votre compte.</p></div>
+                    <div><p>Identifiant : <input id="paramInputIdentifiant" type="text" disabled value="" /></p></div> 
+                    <div>
+                        <p>Mot de passe :
+                            <span style="max-width:172px;" class="buttonArtificialDoctor buttonParam" onclick="showWindowPassword();">Changer</span>
+                        </p>
+                    </div>
                     <div>
                         <p>Date de naissance : 
                             <input id="paramInputDateNaissance" type="date" />
