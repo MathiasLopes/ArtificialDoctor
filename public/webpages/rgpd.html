@@ -1,0 +1,157 @@
+<html>
+
+<head>
+    <!-- nécessaire au bon fonctionnement des scripts -->
+    <script src="/javascripts/packages/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- fichier global -->
+    <link rel="stylesheet" href="/global/style.css" type="text/css" />
+    <script src="/global/functions.js"></script>
+
+    <!-- inclusion du package header pour faciliter la construction d'un header dans plusieurs pages -->
+    <link rel="stylesheet" href="/packages/header/header.css" type="text/css" />
+    <script src="/packages/header/header.js"></script>
+    <!-- ------------------------------------------------------------------------------------------- -->
+
+    <!-- inclusion du package messagebox pour faciliter la construction des messages affichés à l'utilisateur -->
+    <link rel="stylesheet" href="/packages/messagebox/messagebox.css" type="text/css" />
+    <script src="/packages/messagebox/messagebox.js"></script>
+    <!-- ------------------------------------------------------------------------------------------- -->
+
+    <!-- inclusion du package loading pour afficher le meme icone de chargement sur chaque page -->
+    <link rel="stylesheet" href="/packages/loading/loading.css" type="text/css" />
+    <script src="/packages/loading/loading.js"></script>
+    <!-- ------------------------------------------------------------------------------------------- -->
+
+    <!-- checkbox style ios -->
+    <link rel="stylesheet" href="/packages/checkbox/ios.css" type="text/css" />
+    <!-- ------------------------------------------------------------------------------------------ -->
+
+    <!-- importation des scripts permettant de communiquer avec les tables de la base de données-->
+    <script src="/javascripts/app/table_virus.js"></script>
+    <script src="/javascripts/app/table_vaccination.js"></script>
+    <script src="/javascripts/app/table_utilisateur.js"></script>
+
+    <!-- script de la page index.html UNIQUEMENT -->
+    <link rel="stylesheet" href="/stylesheets/index/style.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/index/navbar.css" type="text/css" />
+    <script src="/javascripts/index/actualite.js"></script>
+    <script src="/javascripts/index/vaccins.js"></script>
+    <script src="/javascripts/index/parametres.js"></script>
+    <script src="/javascripts/index/index.js"></script>
+    <script src="/packages/api-nyt/nyt.js"></script>
+    <script src="/javascripts/app/password/zkp.js"></script>
+
+    <link rel="icon" href="/packages/images/logo.png" />
+
+    <title>Règlement de protection des données</title>
+
+</head>
+
+<body>
+
+    <!-- code html nécessaires au package header -->
+    <div id="header"></div>
+    <!-- --------------------------------------- -->
+
+    <!-- corp de la page -->
+    <div id="content-rgpd">
+        <h1>Politique de protection des données </h1>
+
+        <h2>Article 1 - Responsable des données</h2>
+        <p>Selon la définition de la CNIL, le responsable d’un traitement de données à caractère personnel est, sauf
+            désignation expresse par les dispositions législatives ou réglementaires relatives à ce traitement, la
+            personne, l’autorité publique, le service ou l’organisme qui détermine ses finalités et ses moyens. En
+            pratique et en général, il s’agit de la personne morale incarnée par son représentant légal. Concernant les
+            données collectées lors de la saisie par l'utilisateur sur le site MyHealth.
+
+            MyHealth agit en tant que sous-traitant de l'ensemble des professionnels de santé proposant leur service aux
+            patients par l'intermédiaire du service MyHealth dès lors que la demande leur est transférée.
+
+            MyHealth agit comme responsable du traitement des données lors de la collecte des informations de
+            l'utilisateur pendant l'inscription et tant que la demande n'a pas été acceptée par un professionnel de
+            santé.
+
+            MyHealth prend les mesures nécessaires, en tant que responsable de traitement, comme en tant que
+            sous-traitant, à assurer la protection et la confidentialité des informations nominatives qu’elle détient ou
+            qu’elle traite dans le respect des dispositions de la LIL et du RGPD.
+        </p>
+        <p>Pour prendre contact avec le responsable du traitement des données de MyHealth :<br>
+            my-health@mrct.fr<br>
+            MyHealth<br>
+            Paris<br>
+            75000<br>
+        </p>
+
+        <h2>Article 2 - Coordonnées du DPO</h2>
+        <p>Le DPO, pour « Data Protection Officer », est une personne en charge de la protection des données
+            personnelles traitées par un organisme (administration, entreprise...). Il s'agit d'un nouveau métier porté
+            par le RGPD 2018, le règlement européen sur la protection des données, dont l'entrée en vigueur interviendra
+            le 25 mai 2018. Ce texte rend sa désignation obligatoire pour un grand nombre de responsables de traitement
+            de données personnelles. Les missions du DPO consistent à informer, conseiller et former le responsable du
+            traitement de données (ou son sous-traitant) ainsi que ses employés. Il leur précise les obligations qu'ils
+            doivent respecter au regard de la réglementation européenne, dont il contrôle la bonne application. Il
+            coopère également avec la CNIL, dont il est un interlocuteur privilégié. Le DPO sert donc principalement à
+            permettre à un organisme effectuant des traitements de données personnelles de s'assurer qu'il respecte bien
+            la réglementation applicable à leur protection. Le DPO peut être un salarié du responsable de traitement de
+            données ou du sous-traitant. Mais il peut aussi accomplir ses missions en signant un contrat de service.
+        </p>
+
+        <p>Pour toute question de l'utilisateur ou réclamation concernant le RGPD et son respect par Medi'Call Concept
+            dans le cadre du service MyHealth, contacter le DPO à l'adresse suivante :<br>
+            DPO<br>
+            MyHealth<br>
+            Paris<br>
+            75000<br><br>
+
+            ou par mail à my-health@mrct.fr.
+        </p>
+
+        <h2>Article 3 - Données personnelles et données santé collectées</h2>
+        <h3>Lors de l’inscription :</h3>
+        <p>Identifiant, Mot de passe : Ces données sont collectées afin d’identifier une personne de manière unique.</p>
+        
+        <h3>Complétion du compte après inscription :</h3>
+        <p>Date de Naissance : Ces données sont collectées afin de compléter son profil utilisateur</p>
+        <p>Nom du vaccin, Date de l’infection : Ces données sont collectées afin d’avoir l’historique des vaccins subi par un utilisateur</p>
+
+        <h2>Article 4 - Sécurité des données</h2>
+        <p>Les données de nos Utilisateurs sont stockées exclusivement en France. MyHealth a confié l’hébergement du
+            site MyHealth à la société mrct.fr, hébergeur de données, pour assurer la sécurité des données personnelles
+            confiées par ses utilisateurs, conformément au code de la Santé publique. MyHealth intègre une équipe
+            d'experts en informatique afin de tout mettre en œuvre pour garantir la sécurité du stockage et de l'accès
+            aux données.
+        </p>
+        <p>A cet égard, la connexion au service MyHealth nécessite une authentification à un seul facteur : La
+            combinaison d'un identifiant et d'un mot de passe connus de l'utilisateur.
+        </p>
+
+        <h2>Article 5 - Conservation des données</h2>
+        <p>Les données personnelles citées ci-dessus sont conservées aussi longtemps que nécessaire pour le traitement
+            des demandes et l'affichage des demandes archivées.
+            Ces données seront conservées pour une durée maximale de 5 ans (sauf demande explicite de l'utilisateur).
+        </p>
+
+        <h2>Article 6 - Droits des utilisateurs</h2>
+        <p>Les Utilisateurs de MyHealth disposent des droits suivants, conformément à la législation européenne en
+            vigueur :
+            <p>- le droit à l'oubli et au déréférencement</p>
+            <p>- le droit à l'accès, la rectification, l'opposition et l'information des données</p>
+            <p>- droit d’effacement des données lorsqu’elles sont inexactes, incomplètes, équivoques, périmées, ou dont la
+                collecte, l'utilisation, la communication ou la conservation est interdite</p>
+            <p>- le droit au retrait du consentement</p>
+            <p>- le droit à la portabilité des données collectées par l'utilisateur</p>
+        </p>
+    </div>
+
+    <!-- code html nécessaires au package loading -->
+    <div id="content-loading"></div>
+    <!-- --------------------------------------- -->
+
+    <!-- fontawesome pour afficher des icones -->
+    <script src="https://kit.fontawesome.com/763f236000.js"></script>
+</body>
+
+</html>

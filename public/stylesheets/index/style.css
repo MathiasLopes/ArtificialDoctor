@@ -258,6 +258,20 @@
     margin-left: 15px;
 }
 
+#content-rgpd{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px;
+    text-align: justify;
+}
+
+#content-cgu{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px;
+    text-align: justify;
+}
+
 /* ------------------------------------------------------------------------- */
 
 /* ------------------- Style de la page parametre -------------------------- */

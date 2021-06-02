@@ -44,6 +44,12 @@ app.get('/login', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/aut
 //route pour aller sur la page d'inscription
 app.get('/register', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/authentification/register.html')));
 
+//route pour aller sur la page des conditions générales d'utilisation
+app.get('/cgu', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/cgu.html')));
+
+//route pour aller sur la page du rgpd
+app.get('/rgpd', (req, res) => res.sendFile(path.join(pathPublic+'/webpages/rgpd.html')));
+
 //route pour deconnecté
 app.get('/logout', (req, res) => {
   requestAuthentification.deconnexion(req, function(reponse){
