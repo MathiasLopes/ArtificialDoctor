@@ -272,6 +272,14 @@
     text-align: justify;
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    background-color: #4285F4;
+    color: #fff;
+}
+
 /* ------------------------------------------------------------------------- */
 
 /* ------------------- Style de la page parametre -------------------------- */
