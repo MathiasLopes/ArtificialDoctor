@@ -79,9 +79,11 @@ function genereHtmlForVaccinations(vaccinations){
         var infoVaccin = uneVaccination.vaccin[0];
 
         htmlToReturn += '<div class="uneVaccination">' + 
-                            '<p>- <b>' + infoVaccin.nom + '</b> : fait le <input class="vaccinInputDateNaissance vaccination' + infoVaccin.id + '" value="' + (uneVaccination.dateDerniereVaccination != null ? uneVaccination.dateDerniereVaccination.split("T")[0] : "") + '" type="date" /> contre <b>' + infoVaccin.virus.nom + '</b>. <span class="buttonArtificialDoctor buttonParam" onclick="updateDateVaccinEffectue(\'' + infoVaccin.id + '\');">Mettre à jour</span></p>'
+                            '<p><b>' + infoVaccin.nom + '</b> : fait le <input class="vaccinInputDateNaissance vaccination' + infoVaccin.id + '" value="' + (uneVaccination.dateDerniereVaccination != null ? uneVaccination.dateDerniereVaccination.split("T")[0] : "") + '" type="date" /> contre <b>' + infoVaccin.virus.nom + '</b>. <span class="buttonArtificialDoctor buttonParam" onclick="updateDateVaccinEffectue(\'' + infoVaccin.id + '\');">Mettre à jour</span></p>' +
                         '</div>';
     }
+
+    console.log(htmlToReturn);
 
     return htmlToReturn;
 }
