@@ -134,10 +134,8 @@
 
 #content-vaccins, #content-parametres{
     padding: 20px;
-    border: 1px solid black;
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 20px;
 }
 
 #content-type-virus-selected {
