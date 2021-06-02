@@ -24,4 +24,32 @@ function virusVisited(idvirus, callback){
 
 }
 
+function getVirusPopularity(callback){
+
+    console.log("je passe 2");
+
+    try{
+        getConnection(function (connection){
+
+            console.log("je passe 3");
+
+            connection.query("SELECT nom, count(*) as nb FROM visite, virus where virus_id = virus.id group by nom",  function (error, results, fields){
+                connection.end();
+
+                console.log("je passe 4");
+
+                if(error){
+                    callback({success: false, message: error});
+                }else{
+                    callback({success: true, message: results});
+                }
+            });
+        });
+    }catch(e){
+        callback({success: false, message:"Une erreur est survenue lors de la récupération du taux de popularité des virus"});
+    }
+
+}
+
 exports.virusVisited = virusVisited;
+exports.getVirusPopularity = getVirusPopularity;

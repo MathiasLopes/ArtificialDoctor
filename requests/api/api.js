@@ -91,6 +91,12 @@ filtreRequest = function(req, callback){
                     callback(result);
                 });
                 break;
+            case "/api/stats/viruspopularity":
+                console.log("je passe 1");
+                table_visite.getVirusPopularity(function(result){
+                    callback(result);
+                });
+                break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});
         }

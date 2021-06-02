@@ -83,8 +83,6 @@ function genereHtmlForVaccinations(vaccinations){
                         '</div>';
     }
 
-    console.log(htmlToReturn);
-
     return htmlToReturn;
 }
 
