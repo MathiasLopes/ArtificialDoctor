@@ -29,7 +29,7 @@ function getVirusPopularity(callback){
     try{
         getConnection(function (connection){
 
-            connection.query("SELECT nom, count(*) as nb FROM visite, virus where virus_id = virus.id group by nom",  function (error, results, fields){
+            connection.query("SELECT nom, count(*) as nb FROM visite, virus where virus_id = virus.id and visite.date > DATE_ADD(NOW(), INTERVAL -2 MONTH) group by nom",  function (error, results, fields){
                 connection.end();
 
                 if(error){

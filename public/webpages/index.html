@@ -9,13 +9,15 @@
         <link rel="stylesheet" href="/global/style.css" type="text/css" />
         <script src="/global/functions.js"></script>
 
-        <!-- inclusion highchart -->
+        <!-- inclusion highchart externe -->
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/data.js"></script>
         <script src="https://code.highcharts.com/modules/drilldown.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+        <!-- inclusion highchart interne -->
         <script src="/javascripts/highcharts/viruspopularite.js"></script>
 
         <!-- inclusion du package header pour faciliter la construction d'un header dans plusieurs pages -->
@@ -47,6 +49,7 @@
         <link rel="stylesheet" href="/stylesheets/index/navbar.css" type="text/css" />
         <script src="/javascripts/index/actualite.js"></script>
         <script src="/javascripts/index/vaccins.js"></script>
+        <script src="/javascripts/index/statistiques.js"></script>
         <script src="/javascripts/index/parametres.js"></script>
         <script src="/javascripts/index/index.js"></script>
         <script src="/packages/api-nyt/nyt.js"></script>
@@ -68,6 +71,7 @@
 
            <div id="nav-bar">
                 <div id="tabactualite" onclick="actualite.show();" class="tab selected">Actualité</div>
+                <div id="tabstatistiques" onclick="statistiques.show();" class="tab">Statistiques</div>
                 <div id="tabvaccins" onclick="vaccins.show();" class="tab">Mes vaccins</div>
                 <div id="tabparametres" onclick="parametre.show();" class="tab">Paramètres</div>
             </div> 
@@ -84,9 +88,6 @@
                 <p>- Un troisième onglet pour paramétrer les informations de votre compte.</p>
             </div>
 
-            <div id="container_popularityvirus"></div>
-
-
             <div id="content-selected-virus">
                 <div id="virus-apropos">
                     <div id="content-virus-nom-and-virus-have-vaccin">
@@ -98,6 +99,10 @@
                     <div id="virus-description"></div>
                 </div>
                 <div id="list-articles"></div>
+            </div>
+
+            <div id="content-statistiques">
+                <div id="container_popularityvirus" style="margin-top: 20px;"></div>
             </div>
             
             <div id="content-vaccins">

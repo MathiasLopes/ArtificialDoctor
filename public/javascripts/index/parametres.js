@@ -29,7 +29,10 @@ const parametre = {
         }
 
         if(actualite.isDisplayed())
-            actualite.hide(callback)
+            actualite.hide(callback);
+
+        if(statistiques.isDisplayed())
+            statistiques.hide(callback);
 
         if(vaccins.isDisplayed())
             vaccins.hide(callback);

@@ -14,8 +14,6 @@ const vaccins = {
     },
     show: function(){
 
-        console.log("test");
-
         $(".tab").removeClass("selected");
         $("#tabvaccins").addClass("selected");
 
@@ -33,6 +31,9 @@ const vaccins = {
 
         if(actualite.isDisplayed())
             actualite.hide(callback);
+
+        if(statistiques.isDisplayed())
+            statistiques.hide(callback);
 
         if(parametre.isDisplayed()){
             parametre.hide(callback);
