@@ -41,6 +41,9 @@ const actualite = {
         if(vaccins.isDisplayed())
             vaccins.hide(callback2);
 
+        if(statistiques.isDisplayed())
+            statistiques.hide(callback2);
+
         if(parametre.isDisplayed()){
             parametre.hide(callback2);
         }   
