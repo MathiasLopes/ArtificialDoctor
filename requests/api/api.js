@@ -92,7 +92,6 @@ filtreRequest = function(req, callback){
                 });
                 break;
             case "/api/stats/viruspopularity":
-                console.log("je passe 1");
                 table_visite.getVirusPopularity(function(result){
                     callback(result);
                 });
