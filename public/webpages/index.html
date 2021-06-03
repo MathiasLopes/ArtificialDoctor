@@ -113,13 +113,13 @@
                 <div>
                     <h2>Vous êtes dans les paramètres de votre compte.</h2>
                     <div><p>C'est dans cette onglet que vous allez pouvoir modifier les informations de votre compte.</p></div>
-                    <div><p>Identifiant : <input id="paramInputIdentifiant" type="text" disabled value="" /></p></div> 
-                    <div>
-                        <p>Mot de passe :
-                            <span style="max-width:172px;" class="buttonArtificialDoctor buttonParam" onclick="showWindowPassword();">Changer</span>
+                    <div class="option-parametre"><p>Identifiant : <input id="paramInputIdentifiant" type="text" disabled value="" /></p></div> 
+                    <div class="option-parametre">
+                        <p>
+                            <span style="max-width:172px;" class="buttonArtificialDoctor buttonParam" onclick="showWindowPassword();">Modifier mon mot de passe</span>
                         </p>
                     </div>
-                    <div>
+                    <div class="option-parametre">
                         <p>Date de naissance : 
                             <input id="paramInputDateNaissance" type="date" />
                             <span class="buttonArtificialDoctor buttonParam" onclick="updateParamDateNaissance();">Mettre à jour</span>

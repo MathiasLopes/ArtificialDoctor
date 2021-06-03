@@ -35,7 +35,7 @@ function getHtmlWithListeTypeVirus(listeTypeVirus){
 //permet de recuperer la liste des types de virus a partir de la liste des virus actuellement chargé
 function loadListeTypeVirus(){
 
-    var listeTypeVirus = [{titre: "Tout", nb: allVirus.length}];
+    var listeTypeVirus = [{titre: "Tous", nb: allVirus.length}];
 
     for(var i = 0; i < allVirus.length; i++){
 
@@ -63,7 +63,7 @@ function showTypeVirus(type, obj){
     $(".optionFiltreTypeVirus").removeClass("selected");
     $(obj).addClass("selected");
 
-    if(type != "Tout"){
+    if(type != "Tous"){
         //pour afficher uniquement les virus/maladie du type sélectionné
         $(".option_virus").addClass("hide");
         $(".option_virus[data-type='" + type + "']").removeClass("hide");

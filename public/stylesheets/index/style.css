@@ -290,4 +290,12 @@ footer {
     margin-right: 11px;
 }
 
+.option-parametre{
+    background-color: #e5efff;
+    padding: 1px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    border-radius: 8px;
+}
+
 /* ------------------------------------------------------------------------- */
