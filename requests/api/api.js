@@ -7,6 +7,7 @@ var table_visite = require('./table_visite/table_visite');
 var table_utilisateurs = require('./table_utilisateurs/table_utilisateurs');
 var table_vaccination = require('./table_vaccination/table_vaccination');
 var table_vaccin = require('./table_vaccin/table_vaccin');
+var statistiques = require('./statistiques');
 var manage_session = require('../gestionSession');
 const { table } = require('console');
 
@@ -92,7 +93,12 @@ filtreRequest = function(req, callback){
                 });
                 break;
             case "/api/stats/viruspopularity":
-                table_visite.getVirusPopularity(function(result){
+                statistiques.getVirusPopularity(function(result){
+                    callback(result);
+                });
+                break;
+            case "/api/stats/nbvaccinationforvirus":
+                statistiques.getNbVirusVaccination(function(result){
                     callback(result);
                 });
                 break;

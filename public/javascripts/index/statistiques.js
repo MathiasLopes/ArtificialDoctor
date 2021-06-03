@@ -24,6 +24,7 @@ const statistiques = {
             $("#content-statistiques").show();
 
             buildVirusPopulriteChart();
+            buildNbVaccinationForVirus();
 
             hideLoading();
 
