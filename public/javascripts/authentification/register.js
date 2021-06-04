@@ -226,10 +226,12 @@ register.addEventListener('submit', async (event) => {
 
       var data = JSON.parse(text);
 
-      alert(data.message);
+      
 
       if(data.success){
           window.location.href = "/login";
+      }else{
+          alert(data.message);
       }
 
     });

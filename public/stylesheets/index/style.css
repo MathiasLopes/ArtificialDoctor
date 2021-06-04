@@ -88,6 +88,10 @@
     margin-top: 20px;
 }
 
+#content-statistiques{
+    display: none;
+}
+
 #virus-apropos{
     position: sticky;
     top: 81px;
