@@ -334,3 +334,18 @@ footer {
 .unCentreVaccination .withicone{
     margin-left: 10px;
 }
+
+.data-for-stats{
+    background-color: #e5efff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    width: 300px;
+}
+
+.data-for-stats span{
+    margin-left: 5px;
+}

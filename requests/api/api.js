@@ -102,6 +102,26 @@ filtreRequest = function(req, callback){
                     callback(result);
                 });
                 break;
+            case "/api/stats/nbusers":
+                statistiques.getNbUsers(function(result){
+                    callback(result);
+                });
+                break;
+            case "/api/stats/nbvisites":
+                statistiques.getNbVisites(function(result){
+                    callback(result);
+                });
+                break;
+            case "/api/stats/nbvirus":
+                statistiques.getNbVirus(function(result){
+                    callback(result);
+                });
+                break;
+            case "/api/stats/nbvaccins":
+                statistiques.getNbVaccins(function(result){
+                    callback(result);
+                });
+                break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});
         }

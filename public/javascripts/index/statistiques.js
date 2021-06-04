@@ -23,6 +23,10 @@ const statistiques = {
             //gestion des conteneurs
             $("#content-statistiques").show();
 
+            showNbUsers();
+            showNbVisites();
+            showNbVirus();
+            showNbVaccins();
             buildVirusPopulriteChart();
             buildNbVaccinationForVirus();
 
@@ -47,4 +51,74 @@ const statistiques = {
             parametre.hide(callback2);
         }   
     }
+}
+
+function showNbUsers(){
+    $.post({
+        url: "/api/stats/nbusers"
+    })
+    .done(function (data) {
+        if (data.success){
+            $("#nbUsers").html(data.message[0].nb);
+        }else{
+            $("#nbUsers").html(data.message);
+        }
+    })
+    .fail(function (data) {
+        $("#nbUsers").html("Erreur lors de la récupération");
+    })
+}
+
+function showNbVisites(){
+    $.post({
+        url: "/api/stats/nbvisites"
+    })
+    .done(function (data) {
+        console.log(data);
+        if (data.success){
+            $("#nbVisites").html(data.message[0].nb);
+        }else{
+            $("#nbVisites").html(data.message);
+        }
+
+    })
+    .fail(function (data) {
+        $("#nbVisites").html("Erreur lors de la récupération");
+    })
+}
+
+function showNbVirus(){
+    $.post({
+        url: "/api/stats/nbvirus"
+    })
+    .done(function (data) {
+        console.log(data);
+        if (data.success){
+            $("#nbVirus").html(data.message[0].nb);
+        }else{
+            $("#nbVirus").html(data.message);
+        }
+
+    })
+    .fail(function (data) {
+        $("#nbVirus").html("Erreur lors de la récupération");
+    })
+}
+
+function showNbVaccins(){
+    $.post({
+        url: "/api/stats/nbvaccins"
+    })
+    .done(function (data) {
+        console.log(data);
+        if (data.success){
+            $("#nbVaccins").html(data.message[0].nb);
+        }else{
+            $("#nbVaccins").html(data.message);
+        }
+
+    })
+    .fail(function (data) {
+        $("#nbVaccins").html("Erreur lors de la récupération");
+    })
 }

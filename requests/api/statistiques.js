@@ -41,5 +41,87 @@ function getNbVirusVaccination(callback)
     }
 }
 
+function getNbUsers(callback){
+    try{
+        getConnection(function (connection){
+
+            connection.query("select count(*) as nb from utilisateurs",  function (error, results, fields){
+                connection.end();
+
+                if(error){
+                    callback({success: false, message: error});
+                }else{
+                    callback({success: true, message: results});
+                }
+            });
+        });
+    }catch(e){
+        callback({success: false, message:"Une erreur est survenue lors de la récupération du nombre d'utilisateurs totales"});
+    }
+}
+
+function getNbVisites(callback){
+    try{
+        getConnection(function (connection){
+
+            connection.query("select count(*) as nb from visite",  function (error, results, fields){
+                connection.end();
+
+                if(error){
+                    callback({success: false, message: error});
+                }else{
+                    callback({success: true, message: results});
+                }
+            });
+        });
+    }catch(e){
+        callback({success: false, message:"Une erreur est survenue lors de la récupération du nombre de visites totales"});
+    }
+}
+
+function getNbVirus(callback){
+    try{
+        getConnection(function (connection){
+
+            connection.query("select count(*) as nb from virus",  function (error, results, fields){
+                connection.end();
+
+                if(error){
+                    callback({success: false, message: error});
+                }else{
+                    callback({success: true, message: results});
+                }
+            });
+        });
+    }catch(e){
+        callback({success: false, message:"Une erreur est survenue lors de la récupération du nombre de virus totales"});
+    }
+}
+
+function getNbVaccins(callback){
+    try{
+        getConnection(function (connection){
+
+            connection.query("select count(*) as nb from vaccin",  function (error, results, fields){
+                connection.end();
+
+                if(error){
+                    callback({success: false, message: error});
+                }else{
+                    callback({success: true, message: results});
+                }
+            });
+        });
+    }catch(e){
+        callback({success: false, message:"Une erreur est survenue lors de la récupération du nombre de vaccins totales"});
+    }
+}
+
 exports.getVirusPopularity = getVirusPopularity;
 exports.getNbVirusVaccination = getNbVirusVaccination;
+exports.getNbUsers = getNbUsers;
+exports.getNbVisites = getNbVisites;
+exports.getNbVirus = getNbVirus;
+exports.getNbVaccins = getNbVaccins;
+
+
