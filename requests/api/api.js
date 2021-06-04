@@ -122,6 +122,11 @@ filtreRequest = function(req, callback){
                     callback(result);
                 });
                 break;
+            case "/api/user/unsubscribe":
+                table_utilisateurs.unsubscribe(req.session.utilisateur.id, function(result){
+                    callback(result);
+                });
+                break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});
         }

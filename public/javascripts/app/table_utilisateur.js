@@ -43,3 +43,15 @@ function setNewPassword(publickey, callback)
         callback({success: false, message: data});
     });
 }
+
+function unsubscribe(callback){
+    $.post({
+        url:"/api/user/unsubscribe"
+    })
+    .done(function(data){
+        callback(data);
+    })
+    .fail(function(data){
+        callback({success: false, message: data});
+    });
+}

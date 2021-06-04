@@ -6,7 +6,7 @@ function getUserById(iduser, callback){
     try{
         getConnection(function (connection){
 
-            connection.query("select * from utilisateurs where id = ? limit 1", iduser, function (error, results, fields){
+            connection.query("select * from utilisateurs where id = ? and archive = 0 limit 1", iduser, function (error, results, fields){
                 connection.end();
 
                 if(error){
@@ -77,6 +77,28 @@ function setNewPassword(publickey, iduser, callback)
     }
 }
 
+function unsubscribe(iduser, callback){
+    try{
+        getConnection(function(connection){
+            connection.query("update utilisateurs SET archive = 1 where id = " + iduser, function (error, results, fields){
+                connection.end();
+
+                if(error){
+                    callback({success: false, message: error});
+                }
+                else{
+                    callback({success: true, message: results});
+                }
+            });
+        });
+    }
+    catch(e)
+    {
+        callback({success: false, message:"Une erreur est survenue lors de la suppression du compte"});
+    }
+}
+
 exports.getUserById = getUserById;
 exports.saveNewDateNaissance = saveNewDateNaissance;
 exports.setNewPassword = setNewPassword;
+exports.unsubscribe = unsubscribe;

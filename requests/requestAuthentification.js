@@ -43,7 +43,7 @@ function inscription(req, callback){
 //methode permettant de recuperer la ligne utilisateur dans la table utilisateur
 function getIdentifiant(identifiant, callback){
     getConnection(function(connection){
-        connection.query("select * from utilisateurs where identifiant = ?", identifiant, function (error, results, fields){
+        connection.query("select * from utilisateurs where identifiant = ? and archive = 0", identifiant, function (error, results, fields){
             connection.end();
 
             if(error){

@@ -74,7 +74,6 @@ function showNbVisites(){
         url: "/api/stats/nbvisites"
     })
     .done(function (data) {
-        console.log(data);
         if (data.success){
             $("#nbVisites").html(data.message[0].nb);
         }else{
@@ -92,7 +91,6 @@ function showNbVirus(){
         url: "/api/stats/nbvirus"
     })
     .done(function (data) {
-        console.log(data);
         if (data.success){
             $("#nbVirus").html(data.message[0].nb);
         }else{
@@ -110,7 +108,6 @@ function showNbVaccins(){
         url: "/api/stats/nbvaccins"
     })
     .done(function (data) {
-        console.log(data);
         if (data.success){
             $("#nbVaccins").html(data.message[0].nb);
         }else{

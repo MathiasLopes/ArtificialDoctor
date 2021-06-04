@@ -1,3 +1,4 @@
+
 const parametre = {
     isDisplayed: function(){
         return $("#content-body").hasClass("parametres");
@@ -57,7 +58,7 @@ function initInformationsUser(){
 
 function remplissageInformationUser(infosUser){
     $("#paramInputIdentifiant").val(infosUser.identifiant);
-    $("#paramInputDateNaissance").val(infosUser.dateNaissance != "" ? infosUser.dateNaissance.split("T")[0] : "");
+    $("#paramInputDateNaissance").val(infosUser.dateNaissance != "" && infosUser.dateNaissance != null ? infosUser.dateNaissance.split("T")[0] : "");
 }
 
 function updateParamDateNaissance(){
@@ -151,4 +152,19 @@ async function modifyPassword(){
             alert("Une erreur est survenue lors de la modication du mot de passe");
     });
 
+}
+
+function unsubscribeMe(){
+    showLoading();
+    unsubscribe(function(result){
+
+        hideLoading();
+
+        if(result.success){
+            deconnexion();
+        }else{
+            alert("Une erreur est survenue lors de la désinscription, veuillez contacter le support technique");
+        }
+
+    });
 }
