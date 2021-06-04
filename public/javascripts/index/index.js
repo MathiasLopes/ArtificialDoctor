@@ -151,7 +151,6 @@ function showInfosSelectedVirus(id){
                 $("#virus-dateapparition").html("Date d'identification : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));
                 $("#virus-type").html("Type : " + virus.type);
                 $("#virus-description").html(virus.description);
-        
             }
         }else{
             alert("Une erreur est survenue lors de la récupération des informations du virus");
@@ -334,4 +333,14 @@ const welcomePage = {
             $("#content-welcome").show();
         }
     }
+}
+
+function test(){
+
+$.get({
+    url:"https://vitemadose.gitlab.io/vitemadose/91.json"
+}).done(function(data){
+    console.log(data);
+})
+
 }
