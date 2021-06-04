@@ -27,10 +27,24 @@
                 
                 <label><b>Mot de passe</b></label>
                 <input name=password type=password placeholder="Entrer le mot de passe" required/>
+
+                <br>
+                <h2>Conditions Générales d'utilisation</h2>
+                <div>
+                    <input type="checkbox" required>
+                    <label for="coding">Je reconnais avoir pris connaissances <a href="/cgu">des conditions générales d'utilisation</a> et les accepter sans réserve.</label>
+                </div>
+                <h2>Consentement</h2>
+                <div>
+                    <input type="checkbox" required>
+                    <label for="music">Je consens à la collecte et au traitement de mes données de santé à caractère personnel dans le cadre des services proposés. <a href="/rgpd">(Voir politique de protection des données personnels)</a></label>
+                </div><br>
                 
-                <input type=submit value="S'inscrire"/>
-                <b><a href="/login">Déjà inscrit ?</a></b><br><br>
-                <b>En continuant, vous acceptez les <a href="/cgu">les conditions générales d'utilisation</a> ainsi que <a href="/rgpd">le règlement de la protection des données</a>.</b>
+                 <input type=submit value="S'inscrire"/></b>
+                 <b><a href="/login">Déjà inscrit ?</a>
+                <!--<b>En continuant, vous acceptez les <a href="/cgu">
+                les conditions générales d'utilisation</a> ainsi que 
+                <a href="/rgpd">le règlement de la protection des données</a>.</b> -->
             </form>
             <script src="/javascripts/authentification/register.js"></script>
         </div>
