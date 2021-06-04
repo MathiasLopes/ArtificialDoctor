@@ -148,7 +148,7 @@ function showInfosSelectedVirus(id){
                 $("#virus-nom").html(virus.nom);
 
                 setVaccinsInVirusSelected(virus.vaccins);
-                $("#virus-dateapparition").html("Date d'apparition : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));
+                $("#virus-dateapparition").html("Date d'identification : " + (virus.dateApparition != null ? virus.dateApparition.split("-")[0] : "Inconnue"));
                 $("#virus-type").html("Type : " + virus.type);
                 $("#virus-description").html(virus.description);
         
