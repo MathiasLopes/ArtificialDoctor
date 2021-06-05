@@ -44,7 +44,7 @@ function buildNbVaccinationForVirus() {
                 },
 
                 tooltip: {
-                    pointFormat: '<span style="color:{point.color}"><b>{point.y}</b></span> vaccinations contre <span style="color:{point.color}">{point.name}</span><br/>'
+                    pointFormat: '<span style="color:{point.color}"><b>{point.y}</b></span> vaccination(s) contre <span style="color:{point.color}">{point.name}</span><br/>'
                 },
 
                 series: [

@@ -71,6 +71,7 @@ function insertionUserInTableUtilisateur(identifiant, certificat){
     var post  = {identifiant: identifiant, certificat: certificat};
     getConnection(function(connection){
         connection.query("insert into utilisateurs SET ?", post);
+        connection.query("UPDATE utilisateurs SET archive = '0' WHERE identifiant = '"+ identifiant + "';", post);
         connection.end();
     });
 }
