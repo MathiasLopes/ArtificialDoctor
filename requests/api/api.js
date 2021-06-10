@@ -127,6 +127,11 @@ filtreRequest = function(req, callback){
                     callback(result);
                 });
                 break;
+            case "/api/stats/nbvaccinbyrvirus" :
+                statistiques.getNbVaccinsParVirus(function(result){
+                    callback(result);
+                });
+                break;
 			default:
 				callback({success: false, message: "La méthode " + urlRequest.pathname + " recherchée n'existe pas"});
         }

@@ -29,6 +29,7 @@ const statistiques = {
             showNbVaccins();
             buildVirusPopulriteChart();
             buildNbVaccinationForVirus();
+            buildNbVaccinByVirus();
 
             hideLoading();
 

@@ -117,11 +117,32 @@ function getNbVaccins(callback){
     }
 }
 
+// nombre des vaccins par virus 
+
+function getNbVaccinsParVirus(callback){
+    try{
+        getConnection(function(connection){
+            connection.query("SELECT virus.nom ,count(*) as nb_vaccin FROM vaccin INNER JOIN virus ON virus.id = vaccin.virus_id GROUP BY virus.nom", function (error, results, fields){
+                connection.end();
+
+                if(error){
+                    callback({success:false, message: error})
+                }else{
+                    callback({success: true, message: results})
+                }
+            });
+        });
+    }catch(e){
+            callback({success: false, message:"Une erreur est survenue lors de la récupération du nombre de vaccins par virus"});
+        }
+    }
+
 exports.getVirusPopularity = getVirusPopularity;
 exports.getNbVirusVaccination = getNbVirusVaccination;
 exports.getNbUsers = getNbUsers;
 exports.getNbVisites = getNbVisites;
 exports.getNbVirus = getNbVirus;
 exports.getNbVaccins = getNbVaccins;
+exports.getNbVaccinsParVirus = getNbVaccinsParVirus;
 
 
