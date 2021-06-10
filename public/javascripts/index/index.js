@@ -269,7 +269,7 @@ function setVaccinInListMesVaccins(obj){
     addOrRemoveVaccination(idvaccin, addOrRemove, function(result){
         if(!result.success)
         {
-            $(obj).prop("checked", false);
+            $(obj).prop("checked", !addOrRemove);
             alert(result.message);
         }
     });

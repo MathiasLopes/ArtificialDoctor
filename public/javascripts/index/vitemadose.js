@@ -2,7 +2,7 @@
 function openWindowToFindVaccin() {
 
     var htmlToFindVaccin = `<div>
-                                <div style="margin-top: 15px;margin-left: 20px;">En partenariat avec <a href="https://vitemadose.covidtracker.fr/" target="_blank">ViteMaDose</a>, vous pouvez trouver un rendez-vous dans les centres de vaccinations le plus proche de chez moi.</div>
+                                <div style="margin-top: 15px;margin-left: 20px;">En partenariat avec <a href="https://vitemadose.covidtracker.fr/" target="_blank">ViteMaDose</a>, vous pouvez trouver un rendez-vous dans les centres de vaccinations les plus proche de chez vous.</div>
                                 <div style="margin-top: 15px;margin-left: 20px;">Saisir votre numéro de département ou votre code postal :</div>
                                 <input id="codedepartement" type="text" placeholder="Numéro de département ou code postal" />
                                 <div class="buttonArtificialDoctor buttonParam btSearch" onclick="getListCentreVaccination($('#codedepartement').val());">Rechercher</div>

@@ -79,8 +79,22 @@ function genereHtmlForVaccinations(vaccinations){
         var uneVaccination = vaccinations[i];
         var infoVaccin = uneVaccination.vaccin[0];
 
+        console.log(uneVaccination);
+
         htmlToReturn += '<div class="uneVaccination">' + 
-                            '<p><b>' + infoVaccin.nom + '</b> : fait le <input class="vaccinInputDateNaissance vaccination' + infoVaccin.id + '" value="' + (uneVaccination.dateDerniereVaccination != null ? uneVaccination.dateDerniereVaccination.split("T")[0] : "") + '" type="date" /> contre <b>' + infoVaccin.virus.nom + '</b>. <span class="buttonArtificialDoctor buttonParam" onclick="updateDateVaccinEffectue(\'' + infoVaccin.id + '\');">Mettre à jour</span><input data-idvaccin=" ${lesVaccins[i].id}" onchange="setVaccinInListMesVaccins(this);" class="apple-switch" type="checkbox"></p>' +
+                            '<p>' +
+                                '<b>' + 
+                                    infoVaccin.nom + 
+                                '</b>' +
+                                ' : fait le ' +
+                                '<input class="vaccinInputDateNaissance vaccination' + infoVaccin.id + '" ' +
+                                    'value="' + (uneVaccination.dateDerniereVaccination != null ? uneVaccination.dateDerniereVaccination.split("T")[0] : "") + '" type="date" />'+
+                                ' contre <b>' + infoVaccin.virus.nom + '</b>.'+
+                                ' <span class="buttonArtificialDoctor buttonParam" '+
+                                    'onclick="updateDateVaccinEffectue(\'' + infoVaccin.id + '\');">Mettre à jour</span>' +
+                                '<input data-idvaccin="' + uneVaccination.vaccin[0].id + '" onchange="setVaccinInListMesVaccinsForVaccinsWindow(this);" ' +
+                                    'class="apple-switch" type="checkbox" checked />'+
+                            '</p>' +
                         '</div>';
     }
 
@@ -132,16 +146,22 @@ function verifieDateVaccinIsValid(dateVaccinFormatSQL){
 }
 
 //permet d'ajouter ou supprimer un vaccin de la liste "mes vaccins" de l'utilisateur
-function setVaccinInListMesVaccins(obj){
+function setVaccinInListMesVaccinsForVaccinsWindow(obj){
 
-    var addOrRemove = $(obj).is(":checked");
-    var idvaccin = $(obj).data("idvaccin");
+    if(confirm("Supprimer cette vaccination de votre liste de vaccination ?")){
+        var addOrRemove = $(obj).is(":checked");
+        var idvaccin = $(obj).data("idvaccin");
 
-    addOrRemoveVaccination(idvaccin, addOrRemove, function(result){
-        if(!result.success)
-        {
-            $(obj).prop("checked", false);
-            alert(result.message);
-        }
-    });
+        addOrRemoveVaccination(idvaccin, addOrRemove, function(result){
+            if(!result.success)
+            {
+                $(obj).prop("checked", !addOrRemove);
+                alert(result.message);
+            }else{
+                recuperationVaccinsUser();
+            }
+        });
+    }else{
+        $(obj).prop("checked", true);
+    }
 }

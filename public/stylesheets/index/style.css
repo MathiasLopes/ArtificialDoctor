@@ -360,4 +360,14 @@ footer {
     margin-bottom: 10px;
     padding-left: 20px;
     border-radius: 8px;
+    padding-bottom: 8px;
+}
+
+.uneVaccination .apple-switch{
+    margin-bottom: -10px;
+}
+
+#container_nbvaccinationforvirus, #container_nbvaccinbyvirus{
+    width: 49%;
+    display: inline-block;
 }
