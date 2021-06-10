@@ -74,6 +74,7 @@ function insertionUserInTableUtilisateur(identifiant, certificat){
         connection.query("UPDATE utilisateurs SET archive = '0' WHERE identifiant = '"+ identifiant + "';", post);
         connection.end();
     });
+    
 }
 
 //permet de s'assurer que l'utilisateur utilise les bonnes informations pour se connecter afin de valider la connexion
