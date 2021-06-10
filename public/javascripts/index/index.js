@@ -334,13 +334,3 @@ const welcomePage = {
         }
     }
 }
-
-function test(){
-
-$.get({
-    url:"https://vitemadose.gitlab.io/vitemadose/91.json"
-}).done(function(data){
-    console.log(data);
-})
-
-}
