@@ -67,7 +67,7 @@ app.get('/index', (req, res) => {
     if(reponse.success){
       res.sendFile(path.join(pathPublic+'/webpages/index.html'));
     }else{
-      res.sendFile(path.join(pathPublic+'/webpages/notconnected.html'));
+      res.sendFile(path.join(pathPublic+'/webpages/authentification/login.html'));
     }
   });
 });
