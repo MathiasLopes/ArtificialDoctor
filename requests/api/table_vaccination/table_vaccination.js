@@ -50,17 +50,18 @@ function addVaccination(req, idvaccin, iduser, callback){
 
     try{
 
+        console.log(req.session.utilisateur.dateNaissance);
+
         //verification que l'age de l'utilisateur est supérieur à l'age de minimum pour un vaccin
         var age = OutilDate.getAgeYearAndMonth(new Date(req.session.utilisateur.dateNaissance));
+        if(req.session.utilisateur.dateNaissance == null)
+            age = null;
         
         table_vaccin.getVaccinByVaccinId(idvaccin, function(result){
 
             var ageMinimumForVaccin = OutilDate.getAgeOfDatabase(result.message[0].ageMinimum);
-            
-            console.log(age);
-            console.log(ageMinimumForVaccin);
 
-            if(age[0] > ageMinimumForVaccin[0] || (age[0] >= ageMinimumForVaccin[0] && age[1] >= ageMinimumForVaccin[1]))
+            if(age == null || age[0] > ageMinimumForVaccin[0] || (age[0] >= ageMinimumForVaccin[0] && age[1] >= ageMinimumForVaccin[1]))
             { 
                 getConnection(function (connection){
                     var post  = {utilisateurs_id: iduser, vaccin_id: idvaccin};
